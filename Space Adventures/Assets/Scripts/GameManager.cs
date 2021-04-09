@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GameManager : MonoBehaviour
+namespace SpaceAdventures
+{
+    public class GameManager : MonoBehaviour
 {
     public Player player;
 
@@ -15,4 +16,5 @@ public class GameManager : MonoBehaviour
     }
 
 
+    }
     }

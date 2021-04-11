@@ -16,7 +16,7 @@ namespace SpaceAdventures {
         Animator anim;
 
         MovementState currentMovementState;
-        enum MovementState
+        public enum MovementState
         {
             player,
             ship
@@ -25,7 +25,6 @@ namespace SpaceAdventures {
         void Awake()
         {
             anim = gameObject.GetComponent<Animator>();
-            gameObject.transform.eulerAngles = rot;
         }
 
         private void Start()
@@ -35,9 +34,41 @@ namespace SpaceAdventures {
 
         private void Update()
         {
+            CheckKey();
+            gameObject.transform.eulerAngles = rot;
+        }
+        void OnFuelOver()
+        {
+            if (fuel < 1)
+            {
+                shipSpeed = 0;
+            }
+
+            else
+            {
+                fuel -= fuelConsumption * 0.01f;
+            }
+        }
+
+       public void ChangeMovementState(MovementState movementState)
+        {
+            currentMovementState = movementState;
             if (currentMovementState == MovementState.ship)
             {
                 anim.enabled = false;
+            }
+            else if (currentMovementState == MovementState.player)
+            {
+                anim.enabled = true;
+            }
+        }
+
+        void CheckKey()
+        {
+
+            if (currentMovementState == MovementState.ship)
+            {
+
                 if (Input.GetKey(KeyCode.W))
                 {
                     rb.AddForce(Vector3.forward * shipSpeed);
@@ -87,22 +118,7 @@ namespace SpaceAdventures {
                 }
             }
         }
-        void OnFuelOver()
-        {
-            if (fuel < 1)
-            {
-                shipSpeed = 0;
-            }
 
-            else
-            {
-                fuel -= fuelConsumption * 0.01f;
-            }
-        }
 
-        void ChangeMovementState(MovementState movementState)
-        {
-            currentMovementState = movementState;
-        }
     }
 }

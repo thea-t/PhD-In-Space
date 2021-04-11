@@ -21,16 +21,11 @@ namespace SpaceAdventures
 
             // apply force on target towards me
             GameManager.Instance.player.GetComponent<Rigidbody>().AddForce(forceDirection.normalized * pullForce * forceDirection.magnitude, ForceMode.Acceleration);
-
         }
-
-
 
         this.transform.RotateAround(this.transform.parent.position, this.transform.parent.up, rotateSpeed * Time.deltaTime);
 
     }
-
-    
 
     private void OnGUI()
     {

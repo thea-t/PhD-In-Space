@@ -18,7 +18,7 @@ namespace SpaceAdventures
             {
                 //set the parent of the player so that it will move with the planet
                 transform.parent = other.transform;
-                OnLanding();
+                OnLandingOnPlanet();
             }
 
         }
@@ -32,15 +32,10 @@ namespace SpaceAdventures
             
         }
 
-        void OnLanding()
+        void OnLandingOnPlanet()
         {
             //change camera
             mainCamera.SetActive(false);
-
-            //rescale the player
-            transform.localScale -= new Vector3(5, 5, 5);
-            //change the movement controls
-            GameManager.Instance.playerMovement.ChangeMovementState(PlayerMovement.MovementState.player);
         }
     }
 }

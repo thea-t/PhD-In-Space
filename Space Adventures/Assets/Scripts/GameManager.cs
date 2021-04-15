@@ -5,8 +5,7 @@ namespace SpaceAdventures
 {
     public class GameManager : MonoBehaviour
 {
-    public Player player;
-    public PlayerMovement playerMovement;
+    public PlayerShip player;
 
     public static GameManager Instance { get; private set; } // static singleton
     

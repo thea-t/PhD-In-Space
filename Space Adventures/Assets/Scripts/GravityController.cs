@@ -20,7 +20,7 @@ namespace SpaceAdventures
                 Vector3 forceDirection = transform.position - GameManager.Instance.player.transform.position;
 
                 // apply force on target towards me
-                GameManager.Instance.playerMovement.rb.AddForce(forceDirection.normalized * pullForce * forceDirection.magnitude, ForceMode.Acceleration);
+                GameManager.Instance.player.rb.AddForce(forceDirection.normalized * pullForce * forceDirection.magnitude, ForceMode.Acceleration);
 
             }
 

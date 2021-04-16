@@ -17,10 +17,10 @@ namespace SpaceAdventures
             {
                 //https://answers.unity.com/questions/599949/3d-gravity-towards-one-object.html
                 // calculate direction from target to me
-                Vector3 forceDirection = transform.position - GameManager.Instance.player.transform.position;
+                Vector3 forceDirection = transform.position - GameManager.Instance.playerShip.transform.position;
 
                 // apply force on target towards me
-                GameManager.Instance.player.rb.AddForce(forceDirection.normalized * pullForce * forceDirection.magnitude, ForceMode.Acceleration);
+                GameManager.Instance.playerShip.rb.AddForce(forceDirection.normalized * pullForce * forceDirection.magnitude, ForceMode.Acceleration);
 
             }
 

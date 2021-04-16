@@ -107,11 +107,19 @@ namespace SpaceAdventures
             }
             else if (other.CompareTag("planet"))
             {
+
+                rb.isKinematic = true;
+                transform.localScale = (new Vector3(10,10,10));
+                transform.SetParent(other.transform);
+
+
+
                 //change camera
                 mainCamera.SetActive(false);
 
                 //how to do something with a delay:
                 StartCoroutine(ChangeScene(other.transform.parent.name));
+
             }
 
         }
@@ -130,7 +138,9 @@ namespace SpaceAdventures
             yield return new WaitForSeconds(2);
             //how to load a scene with loader asset: check documentation
             bl_SceneLoaderUtils.GetLoader.LoadLevel(_planetName);
-        }
+        } 
+        
+        
     }
 }
 

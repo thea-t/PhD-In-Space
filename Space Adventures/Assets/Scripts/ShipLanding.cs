@@ -10,7 +10,7 @@ namespace SpaceAdventures
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject landingCamera;
 
-    private GameObject player;
+    public GameObject player;
     private Animator playerAnimator;
 
     private void Start()
@@ -37,7 +37,14 @@ namespace SpaceAdventures
         playerAnimator.SetBool("Walk", false);
         playerAnimator.SetTrigger("Look Around");
         landingCamera.SetActive(false);
-    }
+            StartCoroutine(ChangeScene());
+        }
 
+        IEnumerator ChangeScene()
+        {
+            yield return new WaitForSeconds(4);
+            player.GetComponent<Rigidbody>().isKinematic = false;
+        }
+       
 }
 }

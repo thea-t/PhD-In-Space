@@ -19,9 +19,9 @@ namespace SpaceAdventures
         [SerializeField] ParticleSystem botSmokeParticle;
 
 
-        private void Update()
+        void Update()
         {
-            CheckKey();
+            CheckKeyForShipMovement();
         }
 
         void UseFuel()
@@ -34,7 +34,7 @@ namespace SpaceAdventures
             }
         }
 
-        void CheckKey()
+        void CheckKeyForShipMovement()
         {
             // UP
             if (Input.GetKeyDown(KeyCode.W))

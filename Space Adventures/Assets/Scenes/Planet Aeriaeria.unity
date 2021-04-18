@@ -4174,6 +4174,53 @@ Animator:
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &635013387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635013389}
+  - component: {fileID: 635013388}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &635013388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635013387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15aec7b8f0398b6428dcb3b3e8206a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerShip: {fileID: 2845541090634827350, guid: 7f74ad4dffd5cfd4abe49941634f079e,
+    type: 3}
+  shipLandingScene: {fileID: 1910704001}
+  curvedWorldController: {fileID: 1696874326}
+--- !u!4 &635013389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635013387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7396536, z: 0.035241127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &641816701
 GameObject:
   m_ObjectHideFlags: 0
@@ -8194,7 +8241,7 @@ Transform:
   - {fileID: 1563711211}
   - {fileID: 2087489055}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387204464
 GameObject:
@@ -8380,7 +8427,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 137.979, y: -30, z: 0}
 --- !u!1 &1391152341
 GameObject:
@@ -8623,7 +8670,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437353863}
-  m_LocalRotation: {x: 0.00994052, y: 0.96580607, z: 0.2563539, w: -0.037450626}
+  m_LocalRotation: {x: 0.0099405255, y: 0.96580607, z: 0.2563539, w: -0.03745064}
   m_LocalPosition: {x: 0.8, y: 4.1, z: 10.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10437,12 +10484,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673982895}
-  m_LocalRotation: {x: 0.00994052, y: 0.96580607, z: 0.2563539, w: -0.037450626}
+  m_LocalRotation: {x: 0.0099405255, y: 0.96580607, z: 0.2563539, w: -0.03745064}
   m_LocalPosition: {x: 0.8, y: 4.1, z: 10.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1673982899
 MonoBehaviour:
@@ -10717,7 +10764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bendType: 5
   bendID: 1
-  bendPivotPoint: {fileID: 0}
+  bendPivotPoint: {fileID: 5734617722186864399, guid: 4375cc7e25339d3498eab69e2ed5f9dd,
+    type: 3}
   bendPivotPointPosition: {x: 0, y: 0, z: 0}
   bendRotationCenter: {fileID: 0}
   bendRotationCenterPosition: {x: 0, y: 0, z: 0}
@@ -10730,13 +10778,13 @@ MonoBehaviour:
   bendHorizontalSize: 0
   bendHorizontalOffset: 0
   bendCurvatureSize: 17
-  bendCurvatureOffset: 3
+  bendCurvatureOffset: 2
   bendAngle: 0
   bendAngle2: 0
   bendMinimumRadius: 0
   bendMinimumRadius2: 0
   bendRolloff: 0
-  disableInEditor: 0
+  disableInEditor: 1
   manualUpdate: 0
   isExpanded: 1
 --- !u!4 &1696874327
@@ -10751,7 +10799,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1715048575
 GameObject:
@@ -12336,6 +12384,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 5734617722186864398, guid: 4375cc7e25339d3498eab69e2ed5f9dd,
     type: 3}
   landingCamera: {fileID: 1437353863}
+  player: {fileID: 0}
 --- !u!4 &1910704002
 Transform:
   m_ObjectHideFlags: 0
@@ -12350,7 +12399,7 @@ Transform:
   - {fileID: 4899277299775948867}
   - {fileID: 1437353864}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1923463764
 GameObject:
@@ -14121,6 +14170,7 @@ GameObject:
   - component: {fileID: 4895989117393260775}
   - component: {fileID: 4867081411224744361}
   - component: {fileID: 4877014448001914921}
+  - component: {fileID: 4897859737575127544}
   m_Layer: 0
   m_Name: Gravity_generator_LoD_0
   m_TagString: Untagged
@@ -14128,6 +14178,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4897859737575127544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897859737575127543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611096e28895124d9dfe741e589c281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 3
+  visualizeInEditor: 0
 --- !u!1 &4899277299775680465
 GameObject:
   m_ObjectHideFlags: 0
@@ -14137,6 +14201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4899277299775948867}
+  - component: {fileID: 4899277299775680466}
   m_Layer: 0
   m_Name: Ship Model
   m_TagString: Untagged
@@ -14144,6 +14209,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &4899277299775680466
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899277299775680465}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1536293
+  m_Center: {x: -0.009084463, y: 0.91770554, z: 0}
 --- !u!4 &4899277299775948867
 Transform:
   m_ObjectHideFlags: 0

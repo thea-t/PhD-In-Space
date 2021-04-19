@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4060319091785312}
   - component: {fileID: 33491654547261784}
   - component: {fileID: 23010594949794114}
+  - component: {fileID: 4369610170712761799}
   m_Layer: 0
   m_Name: TB_Bd_WatchTower
   m_TagString: Untagged
@@ -80,3 +81,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4369610170712761799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223397965205292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.832578, y: 10.1303835, z: 2.6861892}
+  m_Center: {x: -0.00069868565, y: 5.0651917, z: 0.0067591667}

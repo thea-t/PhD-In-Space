@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4397854129158370}
   - component: {fileID: 33772938870325230}
   - component: {fileID: 23262784685475798}
+  - component: {fileID: 3828556476292989731}
   m_Layer: 0
   m_Name: TB_Env_Tree_Small_A
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &3828556476292989731
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466698813863872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.6061419
+  m_Height: 4.486999
+  m_Direction: 1
+  m_Center: {x: 0.059640527, y: 2.1409051, z: -0.08978963}

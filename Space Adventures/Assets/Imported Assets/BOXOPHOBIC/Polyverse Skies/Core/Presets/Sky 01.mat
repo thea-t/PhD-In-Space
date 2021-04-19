@@ -183,7 +183,7 @@ Material:
     - _CloudHeight: -0.185
     - _Clouds: 1
     - _CloudsCat: 1
-    - _CloudsHeight: 0.15
+    - _CloudsHeight: -0.1
     - _CloudsLitbySun: 0
     - _CloudsRotation: 145
     - _CloudsRotationSpeed: 2.84

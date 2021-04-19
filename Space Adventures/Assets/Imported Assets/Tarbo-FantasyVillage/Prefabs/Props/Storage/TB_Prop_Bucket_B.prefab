@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4886260757829546}
   - component: {fileID: 33850196383196516}
   - component: {fileID: 23612179655238588}
+  - component: {fileID: 4073796955033991591}
   m_Layer: 0
   m_Name: TB_Prop_Bucket_B
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &4073796955033991591
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158612400136066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2718153
+  m_Center: {x: 0, y: 0.17424338, z: 0}

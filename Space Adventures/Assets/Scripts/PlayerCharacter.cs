@@ -71,9 +71,9 @@ namespace SpaceAdventures
                 playerAnimator.SetBool("Run", false);
             }
 
-
-
         }
+
+       
 
         void RotateCharacter()
         {

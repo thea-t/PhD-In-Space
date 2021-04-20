@@ -7,7 +7,6 @@ namespace SpaceAdventures
     public class GameManager : MonoBehaviour
     {
         public PlayerShip playerShip;
-        public ShipLanding shipLandingScene;
         public CurvedWorldController curvedWorldController;
         public static GameManager Instance { get; private set; } // static singleton
 

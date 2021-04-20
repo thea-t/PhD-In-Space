@@ -5,38 +5,40 @@ using UnityEngine;
 namespace SpaceAdventures
 {
     public class ShipLanding : MonoBehaviour
-{
-    [SerializeField] GameObject ship;
-    [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject landingCamera;
-
-    public GameObject player;
-    private Animator playerAnimator;
-
-    private void Start()
     {
-        ShipLandingAnimation();
-    }
+        [SerializeField] GameObject ship;
+        [SerializeField] GameObject playerPrefab;
+        [SerializeField] GameObject landingCamera;
+        [SerializeField] ParticleSystem smokeParticleOnPlayerInstantiated;
 
-    void ShipLandingAnimation()
-    {
-        ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(OnLandingAnimationStart);
-    }
+        private GameObject player;
+        private Animator playerAnimator;
 
-    void OnLandingAnimationStart()
-    {
-        player = Instantiate(playerPrefab);
-        playerAnimator = player.GetComponentInChildren<Animator>();
+        private void Start()
+        {
+            ShipLandingAnimation();
+        }
 
-        playerAnimator.SetBool("Walk", true);
-        player.transform.DOMoveZ(3, 2).OnComplete(OnLandingAnimationEnd);
-    }
+        void ShipLandingAnimation()
+        {
+            ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(OnLandingAnimationStart);
+        }
 
-    void OnLandingAnimationEnd()
-    {
-        playerAnimator.SetBool("Walk", false);
-        playerAnimator.SetTrigger("Look Around");
-        landingCamera.SetActive(false);
+        void OnLandingAnimationStart()
+        {
+            smokeParticleOnPlayerInstantiated.Play();
+            player = Instantiate(playerPrefab);
+
+            playerAnimator = player.GetComponentInChildren<Animator>();
+            playerAnimator.SetBool("Walk", true);
+            player.transform.DOMoveZ(3, 2).OnComplete(OnLandingAnimationEnd);
+        }
+
+        void OnLandingAnimationEnd()
+        {
+            playerAnimator.SetBool("Walk", false);
+            playerAnimator.SetTrigger("Look Around");
+            landingCamera.SetActive(false);
             StartCoroutine(ChangeScene());
         }
 
@@ -45,6 +47,6 @@ namespace SpaceAdventures
             yield return new WaitForSeconds(4);
             player.GetComponent<Rigidbody>().isKinematic = false;
         }
-       
-}
+
+    }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4856212536158982}
   - component: {fileID: 33238906904893410}
   - component: {fileID: 23493991711658856}
-  - component: {fileID: 6821105899629733837}
+  - component: {fileID: 2612177966442362410}
   m_Layer: 0
   m_Name: TB_Env_Mound_Med_B
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6821105899629733837
-BoxCollider:
+--- !u!64 &2612177966442362410
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +90,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15.940071, y: 2.8816242, z: 11.6754265}
-  m_Center: {x: 0.026268959, y: 1.4408114, z: -0.047210693}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e1270ca9135eeeb4094fbe22c39b0983, type: 3}

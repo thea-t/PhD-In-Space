@@ -45,6 +45,7 @@ namespace SpaceAdventures
         IEnumerator ChangeScene()
         {
             yield return new WaitForSeconds(4);
+            player.GetComponent<PlayerCharacter>().canMove = true;
             player.GetComponent<Rigidbody>().isKinematic = false;
         }
 

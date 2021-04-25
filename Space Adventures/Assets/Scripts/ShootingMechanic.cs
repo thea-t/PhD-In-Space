@@ -7,13 +7,16 @@ public class ShootingMechanic : MonoBehaviour
 {
     //https://docs.unity3d.com/Manual/script-AnimationWindowEvent.html
 
-    [SerializeField] Bullet bullet;
+    [SerializeField] Bullet bulletPrefab;
     [SerializeField] GameObject bulletShootPoint;
     [SerializeField] Animator playerAnimator;
+
+    Camera mainCam;
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        mainCam = Camera.main;
     }
 
     private void Update()
@@ -24,17 +27,36 @@ public class ShootingMechanic : MonoBehaviour
     //animator event
     void OnShoot()
     {
-        Instantiate(bullet, bulletShootPoint.transform.position, transform.rotation);
+        Bullet bullet = Instantiate(bulletPrefab, bulletShootPoint.transform.position, transform.rotation);
+        bullet.directionVector = transform.forward;
+        Destroy(bullet.gameObject, 3);
 
-       ///////////// mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
+        ///////////// mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void CheckMouseClick()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            playerAnimator.SetTrigger("Crossbow Shoot Attack");
+            playerAnimator.SetBool("Crossbow Shoot Attack", true);
+            GameManager.Instance.playerCharacter.canMove = false;
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
+            //https://www.youtube.com/watch?v=-376PylZ5l4&t=335s
+            Ray mouseRay = mainCam.ScreenPointToRay(Input.mousePosition);
+            float midPoint = (transform.position - mainCam.transform.position).magnitude;
 
+            Vector3 lookAtPosition = mouseRay.origin + mouseRay.direction * midPoint;
+            lookAtPosition.y = 0;
+
+            transform.LookAt(lookAtPosition);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            playerAnimator.SetBool("Crossbow Shoot Attack", false);
+            GameManager.Instance.playerCharacter.canMove = true;
         }
     }
 

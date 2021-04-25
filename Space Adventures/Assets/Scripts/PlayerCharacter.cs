@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SpaceAdventures
-{
+
 
     public class PlayerCharacter : MonoBehaviour
     {
@@ -10,6 +9,7 @@ namespace SpaceAdventures
         [SerializeField] private Rigidbody rb;
         [SerializeField] Transform playerModel;
         [SerializeField] Animator playerAnimator;
+        public int playerDamage = 5;
         public bool canMove;
 
 
@@ -88,6 +88,6 @@ namespace SpaceAdventures
         }
 
     }
-}
+
 
 

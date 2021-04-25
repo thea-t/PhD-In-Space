@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SpaceAdventures
-{
+
     public class GravityController : MonoBehaviour
     {
         [SerializeField] private float rotateSpeed;
@@ -31,4 +30,4 @@ namespace SpaceAdventures
         
 
     }
-}
+

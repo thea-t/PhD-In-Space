@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SpaceAdventures
-{
+
     public class PlayerShip : MonoBehaviour
     {
         [SerializeField] GameObject mainCamera;
@@ -142,7 +141,7 @@ namespace SpaceAdventures
         
         
     }
-}
+
 
 
 

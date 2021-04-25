@@ -6,6 +6,8 @@ TagManager:
   tags:
   - planet
   - gravity
+  - bulletShootPoint
+  - enemy
   layers:
   - Default
   - TransparentFX

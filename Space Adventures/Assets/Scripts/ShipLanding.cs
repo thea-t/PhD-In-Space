@@ -2,16 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace SpaceAdventures
-{
     public class ShipLanding : MonoBehaviour
     {
         [SerializeField] GameObject ship;
-        [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject landingCamera;
-        [SerializeField] ParticleSystem smokeParticleOnPlayerInstantiated;
+    [SerializeField] PlayerCharacter playerPrefab;
+    [SerializeField] ParticleSystem smokeParticleOnPlayerInstantiated;
 
-        private GameObject player;
         private Animator playerAnimator;
 
         private void Start()
@@ -27,11 +24,11 @@ namespace SpaceAdventures
         void OnLandingAnimationStart()
         {
             smokeParticleOnPlayerInstantiated.Play();
-            player = Instantiate(playerPrefab);
+            GameManager.Instance.playerCharacter = Instantiate(playerPrefab);
 
-            playerAnimator = player.GetComponentInChildren<Animator>();
+            playerAnimator = GameManager.Instance.playerCharacter.GetComponentInChildren<Animator>();
             playerAnimator.SetBool("Walk", true);
-            player.transform.DOMoveZ(3, 2).OnComplete(OnLandingAnimationEnd);
+        GameManager.Instance.playerCharacter.transform.DOMoveZ(3, 2).OnComplete(OnLandingAnimationEnd);
         }
 
         void OnLandingAnimationEnd()
@@ -45,9 +42,9 @@ namespace SpaceAdventures
         IEnumerator ChangeScene()
         {
             yield return new WaitForSeconds(4);
-            player.GetComponent<PlayerCharacter>().canMove = true;
-            player.GetComponent<Rigidbody>().isKinematic = false;
+        GameManager.Instance.playerCharacter.canMove = true;
+        GameManager.Instance.playerCharacter.GetComponent<Rigidbody>().isKinematic = false;
         }
 
     }
-}
+

@@ -6,19 +6,27 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] int bulletSpeed;
+    public Vector3 directionVector;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(Vector3.forward * bulletSpeed, ForceMode.Force);
-
+        rb.AddForce(directionVector * bulletSpeed, ForceMode.Force);
     }
 
-    //https://forum.unity.com/threads/mouse-position-screen-to-world-coordinates.112708/
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemy"))
+        {
+            other.GetComponent<Enemy>().TakeDamage();
+            gameObject.SetActive(false);
+        }
+    }
 
 }

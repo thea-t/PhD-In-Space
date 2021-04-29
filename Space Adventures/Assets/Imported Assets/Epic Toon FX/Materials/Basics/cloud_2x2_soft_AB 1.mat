@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cloud_2x2_soft_AB
+  m_Name: cloud_2x2_soft_AB 1
   m_Shader: {fileID: 4800000, guid: 08ed0d9dfc7b9d54480990896ab62fe8, type: 3}
   m_ShaderKeywords: CURVEDWORLD_BEND_ID_1 CURVEDWORLD_BEND_TYPE_LITTLEPLANET_Y _ALPHABLEND_ON
     _EMISSION _FADING_ON
@@ -93,7 +93,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.3529412}
+    - _Color: {r: 0.5306254, g: 0.7264151, b: 0.51054645, a: 0.3764706}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CurvedWorldBendSettings: {r: 5, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -10,6 +10,7 @@ using UnityEngine;
         [SerializeField] Transform playerModel;
         [SerializeField] Animator playerAnimator;
         public int playerDamage = 5;
+        public int playerHealth = 100;
         public bool canMove;
 
 
@@ -86,6 +87,17 @@ using UnityEngine;
                 playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
             }
         }
+
+
+    public void TakeDamage()
+    {
+       playerHealth -= 5;
+
+        if (playerHealth<=0)
+        {
+            //die
+        }
+    }
 
     }
 

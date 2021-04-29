@@ -528,6 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5177648519359393188}
   - component: {fileID: 5177648519366356992}
+  - component: {fileID: 3140523207309985462}
   m_Layer: 0
   m_Name: Guardian Male aqua
   m_TagString: enemy
@@ -583,6 +584,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3140523207309985462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177648519359105500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96dbc8ead07af547aac7a93180ba472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 100
+  bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
+    type: 3}
+  bulletShootPoint: {fileID: 3279773481955404916}
+  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+    type: 3}
+  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+    type: 3}
 --- !u!1 &5177648519359105780
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,6 +6134,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e4d3c5b39cb12b4db02bce19147b7ad, type: 3}
+--- !u!1 &3279773481955404916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 736794506595199799, guid: 1e4d3c5b39cb12b4db02bce19147b7ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 2863592452514793283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2863592452514950545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 453330, guid: 1e4d3c5b39cb12b4db02bce19147b7ad,

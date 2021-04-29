@@ -9,6 +9,7 @@ public class ShootingMechanic : MonoBehaviour
 
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] GameObject bulletShootPoint;
+    [SerializeField] GameObject weapon;
     [SerializeField] Animator playerAnimator;
 
     Camera mainCam;
@@ -38,6 +39,7 @@ public class ShootingMechanic : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            weapon.SetActive(true);
             playerAnimator.SetBool("Crossbow Shoot Attack", true);
             GameManager.Instance.playerCharacter.canMove = false;
         }
@@ -55,6 +57,7 @@ public class ShootingMechanic : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(1))
         {
+            weapon.SetActive(false);
             playerAnimator.SetBool("Crossbow Shoot Attack", false);
             GameManager.Instance.playerCharacter.canMove = true;
         }

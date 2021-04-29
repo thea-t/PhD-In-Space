@@ -111,12 +111,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Projectile Right Attack 01
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: Crossbow Aim
     m_Type: 4
     m_DefaultFloat: 0
@@ -682,6 +676,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Crossbow Shoot Attack
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Projectile Right Attack 01
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -3369,7 +3369,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Projectile Right Attack 01
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110232562}
   m_Solo: 0
@@ -8045,7 +8048,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c8f90aeba493b0f4eba4308d4e16d380, type: 3}
+  m_Motion: {fileID: 7400000, guid: 80e596996a1cf8542b970e6814f72add, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

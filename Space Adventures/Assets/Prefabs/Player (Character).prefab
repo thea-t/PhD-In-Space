@@ -139,6 +139,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 265093609813875531, guid: 88f2342dc527a414fbcd9b11ca6aa734,
     type: 3}
   bulletShootPoint: {fileID: 104839111777165846}
+  weapon: {fileID: 1904066798741892874}
   playerAnimator: {fileID: 5675027487904103665}
 --- !u!1 &5734617722186864398
 GameObject:
@@ -154,7 +155,7 @@ GameObject:
   - component: {fileID: 4947826714585166405}
   m_Layer: 0
   m_Name: Player (Character)
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +285,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7780471, y: 1}
+    m_SensorSize: {x: 1.7766854, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -306,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1134052423921278, guid: 8c42848d6b9323240b182a4326850a88, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4442604807274388, guid: 8c42848d6b9323240b182a4326850a88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -366,6 +367,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c42848d6b9323240b182a4326850a88, type: 3}
+--- !u!1 &1904066798741892874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1134052423921278, guid: 8c42848d6b9323240b182a4326850a88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1902944292272488820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1902583130500923104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4442604807274388, guid: 8c42848d6b9323240b182a4326850a88,

@@ -6,7 +6,9 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] int bulletSpeed;
+    [SerializeField] bool isEnemyBullet;
     public Vector3 directionVector;
+    
 
     void Start()
     {
@@ -22,10 +24,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemy"))
+        if (isEnemyBullet == false && other.CompareTag("enemy"))
         {
             other.GetComponent<Enemy>().TakeDamage();
             gameObject.SetActive(false);
+        }
+        if (isEnemyBullet == true && other.CompareTag("player"))
+        {
+            GameManager.Instance.playerCharacter.TakeDamage();
         }
     }
 

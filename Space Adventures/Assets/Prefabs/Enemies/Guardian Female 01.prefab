@@ -627,13 +627,12 @@ GameObject:
   m_Component:
   - component: {fileID: 462562}
   - component: {fileID: 9564102}
-  - component: {fileID: 6106672617372137626}
   - component: {fileID: 6950485779501634642}
   - component: {fileID: -7783134444505811504}
   - component: {fileID: 6198195943052094208}
   m_Layer: 0
   m_Name: Guardian Female 01
-  m_TagString: enemy
+  m_TagString: enemyRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,20 +684,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &6106672617372137626
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139232}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3801012
-  m_Height: 1.7597919
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8269901, z: 0}
 --- !u!135 &6950485779501634642
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1240,9 +1225,10 @@ GameObject:
   m_Component:
   - component: {fileID: 417462}
   - component: {fileID: 13735688}
+  - component: {fileID: 8791443604297013034}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: enemyBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1254,7 +1240,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168726}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1330,6 +1316,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.2693923, y: 0.008890182, z: 0}
     m_Extent: {x: 0.77387255, y: 0.2652872, z: 0.65431046}
   m_DirtyAABB: 0
+--- !u!136 &8791443604297013034
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4457634
+  m_Height: 1.6223357
+  m_Direction: 1
+  m_Center: {x: -0.0041953325, y: 0.77160585, z: 0.008889973}
 --- !u!1 &171760
 GameObject:
   m_ObjectHideFlags: 0

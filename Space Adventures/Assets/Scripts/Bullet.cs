@@ -24,12 +24,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isEnemyBullet == false && other.CompareTag("enemy"))
+        if (!isEnemyBullet && other.CompareTag("enemyBody"))
         {
-            other.GetComponent<Enemy>().TakeDamage();
+            other.GetComponentInParent<Enemy>().TakeDamage();
             gameObject.SetActive(false);
         }
-        if (isEnemyBullet == true && other.CompareTag("player"))
+        if (!isEnemyBullet && other.CompareTag("playerRange"))
+        {
+            gameObject.SetActive(false);
+        }
+        if (isEnemyBullet && other.CompareTag("playerBody"))
         {
             GameManager.Instance.playerCharacter.TakeDamage();
         }

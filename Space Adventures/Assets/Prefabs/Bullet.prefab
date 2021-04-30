@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8027145869e49f54aaac00e90bc59e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 12
+  bulletSpeed: 30
   isEnemyBullet: 0
   directionVector: {x: 0, y: 0, z: 0}
 --- !u!54 &7670166216232424914
@@ -185,7 +185,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aee7f230a05bc8644854344e7c55f328, type: 2}
+      objectReference: {fileID: 2100000, guid: 98caae3ea2720514baedf2e973e7e976, type: 2}
     - target: {fileID: 6106519405980802178, guid: 316073a06e3c1c749ac3f1a28a3f0259,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 719f8d52fe2e6b444b41c2f7a8fe587b, type: 2}
+    - target: {fileID: 19917696, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bff3d95f687092458215d6af5ecc998, type: 3}
 --- !u!4 &4943596445848054185 stripped

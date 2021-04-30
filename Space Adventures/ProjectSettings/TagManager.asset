@@ -7,8 +7,12 @@ TagManager:
   - planet
   - gravity
   - bulletShootPoint
-  - enemy
   - player
+  - enemyBody
+  - enemyRange
+  - playerBody
+  - playerRange
+  - resource
   layers:
   - Default
   - TransparentFX

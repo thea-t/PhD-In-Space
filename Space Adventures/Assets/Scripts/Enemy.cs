@@ -61,17 +61,15 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("playerBody"))
         {
-
-
             Attack();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("playerBody"))
         {
             StopChasing();
         }

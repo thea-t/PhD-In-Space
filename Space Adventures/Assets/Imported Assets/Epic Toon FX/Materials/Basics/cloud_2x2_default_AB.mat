@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: cloud_2x2_default_AB
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 08ed0d9dfc7b9d54480990896ab62fe8, type: 3}
   m_ShaderKeywords: CURVEDWORLD_BEND_ID_1 CURVEDWORLD_BEND_TYPE_LITTLEPLANET_Y CURVEDWORLD_NORMAL_TRANSFORMATION_ON
     _ALPHABLEND_ON _EMISSION _FADING_ON
   m_LightmapFlags: 0

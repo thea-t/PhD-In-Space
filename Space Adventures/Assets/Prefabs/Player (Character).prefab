@@ -145,7 +145,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5734156909221651701}
   m_Material: {fileID: 13400000, guid: cd3894153ea1539419070e05413d08a8, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3450067
   m_Height: 1.75
@@ -304,6 +304,10 @@ MonoBehaviour:
   rb: {fileID: -4070154692949029012}
   playerModel: {fileID: 5735958417472470055}
   playerAnimator: {fileID: 5675027487904103665}
+  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+    type: 3}
+  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+    type: 3}
   playerDamage: 20
   playerHealth: 100
   canMove: 1
@@ -331,7 +335,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6979025490156364440}
-  m_LocalRotation: {x: 0.6139859, y: -0.000000016976609, z: 0.00000001320559, w: 0.789317}
+  m_LocalRotation: {x: 0.6139859, y: 0.000000016976609, z: -0.0000000132055895, w: 0.789317}
   m_LocalPosition: {x: 0, y: 13, z: -3.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -368,7 +372,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7771828, y: 1}
+    m_SensorSize: {x: 1.7771566, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

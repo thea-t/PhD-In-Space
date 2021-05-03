@@ -12,7 +12,9 @@ TagManager:
   - enemyRange
   - playerBody
   - playerRange
-  - resource
+  - enemy
+  - fuel
+  - alienSample
   layers:
   - Default
   - TransparentFX

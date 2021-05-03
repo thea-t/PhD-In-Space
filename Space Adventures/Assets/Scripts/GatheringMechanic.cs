@@ -8,32 +8,61 @@ public class GatheringMechanic : MonoBehaviour
     [SerializeField] GameObject m_axePrefab;
     [SerializeField] Animator playerAnimator;
     Camera mainCam;
-    Collider axeCollider;
 
     private void Start()
     {
-        axeCollider = m_axePrefab.GetComponent<Collider>();
         mainCam = Camera.main;
     }
 
     private void Update()
     {
         CheckMouseClick();
+        CollectSample();
+    }
+    
+    //anim evet
+    void OnFuelGathered()
+    {
+        //https://forum.unity.com/threads/physics-overlapsphere.476277/
+        Collider[] hitColliders = Physics.OverlapSphere(transform.parent.position, 1);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("fuel"))
+            {
+                hitCollider.GetComponent<Fuel>().StartGathering();
+            }
+        }
+
     }
 
-    private void OnTriggerEnter(Collider axeCol)
+    void CollectSample()
     {
-        axeCol = axeCollider;
-        if (axeCol.CompareTag("resource"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            //decide what to do 
+            Collider[] touchColliders = Physics.OverlapSphere(transform.parent.position, 1);
+            foreach (var touchCollider in touchColliders)
+            {
+                if (touchCollider.CompareTag("alienSample"))
+                {
+                    Destroy(touchCollider.gameObject);
+                    PlayerStats.dnaSampleCount++;
+
+                    Debug.Log("samples collected: " + PlayerStats.dnaSampleCount);
+                }
+            }
         }
+        
     }
+    /// <summary>
+    /// /////////////////////////////////////CALLING COLLECT SAMPLE ON UPDATE AND COLLECTING 3SAMPLES AT ONCE INSTEAD OF 2
+    /// </summary>
 
     void CheckMouseClick()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
+            GameManager.Instance.playerCharacter.canMove = false;
+
             //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
             //https://www.youtube.com/watch?v=-376PylZ5l4&t=335s
             Ray mouseRay = mainCam.ScreenPointToRay(Input.mousePosition);
@@ -47,9 +76,8 @@ public class GatheringMechanic : MonoBehaviour
 
             m_axePrefab.SetActive(true);
             playerAnimator.SetBool("Digging", true);
-            GameManager.Instance.playerCharacter.canMove = false;
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(1))
         {
             m_axePrefab.SetActive(false);
             playerAnimator.SetBool("Digging", false);

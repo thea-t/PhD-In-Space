@@ -37,13 +37,13 @@ public class ShootingMechanic : MonoBehaviour
 
     void CheckMouseClick()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             weapon.SetActive(true);
             playerAnimator.SetBool("Crossbow Shoot Attack", true);
             GameManager.Instance.playerCharacter.canMove = false;
         }
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(0))
         {
             //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
             //https://www.youtube.com/watch?v=-376PylZ5l4&t=335s
@@ -55,7 +55,7 @@ public class ShootingMechanic : MonoBehaviour
 
             transform.LookAt(lookAtPosition);
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(0))
         {
             weapon.SetActive(false);
             playerAnimator.SetBool("Crossbow Shoot Attack", false);

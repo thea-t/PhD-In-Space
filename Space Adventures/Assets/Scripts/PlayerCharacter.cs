@@ -40,6 +40,7 @@ public class PlayerCharacter : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.A))
             {
                 playerAnimator.SetBool("Run", false);
+                //canMove = false;
             }
 
 

@@ -306,8 +306,6 @@ MonoBehaviour:
   - {fileID: 4876182040477733142}
   - {fileID: 4876120449386266420}
   - {fileID: 4875642952522129670}
-  - {fileID: 4875642952522129670}
-  - {fileID: 4876045798023179478}
   - {fileID: 4876045798023179478}
   - {fileID: 4876126530183331770}
   - {fileID: 4875909944581074966}
@@ -337,13 +335,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4876045798023179478}
-  m_LocalRotation: {x: 0.09243205, y: 0.85014427, z: 0.4464587, w: 0.26341158}
-  m_LocalPosition: {x: -0.097, y: 0.054, z: 1.136}
+  m_LocalRotation: {x: 0.05008195, y: 0.85368663, z: 0.43282083, w: 0.28526682}
+  m_LocalPosition: {x: -0.21, y: -0.22, z: 1.49}
   m_LocalScale: {x: 1.2745686, y: 1.2745683, z: 1.2745683}
   m_Children: []
   m_Father: {fileID: 4881568663321404308}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -45.269, y: -588.90796, z: 33.884003}
+  m_LocalEulerAnglesHint: {x: -45.269, y: -588.90796, z: 28.188002}
 --- !u!33 &4888647203416454028
 MeshFilter:
   m_ObjectHideFlags: 0

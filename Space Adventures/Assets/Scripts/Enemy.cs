@@ -7,11 +7,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] int enemyHealth = 100;
     [SerializeField] ParticleSystem onShotParticle;
     [SerializeField] ParticleSystem onDeadParticle;
-    public GameObject m_DNAsample;
     [SerializeField] private Rigidbody rb;
     Animator m_animator;
     Collider m_collider;
    protected string m_animationOnAttack;
+    public GameObject m_DNAsample;
 
 
     private void Start()

@@ -4,44 +4,28 @@ using UnityEngine;
 
 public class Fuel : MonoBehaviour
 {
-    [SerializeField] List<GameObject> crystals;
-    int playerGatheringPower = 5;
-    int fuelHealth;
+    [SerializeField] GameObject[] crystals;
+    int crystalStackHealth;
 
     private void Start()
     {
-        fuelHealth = crystals.Count * 10;
-
-        //Debug.Log("gathering power: " + PlayerStats.playerGatheringPower);
+        crystalStackHealth = crystals.Length;
     }
 
     public void StartGathering()
     {
         Debug.Log("gathering");
-        fuelHealth -= playerGatheringPower;
-        //Debug.Log("fuel health: " + fuelHealth);
-        UpdateCrystalLook();
-    }
 
-    //
-    void UpdateCrystalLook()
-    {
-        for (int i = 0; i < crystals.Count; i++)
+        crystalStackHealth--;
+
+            Destroy(crystals[crystalStackHealth]);
+            GainFuel();
+
+        if (crystalStackHealth <= 0)
         {
-            if (fuelHealth % crystals.Count == 0)
-            {
-                //Debug.Log("destroyed crystal: " + crystals[i]);
-                Destroy(crystals[i]);
-                crystals.Remove(crystals[i].gameObject);
-
-                //Debug.Log("list count: " + crystals.Count);
-
-                GainFuel();
-                OnCrystalDestroyed();
-            }
+            Destroy(gameObject);
         }
     }
-   
 
     void GainFuel()
     {
@@ -49,14 +33,6 @@ public class Fuel : MonoBehaviour
         {
             PlayerStats.playerFuel += PlayerStats.fuelMultiplier;
             Debug.Log("fuel: " + PlayerStats.playerFuel);
-        }
-    }
-
-    void OnCrystalDestroyed()
-    {
-        if (crystals.Count <=0)
-        {
-            Destroy(this.gameObject, 3);
         }
     }
 }

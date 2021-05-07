@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(directionVector * bulletSpeed, ForceMode.Force);
+        rb.AddForce(directionVector * bulletSpeed * Time.deltaTime, ForceMode.Force);
     }
 
     private void OnTriggerEnter(Collider other)

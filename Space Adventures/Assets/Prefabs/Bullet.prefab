@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8027145869e49f54aaac00e90bc59e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 30
+  bulletSpeed: 650
   isEnemyBullet: 0
   directionVector: {x: 0, y: 0, z: 0}
 --- !u!54 &7670166216232424914

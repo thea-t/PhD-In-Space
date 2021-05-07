@@ -1,39 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int enemyHealth = 100;
     [SerializeField] ParticleSystem onShotParticle;
     [SerializeField] ParticleSystem onDeadParticle;
-    [SerializeField] private Rigidbody rb;
-    Animator m_animator;
-    Collider m_collider;
-   protected string m_animationOnAttack;
+    [SerializeField] Collider m_bodyCollider;
+    Collider m_rangeCollider;
+    protected Animator m_animator;
     public GameObject m_DNAsample;
+    protected NavMeshAgent navMeshAgent;
 
 
     private void Start()
     {
         m_animator = GetComponent<Animator>();
-        m_collider = GetComponent<Collider>();
-        rb = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        m_rangeCollider = GetComponent<Collider>();
+        //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
+        //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
+        navMeshAgent.isStopped = true;
     }
 
-    protected virtual void Attack()
+    private void FixedUpdate()
+    { // start chasing
+        if (navMeshAgent.isStopped == false)
+        {
+            navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
+        }
+       
+       
+    }
+
+    protected virtual void OnChaseBegin()
     {
         transform.rotation = Quaternion.LookRotation(GameManager.Instance.playerCharacter.transform.position - transform.position, Vector3.up);
-        m_animator.SetBool(m_animationOnAttack, true);
+        navMeshAgent.isStopped = false;
     }
 
     protected virtual void StopChasing()
     {
-        m_animator.SetBool(m_animationOnAttack, false);
-        //Do you go back to your initial point or do you stop wherever you left off
+        navMeshAgent.isStopped = true;
     }
-
-
 
     public void TakeDamage()
     {
@@ -52,29 +63,25 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        m_collider.enabled = false;
+        navMeshAgent.isStopped = true;
+        m_bodyCollider.enabled = false;
+        m_rangeCollider.enabled = false; 
         m_animator.SetTrigger("Die");
 
         //particle was flying so it had to rotate in order to fix https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html
         ParticleSystem particle = Instantiate(onDeadParticle, new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z), Quaternion.Euler(90, 0, 0));
-        int rand = Random.Range(0, 4);
-        if (rand <= 4)
-        {
-            Debug.Log("% = " + rand);
-        }
-        
-        
-        Destroy(particle.gameObject, 8);
-        Destroy(gameObject, 7);
+        Destroy(particle.gameObject, 5);
+        Destroy(gameObject, 6);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("playerBody"))
         {
-            Attack();
+            OnChaseBegin();
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {

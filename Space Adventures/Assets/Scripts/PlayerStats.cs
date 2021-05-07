@@ -13,5 +13,6 @@ public static class PlayerStats
     public static int maxFuel = 100;
     public static int playerDamage = 5;
     public static float fuelMultiplier = 1;
+    public static int playerMultiplierToReceiveDamage = 5;
     public static int dnaSampleCount = 0;
 }

@@ -30,7 +30,7 @@ public class ShootingMechanic : MonoBehaviour
     {
         Bullet bullet = Instantiate(bulletPrefab, bulletShootPoint.transform.position, transform.rotation);
         bullet.directionVector = transform.forward;
-        Destroy(bullet.gameObject, 3);
+        Destroy(bullet.gameObject, 1);
 
         ///////////// mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
     }

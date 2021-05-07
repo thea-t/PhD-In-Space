@@ -94,7 +94,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void TakeDamage()
     {
-        PlayerStats.playerHealth -= 5;
+        PlayerStats.playerHealth -= PlayerStats.playerMultiplierToReceiveDamage;
         playerAnimator.SetTrigger("Take Damage");
         ParticleSystem particle = Instantiate(onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);

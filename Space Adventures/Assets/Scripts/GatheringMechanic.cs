@@ -34,7 +34,6 @@ public class GatheringMechanic : MonoBehaviour
         }
 
     }
-
     void CollectSample()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -53,10 +52,6 @@ public class GatheringMechanic : MonoBehaviour
         }
         
     }
-    /// <summary>
-    /// /////////////////////////////////////CALLING COLLECT SAMPLE ON UPDATE AND COLLECTING 3SAMPLES AT ONCE INSTEAD OF 2
-    /// </summary>
-
     void CheckMouseClick()
     {
         if (Input.GetMouseButton(1))

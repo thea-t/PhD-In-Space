@@ -12,6 +12,15 @@ public class EnemyRanged : Enemy
         base.OnChaseBegin();
         m_animator.SetBool("Projectile Right Attack 01", true);
         m_animator.SetBool("Run", true);
+
+        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        {
+            m_animator.SetBool("Projectile Right Attack 01", true);
+        }
+        else
+        {
+            m_animator.SetBool("attack", false);
+        }
     }
 
     protected override void StopChasing()

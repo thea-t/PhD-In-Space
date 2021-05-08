@@ -27,16 +27,32 @@ MonoBehaviour:
       DisplayName: Space
       Description: 
       SkipType: 3
-      LoadingType: 0
-      FakeLoadingTime: 2
+      LoadingType: 1
+      FakeLoadingTime: 3
       Backgrounds: []
     - SceneName: Planet Aeriaeria
       SceneAsset: {fileID: 102900000, guid: e74beb79eef426e48b4795d01a33e374, type: 3}
       DisplayName: Planet
       Description: This is a cool planet.
       SkipType: 3
-      LoadingType: 0
-      FakeLoadingTime: 2
+      LoadingType: 1
+      FakeLoadingTime: 3
+      Backgrounds: []
+    - SceneName: Planet Furon
+      SceneAsset: {fileID: 102900000, guid: 88ba2f2416b2c3e4b8f2c250ec6e3b60, type: 3}
+      DisplayName: Planet
+      Description: This is a cool planet.
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 3
+      Backgrounds: []
+    - SceneName: Planet Loneeus
+      SceneAsset: {fileID: 102900000, guid: a93c19c9f1c1bd747986e25581652308, type: 3}
+      DisplayName: Planet
+      Description: This is a cool planet.
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 3
       Backgrounds: []
   TipList:
     array:

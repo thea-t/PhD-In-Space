@@ -12,6 +12,7 @@ using UnityEngine;
 
         void Update()
         {
+
             if (playerIsInRange == true)
             {
                 //https://answers.unity.com/questions/599949/3d-gravity-towards-one-object.html
@@ -23,9 +24,12 @@ using UnityEngine;
 
             }
 
+        if (GameManager.Instance.playerShip.isAllowedToMove == true)
+        {
             this.transform.RotateAround(this.transform.parent.position, this.transform.parent.up, rotateSpeed * Time.deltaTime);
-
         }
+
+    }
 
         
 

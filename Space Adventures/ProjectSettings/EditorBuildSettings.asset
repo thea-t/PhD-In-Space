@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Planet Aeriaeria.unity
     guid: e74beb79eef426e48b4795d01a33e374
+  - enabled: 1
+    path: Assets/Scenes/Planet Furon.unity
+    guid: 88ba2f2416b2c3e4b8f2c250ec6e3b60
+  - enabled: 1
+    path: Assets/Scenes/Planet Loneeus.unity
+    guid: a93c19c9f1c1bd747986e25581652308
   m_configObjects: {}

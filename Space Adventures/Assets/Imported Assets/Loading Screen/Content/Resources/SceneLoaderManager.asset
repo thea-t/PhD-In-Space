@@ -19,10 +19,10 @@ MonoBehaviour:
       DisplayName: Menu
       Description: 
       SkipType: 3
-      LoadingType: 0
-      FakeLoadingTime: 2
+      LoadingType: 1
+      FakeLoadingTime: 3
       Backgrounds: []
-    - SceneName: Space
+    - SceneName: Milky Way
       SceneAsset: {fileID: 102900000, guid: 9cea426584c8686458a9425b5a5fea42, type: 3}
       DisplayName: Space
       Description: 

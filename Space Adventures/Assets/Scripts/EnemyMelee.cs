@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
+    void Start()
+    {
+        OnGameStart();
+        attackAnimation = "attack";
+    }
+
     protected override void OnChaseBegin()
     {
+        //make the guy visable because it was invisable
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         m_animator.SetTrigger("spawn");
         StartCoroutine(StartChasing());
-        StartAttacking();
+        Debug.Log("calling");
     }
 
     IEnumerator StartChasing()
@@ -25,17 +32,6 @@ public class EnemyMelee : Enemy
         m_animator.SetBool("fly", false);
     }
 
-    void StartAttacking()
-    {
-        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-        {
-            m_animator.SetBool("attack", true);
-        }
-        else
-        {
-            m_animator.SetBool("attack", false);
-        }
-    }
 
     //anim event
     void OnAttack()

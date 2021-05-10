@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerShip : MonoBehaviour
 {
     [SerializeField] int shipSpeed = 20;
-    [SerializeField] float fuel = 20;
-    [SerializeField] float fuelConsumption = 1;
     [SerializeField] float rotSpeed = 40f;
     [SerializeField] GameObject followCamera;
     [SerializeField] ParticleSystem leftSmokeParticle;
@@ -29,9 +27,9 @@ public class PlayerShip : MonoBehaviour
 
     void UseFuel()
     {
-        fuel -= fuelConsumption * 0.01f;
-
-        if (fuel < 1)
+        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
+        GameManager.Instance.uiManager.UpdateFuelUi();
+        if (PlayerStats.playerFuel < 1)
         {
             shipSpeed = 0;
         }

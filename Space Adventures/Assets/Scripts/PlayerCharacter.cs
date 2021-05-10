@@ -14,7 +14,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] Animator playerAnimator;
     [SerializeField] ParticleSystem onShotParticle;
     [SerializeField] ParticleSystem onDeadParticle;
-    [SerializeField] Panel onDeadPanel;
+    [SerializeField] GameObject onDeadPanel;
     public bool canMove;
 
 
@@ -22,6 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         // setting the world curve around the players transform
         GameManager.Instance.curvedWorldController.bendPivotPoint = transform;
+        GameManager.Instance.uiManager.UpdateHealthUi();
     }
 
     void Update()
@@ -39,47 +40,31 @@ public class PlayerCharacter : MonoBehaviour
                 playerAnimator.SetBool("Run", true);
                 RotateCharacter();
             }
-            else if (Input.GetKeyUp(KeyCode.A))
-            {
-                playerAnimator.SetBool("Run", false);
-                //canMove = false;
-            }
-
-
             if (Input.GetKey(KeyCode.D))
             {
                 rb.AddForce(Vector3.right * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
                 RotateCharacter();
             }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                playerAnimator.SetBool("Run", false);
-            }
-
-
             if (Input.GetKey(KeyCode.W))
             {
                 rb.AddForce(Vector3.forward * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
                 RotateCharacter();
             }
-            else if (Input.GetKeyUp(KeyCode.W))
-            {
-                playerAnimator.SetBool("Run", false);
-            }
-
             if (Input.GetKey(KeyCode.S))
             {
                 rb.AddForce(Vector3.back * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
                 RotateCharacter();
             }
-            else if (Input.GetKeyUp(KeyCode.S))
-            {
-                playerAnimator.SetBool("Run", false);
-            }
         }
+        //using or operator: https://answers.unity.com/questions/1160817/andor-operator-c.html
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            playerAnimator.SetBool("Run", false);
+        }
+
         //ship leaving to space
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -108,8 +93,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void TakeDamage()
     {
-        PlayerStats.playerHealth -= PlayerStats.playerMultiplierToReceiveDamage;
-        playerAnimator.SetTrigger("Take Damage");
+        PlayerStats.playerHealth -= PlayerStats.multiplierToReceiveDamage;
+        GameManager.Instance.uiManager.UpdateHealthUi();
+
+        playerAnimator.SetTrigger("Take Damage" + PlayerStats.playerHealth);
         ParticleSystem particle = Instantiate(onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);
 
@@ -121,7 +108,7 @@ public class PlayerCharacter : MonoBehaviour
             //play animation
             //show panel in 2 seconds
             //play around the camera
-            onDeadPanel.gameObject.SetActive(true);
+            onDeadPanel.SetActive(true);
         }
     }
 

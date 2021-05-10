@@ -8,12 +8,14 @@ using UnityEngine;
 public static class PlayerStats
 {
 
-    public static int playerHealth = 100;
+    public static float playerHealth = 100;
+    public static float maxHealth = 100;
     public static float playerFuel = 50;
-    public static int maxFuel = 100;
-    public static int playerDamage = 5;
+    public static float maxFuel = 100;
+    public static float fuelShipConsumption = 0.01f;
+    public static float multiplierToDealDamage = 5;
     public static float fuelMultiplier = 1;
-    public static int playerMultiplierToReceiveDamage = 5;
+    public static float multiplierToReceiveDamage = 5;
     public static int dnaSampleCount = 0;
     public static string currentGalaxy = "Milky Way";
 }

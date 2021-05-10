@@ -7,20 +7,20 @@ public class EnemyRanged : Enemy
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] GameObject bulletShootPoint;
 
+
+    void Start()
+    {
+        OnGameStart();
+        attackAnimation = "Projectile Right Attack 01";
+    }
+
     protected override void OnChaseBegin()
     {
         base.OnChaseBegin();
         m_animator.SetBool("Projectile Right Attack 01", true);
         m_animator.SetBool("Run", true);
 
-        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-        {
-            m_animator.SetBool("Projectile Right Attack 01", true);
-        }
-        else
-        {
-            m_animator.SetBool("attack", false);
-        }
+       
     }
 
     protected override void StopChasing()

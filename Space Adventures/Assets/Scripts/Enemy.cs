@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int enemyHealth = 100;
+    [SerializeField] float enemyHealth = 100;
     [SerializeField] ParticleSystem onShotParticle;
     [SerializeField] ParticleSystem onDeadParticle;
     [SerializeField] Collider m_bodyCollider;
@@ -13,9 +13,10 @@ public class Enemy : MonoBehaviour
     protected Animator m_animator;
     public GameObject m_DNAsample;
     protected NavMeshAgent navMeshAgent;
+    protected string attackAnimation;
 
 
-    private void Start()
+    protected void OnGameStart()
     {
         m_animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -31,13 +32,13 @@ public class Enemy : MonoBehaviour
         {
             navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
         }
-       
-       
+
+        StartAttacking();
     }
 
     protected virtual void OnChaseBegin()
     {
-        transform.rotation = Quaternion.LookRotation(GameManager.Instance.playerCharacter.transform.position - transform.position, Vector3.up);
+        //transform.rotation = Quaternion.LookRotation(GameManager.Instance.playerCharacter.transform.position - transform.position, Vector3.up);
         navMeshAgent.isStopped = false;
     }
 
@@ -45,14 +46,24 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent.isStopped = true;
     }
-
-    public void TakeDamage()
+    void StartAttacking()
     {
-        enemyHealth -= PlayerStats.playerDamage;
+        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        {
+            m_animator.SetBool(attackAnimation, true);
+        }
+        else
+        {
+            m_animator.SetBool(attackAnimation, false);
+        }
+    }
+
+        public void TakeDamage()
+    {
+        enemyHealth -= PlayerStats.multiplierToDealDamage;
         m_animator.SetTrigger("Take Damage");
         ParticleSystem particle = Instantiate(onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);
-        Debug.Log(enemyHealth);
 
         if (enemyHealth <= 0)
         {
@@ -65,7 +76,6 @@ public class Enemy : MonoBehaviour
     {
         navMeshAgent.isStopped = true;
         m_bodyCollider.enabled = false;
-        m_rangeCollider.enabled = false; 
         m_animator.SetTrigger("Die");
 
         //particle was flying so it had to rotate in order to fix https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html
@@ -74,7 +84,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 6);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("playerBody"))
         {

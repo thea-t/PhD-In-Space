@@ -10,6 +10,7 @@ public class Fuel : MonoBehaviour
     private void Start()
     {
         crystalStackHealth = crystals.Length;
+        GameManager.Instance.uiManager.UpdateFuelUi();
     }
 
     public void StartGathering()
@@ -33,6 +34,7 @@ public class Fuel : MonoBehaviour
         {
             PlayerStats.playerFuel += PlayerStats.fuelMultiplier;
             Debug.Log("fuel: " + PlayerStats.playerFuel);
+            GameManager.Instance.uiManager.UpdateFuelUi();
         }
     }
 }

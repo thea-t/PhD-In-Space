@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public CurvedWorldController curvedWorldController;
     public PlayerCharacter playerCharacter;
     public LeavingAndLandingOnPlanet shipLanding;
+    public UIManager uiManager;
 
     public static GameManager Instance { get; private set; } // static singleton
 

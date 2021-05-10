@@ -54,7 +54,7 @@ public class GatheringMechanic : MonoBehaviour
     }
     void CheckMouseClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             m_axePrefab.SetActive(true);
             playerAnimator.SetBool("Digging", true);

@@ -252,6 +252,8 @@ MonoBehaviour:
     type: 3}
   onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
+  onDeadPanel: {fileID: 6723701830860852378, guid: 5e4718390763f204eb92726600bc161b,
+    type: 3}
   canMove: 1
 --- !u!1 &6979025490156364440
 GameObject:

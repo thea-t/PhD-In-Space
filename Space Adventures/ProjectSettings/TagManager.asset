@@ -16,6 +16,7 @@ TagManager:
   - fuel
   - alienSample
   - meleeEnemyBody
+  - ship
   layers:
   - Default
   - TransparentFX

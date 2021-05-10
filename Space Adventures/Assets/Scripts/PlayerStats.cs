@@ -15,4 +15,5 @@ public static class PlayerStats
     public static float fuelMultiplier = 1;
     public static int playerMultiplierToReceiveDamage = 5;
     public static int dnaSampleCount = 0;
+    public static string currentGalaxy = "Milky Way";
 }

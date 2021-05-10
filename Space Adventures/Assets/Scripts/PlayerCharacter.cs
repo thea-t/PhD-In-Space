@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LayerLab;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] Animator playerAnimator;
     [SerializeField] ParticleSystem onShotParticle;
     [SerializeField] ParticleSystem onDeadParticle;
+    [SerializeField] Panel onDeadPanel;
     public bool canMove;
 
 
@@ -78,6 +80,18 @@ public class PlayerCharacter : MonoBehaviour
                 playerAnimator.SetBool("Run", false);
             }
         }
+        //ship leaving to space
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Collider[] touchColliders = Physics.OverlapSphere(transform.position, 2);
+            foreach (var touchCollider in touchColliders)
+            {
+                if (touchCollider.CompareTag("ship"))
+                {
+                    GameManager.Instance.shipLanding.LeavingAnimation();
+                }
+            }
+        }
 
 
     }
@@ -103,7 +117,11 @@ public class PlayerCharacter : MonoBehaviour
 
         if (PlayerStats.playerHealth <= 0)
         {
-            //die
+            Debug.Log("DEAD");
+            //play animation
+            //show panel in 2 seconds
+            //play around the camera
+            onDeadPanel.gameObject.SetActive(true);
         }
     }
 

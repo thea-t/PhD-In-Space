@@ -7,19 +7,28 @@ public class Enemy : CharacterController
 {
     [SerializeField] Collider m_bodyCollider;
     protected Animator m_animator;
-    public GameObject m_DNAsample;
     protected NavMeshAgent navMeshAgent;
-    protected string attackAnimation;
+    public bool dropsSample;
+    public bool dropsPowerUp;
 
+    #region Start,  Update and Triggers
+    void Start()
+    {
+        m_animator = GetComponent<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
+        //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
+        navMeshAgent.isStopped = true;
+        m_health = 100f;
+    }
 
-    #region Triggers and Updates
-    private void FixedUpdate()
+    protected virtual void Update()
     { // start chasing
         if (!navMeshAgent.isStopped)
         {
             navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
         }
-        StartAttacking();
+        Debug.Log(navMeshAgent.isStopped);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,19 +49,8 @@ public class Enemy : CharacterController
     #endregion
 
     #region Functions that will be overriden by the different types of enemies
-    protected void OnGameStart()
-    {
-        m_animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
-        //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
-        navMeshAgent.isStopped = true;
-        m_health = 100f;
-    }
-
     protected virtual void StartChasing()
     {
-        //transform.rotation = Quaternion.LookRotation(GameManager.Instance.playerCharacter.transform.position - transform.position, Vector3.up);
         navMeshAgent.isStopped = false;
     }
 
@@ -60,17 +58,7 @@ public class Enemy : CharacterController
     {
         navMeshAgent.isStopped = true;
     }
-    void StartAttacking()
-    {
-        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-        {
-            m_animator.SetBool(attackAnimation, true);
-        }
-        else
-        {
-            m_animator.SetBool(attackAnimation, false);
-        }
-    }
+    
 
     #endregion
 
@@ -81,7 +69,8 @@ public class Enemy : CharacterController
         base.TakeDamage(damage);
 
         m_animator.SetTrigger("Take Damage");
-
+        //start chasing the player the moment they are hit
+        StartChasing();
         Debug.Log("enemyHealth" + m_health);
 
     }
@@ -91,7 +80,15 @@ public class Enemy : CharacterController
         navMeshAgent.isStopped = true;
         m_bodyCollider.enabled = false;
         m_animator.SetTrigger("Die");
-        GameObject alienSample = Instantiate(m_DNAsample, transform.position, Quaternion.identity);
+
+        if (dropsSample)
+        {
+            GameObject alienSample = Instantiate(GameManager.Instance.enemyTracker.sampleDNAPrefab, transform.position, Quaternion.identity);
+        }
+        if (dropsPowerUp)
+        {
+            GameObject randomPowerUp = Instantiate(GameManager.Instance.enemyTracker.powerUpPrefab, transform.position, Quaternion.identity);
+        }
     }
     #endregion
 }

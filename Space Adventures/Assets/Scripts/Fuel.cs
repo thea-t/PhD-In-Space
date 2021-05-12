@@ -32,7 +32,7 @@ public class Fuel : MonoBehaviour
     {
         if (PlayerStats.playerFuel < PlayerStats.maxFuel)
         {
-            PlayerStats.playerFuel += PlayerStats.fuelMultiplier;
+            PlayerStats.playerFuel += PlayerStats.multiplierFuel;
             Debug.Log("fuel: " + PlayerStats.playerFuel);
             GameManager.Instance.uiManager.UpdateFuelUi();
         }

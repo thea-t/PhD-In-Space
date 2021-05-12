@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerCharacter playerCharacter;
     public LeavingAndLandingOnPlanet shipLanding;
     public UIManager uiManager;
+    public EnemyTracker enemyTracker;
 
     public static GameManager Instance { get; private set; } // static singleton
 

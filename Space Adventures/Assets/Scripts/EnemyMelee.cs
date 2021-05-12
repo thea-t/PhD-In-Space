@@ -4,26 +4,16 @@ using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
-    void Start()
+    protected override void Update()
     {
-        OnGameStart();
-    //   // attackAnimation = "attack";
-    //}
+        base.Update();
+        StartAttacking();
+    }
 
-    //protected override void StartChasing()
-    //{
-    //    //make the guy visable because it was invisable
-    //    GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-    //    m_animator.SetTrigger("spawn");
-    //    StartCoroutine(StartChasingg());
-    //    Debug.Log("calling");
-    //}
-
-    //IEnumerator StartChasingg()
-    //{
-    //    yield return new WaitForSeconds(m_animator.GetCurrentAnimatorStateInfo(0).length);
-    //    m_animator.SetBool("fly", true);
-    //    base.StartChasing();
+    protected override void StartChasing()
+    {
+        base.StartChasing();
+        m_animator.SetBool("fly", true);
     }
 
     protected override void StopChasing()
@@ -32,6 +22,22 @@ public class EnemyMelee : Enemy
         m_animator.SetBool("fly", false);
     }
 
+    void AnimationPicker()
+    {
+        m_animator.SetTrigger("");
+    }
+
+    void StartAttacking()
+    {
+        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        {
+            m_animator.SetBool("attack", true);
+        }
+        else
+        {
+            m_animator.SetBool("attack", false);
+        }
+    }
 
     //anim event
     void OnAttack()

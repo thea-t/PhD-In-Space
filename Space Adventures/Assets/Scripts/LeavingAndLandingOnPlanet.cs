@@ -35,9 +35,9 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     IEnumerator AllowPlayerToMove()
     {
-        yield return new WaitForSeconds(5);
-        GameManager.Instance.playerCharacter.canMove = true;
+        yield return new WaitForSeconds(4);
         GameManager.Instance.playerCharacter.GetComponent<Rigidbody>().isKinematic = false;
+        GameManager.Instance.playerCharacter.canMove = true;
     }
 
     public void LeavingAnimation()

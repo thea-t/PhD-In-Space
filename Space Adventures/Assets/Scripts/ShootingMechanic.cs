@@ -12,7 +12,6 @@ public class ShootingMechanic : MonoBehaviour
     [SerializeField] GameObject bulletShootPoint;
     [SerializeField] GameObject weapon;
     [SerializeField] Animator playerAnimator;
-
     Camera mainCam;
 
     private void Start()
@@ -55,13 +54,13 @@ public class ShootingMechanic : MonoBehaviour
                 //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
                 //https://www.youtube.com/watch?v=-376PylZ5l4&t=335s
                 Ray mouseRay = mainCam.ScreenPointToRay(Input.mousePosition);
-            float midPoint = (transform.position - mainCam.transform.position).magnitude;
+                float midPoint = (transform.position - mainCam.transform.position).magnitude;
 
-            Vector3 lookAtPosition = mouseRay.origin + mouseRay.direction * midPoint;
-            lookAtPosition.y = 0;
+                Vector3 lookAtPosition = mouseRay.origin + mouseRay.direction * midPoint;
+                lookAtPosition.y = 0;
 
-            transform.LookAt(lookAtPosition);
-        }
+                transform.LookAt(lookAtPosition);
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {

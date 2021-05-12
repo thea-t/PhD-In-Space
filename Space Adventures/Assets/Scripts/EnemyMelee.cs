@@ -7,23 +7,23 @@ public class EnemyMelee : Enemy
     void Start()
     {
         OnGameStart();
-        attackAnimation = "attack";
-    }
+    //   // attackAnimation = "attack";
+    //}
 
-    protected override void OnChaseBegin()
-    {
-        //make the guy visable because it was invisable
-        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        m_animator.SetTrigger("spawn");
-        StartCoroutine(StartChasing());
-        Debug.Log("calling");
-    }
+    //protected override void StartChasing()
+    //{
+    //    //make the guy visable because it was invisable
+    //    GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+    //    m_animator.SetTrigger("spawn");
+    //    StartCoroutine(StartChasingg());
+    //    Debug.Log("calling");
+    //}
 
-    IEnumerator StartChasing()
-    {
-        yield return new WaitForSeconds(m_animator.GetCurrentAnimatorStateInfo(0).length);
-        m_animator.SetBool("fly", true);
-        base.OnChaseBegin();
+    //IEnumerator StartChasingg()
+    //{
+    //    yield return new WaitForSeconds(m_animator.GetCurrentAnimatorStateInfo(0).length);
+    //    m_animator.SetBool("fly", true);
+    //    base.StartChasing();
     }
 
     protected override void StopChasing()
@@ -36,6 +36,6 @@ public class EnemyMelee : Enemy
     //anim event
     void OnAttack()
     {
-        GameManager.Instance.playerCharacter.TakeDamage();
+        GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage * 1.5f);
     }
 }

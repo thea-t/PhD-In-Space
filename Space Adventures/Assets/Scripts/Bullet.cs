@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       
     }
 
     // Update is called once per frame
@@ -27,7 +26,7 @@ public class Bullet : MonoBehaviour
     {
         if (!isEnemyBullet && other.CompareTag("enemyBody"))
         {
-            other.GetComponentInParent<Enemy>().TakeDamage();
+            other.GetComponentInParent<Enemy>().TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage);
             gameObject.SetActive(false);
         }
         if (!isEnemyBullet && other.CompareTag("playerRange"))
@@ -36,7 +35,7 @@ public class Bullet : MonoBehaviour
         }
         if (isEnemyBullet && other.CompareTag("playerBody"))
         {
-            GameManager.Instance.playerCharacter.TakeDamage();
+            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage * PlayerStats.baseDamage);
         }
     }
 

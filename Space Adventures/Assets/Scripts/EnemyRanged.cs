@@ -14,10 +14,9 @@ public class EnemyRanged : Enemy
         attackAnimation = "Projectile Right Attack 01";
     }
 
-    protected override void OnChaseBegin()
+    protected override void StartChasing()
     {
-        base.OnChaseBegin();
-        m_animator.SetBool("Projectile Right Attack 01", true);
+        base.StartChasing();
         m_animator.SetBool("Run", true);
 
        
@@ -25,7 +24,6 @@ public class EnemyRanged : Enemy
 
     protected override void StopChasing()
     {
-        m_animator.SetBool("Projectile Right Attack 01", false);
         m_animator.SetBool("Run", false);
         base.StopChasing();
     }

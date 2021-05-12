@@ -5,23 +5,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerCharacter : CharacterController
 {
     /*[Range(1000, 10000)] */
     [SerializeField] private int playerSpeed;
     [SerializeField] private Rigidbody rb;
     [SerializeField] Transform playerModel;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] ParticleSystem onShotParticle;
-    [SerializeField] ParticleSystem onDeadParticle;
     [SerializeField] GameObject onDeadPanel;
     public bool canMove;
-
 
     private void Start()
     {
         // setting the world curve around the players transform
         GameManager.Instance.curvedWorldController.bendPivotPoint = transform;
+        m_health = PlayerStats.playerHealth;
         GameManager.Instance.uiManager.UpdateHealthUi();
     }
 
@@ -30,33 +28,56 @@ public class PlayerCharacter : MonoBehaviour
         CheckKeyForPlayerMovement();
     }
 
+    #region Functions that override CharacterController
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        playerAnimator.SetTrigger("Take Damage");
+        PlayerStats.playerHealth = m_health;
+        GameManager.Instance.uiManager.UpdateHealthUi();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        //play animation
+        //show panel in 2 seconds
+        //play around the camera
+        onDeadPanel.SetActive(true);
+    }
+    #endregion
+
     void CheckKeyForPlayerMovement()
     {
         if (canMove == true)
         {
             if (Input.GetKey(KeyCode.A))
             {
+                //https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html
+                playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
                 rb.AddForce(Vector3.left * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
-                RotateCharacter();
             }
             if (Input.GetKey(KeyCode.D))
             {
+                //https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html
+                playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
                 rb.AddForce(Vector3.right * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
-                RotateCharacter();
             }
             if (Input.GetKey(KeyCode.W))
             {
+                //https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html
+                playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
                 rb.AddForce(Vector3.forward * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
-                RotateCharacter();
             }
             if (Input.GetKey(KeyCode.S))
             {
+                //https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html
+                playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
                 rb.AddForce(Vector3.back * playerSpeed * Time.deltaTime);
                 playerAnimator.SetBool("Run", true);
-                RotateCharacter();
             }
         }
         //using or operator: https://answers.unity.com/questions/1160817/andor-operator-c.html
@@ -77,43 +98,7 @@ public class PlayerCharacter : MonoBehaviour
                 }
             }
         }
-
-
     }
-
-    void RotateCharacter()
-    {
-        if (rb.velocity != Vector3.zero)
-        {
-            //https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html
-            playerModel.rotation = Quaternion.LookRotation(rb.velocity, Vector3.up);
-        }
-    }
-
-
-    public void TakeDamage()
-    {
-        PlayerStats.playerHealth -= PlayerStats.multiplierToReceiveDamage;
-        GameManager.Instance.uiManager.UpdateHealthUi();
-
-        playerAnimator.SetTrigger("Take Damage" + PlayerStats.playerHealth);
-        ParticleSystem particle = Instantiate(onShotParticle, transform.position, Quaternion.identity);
-        Destroy(particle.gameObject, 2);
-
-        Debug.Log(PlayerStats.playerHealth);
-
-        if (PlayerStats.playerHealth <= 0)
-        {
-            Debug.Log("DEAD");
-            //play animation
-            //show panel in 2 seconds
-            //play around the camera
-            onDeadPanel.SetActive(true);
-        }
-    }
-
-
-
 }
 
 

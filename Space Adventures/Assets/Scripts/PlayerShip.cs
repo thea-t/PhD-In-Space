@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -126,9 +127,9 @@ public class PlayerShip : MonoBehaviour
         }
         else if (other.CompareTag("planet"))
         {
-
             rb.isKinematic = true;
-            transform.localScale = (new Vector3(10, 10, 10));
+            GetComponent<Collider>().enabled = false;
+            transform.DOScale(new Vector3(1.5f,1.5f,1.5f), 3);
             transform.SetParent(other.transform);
 
             //how to do something with a delay:
@@ -147,7 +148,8 @@ public class PlayerShip : MonoBehaviour
 
     IEnumerator ChangeScene(string _planetName)
     {
-        yield return new WaitForSeconds(1);
+        Debug.Log(_planetName);
+        yield return new WaitForSeconds(3);
         //how to load a scene with loader asset: check documentation
         bl_SceneLoaderUtils.GetLoader.LoadLevel(_planetName);
     }

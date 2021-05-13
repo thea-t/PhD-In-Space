@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GatheringMechanic : MonoBehaviour
 {
@@ -44,14 +45,22 @@ public class GatheringMechanic : MonoBehaviour
                 if (touchCollider.CompareTag("alienSample"))
                 {
                     Destroy(touchCollider.gameObject);
-                    PlayerStats.dnaSampleCount++;
-
+                    OnSampleCollected();
                     Debug.Log("samples collected: " + PlayerStats.dnaSampleCount);
                 }
             }
         }
         
     }
+
+    void OnSampleCollected()
+    {
+        PlayerStats.dnaSampleCount++;
+        //https://docs.unity3d.com/ScriptReference/SceneManagement.Scene-name.html
+        PlayerStats.completedPlanets.Add(SceneManager.GetActiveScene().name);
+        GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
+    }
+
     void CheckMouseClick()
     {
         if (Input.GetMouseButtonDown(1))

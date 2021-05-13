@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 324917906893530385}
   m_Layer: 0
   m_Name: Player (Character)
-  m_TagString: playerRange
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,14 +244,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6396651ae1cee4c9f9a153b1a37bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 4000
-  rb: {fileID: -4070154692949029012}
-  playerModel: {fileID: 5735958417472470055}
-  playerAnimator: {fileID: 5675027487904103665}
   onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
     type: 3}
   onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
+  m_bodyCollider: {fileID: 6085276870394500902}
+  m_damage: 0
+  playerSpeed: 4000
+  rb: {fileID: -4070154692949029012}
+  playerModel: {fileID: 5735958417472470055}
+  playerAnimator: {fileID: 5675027487904103665}
   onDeadPanel: {fileID: 8189251801938786474, guid: 5e4718390763f204eb92726600bc161b,
     type: 3}
   canMove: 1
@@ -316,7 +318,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7771566, y: 1}
+    m_SensorSize: {x: 1.7782608, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

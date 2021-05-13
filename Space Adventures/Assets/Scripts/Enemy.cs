@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public class Enemy : CharacterController
 {
-    [SerializeField] Collider m_bodyCollider;
+
     protected Animator m_animator;
     protected NavMeshAgent navMeshAgent;
-    public bool dropsSample;
-    public bool dropsPowerUp;
+    [HideInInspector] public bool dropsSample;
+    [HideInInspector] public bool dropsPowerUp;
+    [HideInInspector] string startChasingText;
+    [HideInInspector] string onDeadText;
 
     #region Start,  Update and Triggers
     void Start()
@@ -24,18 +26,17 @@ public class Enemy : CharacterController
 
     protected virtual void Update()
     { // start chasing
-        if (!navMeshAgent.isStopped)
+        if (!navMeshAgent.isStopped && !isDead)
         {
             navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
         }
-        Debug.Log(navMeshAgent.isStopped);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("playerBody"))
         {
-            StartChasing();
+                StartChasing();
         }
     }
 
@@ -52,13 +53,14 @@ public class Enemy : CharacterController
     protected virtual void StartChasing()
     {
         navMeshAgent.isStopped = false;
+        GameManager.Instance.uiManager.ShowCoolText(startChasingText, transform.position);
     }
 
     protected virtual void StopChasing()
     {
         navMeshAgent.isStopped = true;
     }
-    
+
 
     #endregion
 
@@ -77,9 +79,13 @@ public class Enemy : CharacterController
     protected override void Die()
     {
         base.Die();
+
         navMeshAgent.isStopped = true;
-        m_bodyCollider.enabled = false;
         m_animator.SetTrigger("Die");
+        GameManager.Instance.uiManager.ShowCoolText(onDeadText, transform.position);
+        GameManager.Instance.enemyTracker.aliveEnemyCount--;
+        GameManager.Instance.uiManager.SetEnemyCountText();
+        Destroy(gameObject, 6);
 
         if (dropsSample)
         {

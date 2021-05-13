@@ -22,14 +22,9 @@ public class EnemyMelee : Enemy
         m_animator.SetBool("fly", false);
     }
 
-    void AnimationPicker()
-    {
-        m_animator.SetTrigger("");
-    }
-
     void StartAttacking()
     {
-        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        if (!GameManager.Instance.playerCharacter.isDead && navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
         {
             m_animator.SetBool("attack", true);
         }

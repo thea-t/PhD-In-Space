@@ -39,17 +39,17 @@ public class PlayerCharacter : CharacterController
 
     protected override void Die()
     {
-        base.Die();
-        //play animation
-        //show panel in 2 seconds
-        //play around the camera
-        onDeadPanel.SetActive(true);
+        base.Die(); 
+        playerAnimator.SetTrigger("Die");
+        GameManager.Instance.uiManager.EnableOnDeadPanel();
     }
     #endregion
 
+
+
     void CheckKeyForPlayerMovement()
     {
-        if (canMove == true)
+        if (canMove == true && isDead == false)
         {
             if (Input.GetKey(KeyCode.A))
             {
@@ -87,7 +87,7 @@ public class PlayerCharacter : CharacterController
         }
 
         //ship leaving to space
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDead == false)
         {
             Collider[] touchColliders = Physics.OverlapSphere(transform.position, 2);
             foreach (var touchCollider in touchColliders)

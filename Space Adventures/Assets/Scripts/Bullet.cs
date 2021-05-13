@@ -29,13 +29,10 @@ public class Bullet : MonoBehaviour
             other.GetComponentInParent<Enemy>().TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage);
             gameObject.SetActive(false);
         }
-        if (!isEnemyBullet && other.CompareTag("playerRange"))
-        {
-            gameObject.SetActive(false);
-        }
-        if (isEnemyBullet && other.CompareTag("playerBody"))
+        else if (isEnemyBullet && other.CompareTag("playerBody"))
         {
             GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage * PlayerStats.baseDamage);
+            gameObject.SetActive(false);
         }
     }
 

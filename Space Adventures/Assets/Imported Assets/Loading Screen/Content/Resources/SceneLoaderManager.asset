@@ -22,7 +22,7 @@ MonoBehaviour:
       LoadingType: 1
       FakeLoadingTime: 3
       Backgrounds: []
-    - SceneName: Milky Way
+    - SceneName: MilkyWay
       SceneAsset: {fileID: 102900000, guid: 9cea426584c8686458a9425b5a5fea42, type: 3}
       DisplayName: Space
       Description: 
@@ -48,6 +48,14 @@ MonoBehaviour:
       Backgrounds: []
     - SceneName: Planet Loneeus
       SceneAsset: {fileID: 102900000, guid: a93c19c9f1c1bd747986e25581652308, type: 3}
+      DisplayName: Planet
+      Description: This is a cool planet.
+      SkipType: 3
+      LoadingType: 1
+      FakeLoadingTime: 3
+      Backgrounds: []
+    - SceneName: Tadpole
+      SceneAsset: {fileID: 102900000, guid: d7348d4d91f0e304a9646f9b5170372b, type: 3}
       DisplayName: Planet
       Description: This is a cool planet.
       SkipType: 3

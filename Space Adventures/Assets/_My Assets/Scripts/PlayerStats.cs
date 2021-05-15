@@ -10,14 +10,14 @@ public static class PlayerStats
     public static List<string> completedPlanets = new List<string>();
     public static float playerHealth = 100;
     public static float playerFuel = 50;
-    public static float baseDamage = 5;
     public static float maxHealth = 100;
     public static float maxFuel = 100;
+    public static float baseDamage = 5;
     public static float multiplierToDealDamage = 1;
-    public static float multiplierToReceiveDamage = 1;
-    public static float multiplierFuel = 1;
-    public static float multiplierbulletSpeed = 1;
+    public static float multiplierToReceiveDamage = 1.5f;
+    public static float multiplierToGatherFuel = 5;
+    public static float bulletSpeed = 5;
     public static float fuelShipConsumption = 0.01f;
     public static int dnaSampleCount = 0;
-    public static string currentGalaxy = "Milky Way";
+    public static Levels currentLevel = Levels.MilkyWay;
 }

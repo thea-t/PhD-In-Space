@@ -57,7 +57,8 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     void ArriveInGalaxy()
     {
-        bl_SceneLoaderUtils.GetLoader.LoadLevel(PlayerStats.currentGalaxy);
+        bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel-1).ToString());
+        Debug.Log(PlayerStats.currentLevel.ToString());
     }
 }
 

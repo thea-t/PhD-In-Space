@@ -59,6 +59,14 @@ public class GatheringMechanic : MonoBehaviour
         //https://docs.unity3d.com/ScriptReference/SceneManagement.Scene-name.html
         PlayerStats.completedPlanets.Add(SceneManager.GetActiveScene().name);
         GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
+
+        //%3 = 0
+        if (PlayerStats.dnaSampleCount == 3)
+        {
+            PlayerStats.currentLevel = PlayerStats.currentLevel+1;
+            PlayerPrefs.SetInt("currentLevel", (int)PlayerStats.currentLevel);
+            Debug.Log("Level unlockedCOUNT: " + PlayerStats.currentLevel.ToString());
+        }
     }
 
     void CheckMouseClick()

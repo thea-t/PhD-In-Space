@@ -7,20 +7,24 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] bool m_isEnemyBullet;
     [HideInInspector] public Vector3 directionVector;
-
+    public float bulletSpeed = 500;
     Rigidbody m_rb;
-    float m_bulletSpeed = 500;
 
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
+
+        if (!m_isEnemyBullet)
+        {
+            bulletSpeed = PlayerStats.bulletSpeed*100;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_rb.AddForce(directionVector * m_bulletSpeed * PlayerStats.multiplierbulletSpeed * Time.deltaTime, ForceMode.Force);
+        m_rb.AddForce(directionVector * bulletSpeed * Time.deltaTime, ForceMode.Force);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject m_onDeadPanel;
     int m_textDuration = 4;
 
+
     private void Start()
     {
         UpdateHealthUi();
@@ -96,4 +97,6 @@ public class UIManager : MonoBehaviour
     {
         m_coolTextInSpace.DOFade(0, m_textDuration);
     }
+
+    
 }

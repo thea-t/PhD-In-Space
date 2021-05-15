@@ -494,8 +494,8 @@ GameObject:
   - component: {fileID: 5177648519366356992}
   - component: {fileID: 2067188281911640527}
   - component: {fileID: 8596453062024276999}
-  - component: {fileID: 3768291120481185084}
   - component: {fileID: 2229589676877328836}
+  - component: {fileID: 3768291120481185084}
   m_Layer: 0
   m_Name: Planet Aeriaeria - Male
   m_TagString: enemy
@@ -579,28 +579,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 8.077241
   m_Center: {x: 0, y: -1.9721537, z: 0}
---- !u!195 &3768291120481185084
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5177648519359105500}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1.73
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 270
-  m_StoppingDistance: 2
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &2229589676877328836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +602,29 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
     type: 3}
   m_bulletShootPoint: {fileID: 3279773481955404916}
+  bulletSpeed: 0
+--- !u!195 &3768291120481185084
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177648519359105500}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1.73
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 270
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5177648519359105780
 GameObject:
   m_ObjectHideFlags: 0

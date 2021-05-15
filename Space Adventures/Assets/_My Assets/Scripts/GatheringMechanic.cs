@@ -7,12 +7,12 @@ public class GatheringMechanic : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject m_axePrefab;
-    [SerializeField] Animator playerAnimator;
-    Camera mainCam;
+    [SerializeField] Animator m_playerAnimator;
+    Camera m_mainCam;
 
     private void Start()
     {
-        mainCam = Camera.main;
+        m_mainCam = Camera.main;
     }
 
     private void Update()
@@ -66,15 +66,15 @@ public class GatheringMechanic : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             m_axePrefab.SetActive(true);
-            playerAnimator.SetBool("Digging", true);
+            m_playerAnimator.SetBool("Digging", true);
             GameManager.Instance.playerCharacter.canMove = false;
         }
         else if (Input.GetMouseButton(1))
         {
             //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
             //https://www.youtube.com/watch?v=-376PylZ5l4&t=335s
-            Ray mouseRay = mainCam.ScreenPointToRay(Input.mousePosition);
-            float midPoint = (transform.position - mainCam.transform.position).magnitude;
+            Ray mouseRay = m_mainCam.ScreenPointToRay(Input.mousePosition);
+            float midPoint = (transform.position - m_mainCam.transform.position).magnitude;
 
             Vector3 lookAtPosition = mouseRay.origin + mouseRay.direction * midPoint;
             lookAtPosition.y = 0;
@@ -84,7 +84,7 @@ public class GatheringMechanic : MonoBehaviour
         else if (Input.GetMouseButtonUp(1))
         {
             m_axePrefab.SetActive(false);
-            playerAnimator.SetBool("Digging", false);
+            m_playerAnimator.SetBool("Digging", false);
             GameManager.Instance.playerCharacter.canMove = true;
         }
     }

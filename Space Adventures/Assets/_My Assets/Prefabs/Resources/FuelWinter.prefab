@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e611f446625e342aa6955ca7fe7478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crystals:
+  m_crystals:
   - {fileID: 4876182040477733142}
   - {fileID: 4876120449386266420}
   - {fileID: 4875642952522129670}

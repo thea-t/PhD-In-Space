@@ -17,6 +17,7 @@ TagManager:
   - alienSample
   - meleeEnemyBody
   - ship
+  - sun
   layers:
   - Default
   - TransparentFX

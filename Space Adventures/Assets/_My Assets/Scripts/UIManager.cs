@@ -13,15 +13,17 @@ public class UIManager : MonoBehaviour
     //sets the stats bars values
     //displays enemies left
 
-    [SerializeField] Image healthBarFiller;
-    [SerializeField] Image fuelBarFiller;
-    [SerializeField] Image SamplesDNABarFiller;
-    [SerializeField] GameObject onDeadPanel;
+    [SerializeField] Image m_healthBarFiller;
+    [SerializeField] Image m_fuelBarFiller;
+    [SerializeField] Image m_SamplesDNABarFiller;
     [SerializeField] Image m_CollectedSamplesImage1;
     [SerializeField] Image m_CollectedSamplesImage2;
     [SerializeField] Image m_CollectedSamplesImage3;
     [SerializeField] TextMeshProUGUI m_enemyCountText;
-    [SerializeField] GameObject coolTextPrefab;
+    [SerializeField] TextMeshProUGUI m_coolTextInSpace;
+    [SerializeField] GameObject m_coolTextPrefab;
+    [SerializeField] GameObject m_onDeadPanel;
+    int m_textDuration = 4;
 
     private void Start()
     {
@@ -32,12 +34,12 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealthUi()
     {
-        healthBarFiller.fillAmount = PlayerStats.playerHealth / PlayerStats.maxHealth;
+        m_healthBarFiller.fillAmount = PlayerStats.playerHealth / PlayerStats.maxHealth;
     }
 
     public void UpdateFuelUi()
     {
-        fuelBarFiller.fillAmount = PlayerStats.playerFuel / PlayerStats.maxFuel;
+        m_fuelBarFiller.fillAmount = PlayerStats.playerFuel / PlayerStats.maxFuel;
     }
     public void UpdateDnaSamplesBarUi()
     {
@@ -48,11 +50,11 @@ public class UIManager : MonoBehaviour
                 break;
             case 2:
                 m_CollectedSamplesImage2.gameObject.SetActive(true);
-                SamplesDNABarFiller.DOFillAmount(0.5f, 1);
+                m_SamplesDNABarFiller.DOFillAmount(0.5f, 1);
                 break;
             case 3:
                 m_CollectedSamplesImage3.gameObject.SetActive(true);
-                SamplesDNABarFiller.DOFillAmount(1, 1);
+                m_SamplesDNABarFiller.DOFillAmount(1, 1);
                 break;
         }
     }
@@ -65,7 +67,7 @@ public class UIManager : MonoBehaviour
     IEnumerator EnableOnDeadPanelDelayed()
     {
         yield return new WaitForSeconds(3);
-        onDeadPanel.SetActive(true);
+        m_onDeadPanel.SetActive(true);
     }
 
     public void SetEnemyCountText()
@@ -75,14 +77,23 @@ public class UIManager : MonoBehaviour
 
     public void ShowCoolText(string text, Vector3 pos)
     {
-        int textDuration = 3;
 
-        GameObject coolTextObject = Instantiate(coolTextPrefab, pos, Quaternion.identity);
+        GameObject coolTextObject = Instantiate(m_coolTextPrefab, pos, Quaternion.identity);
         TextMeshProUGUI coolText = coolTextObject.GetComponentInChildren<TextMeshProUGUI>();
         coolText.text = text;
-        coolText.transform.DOLocalMoveY(4, textDuration);
-        coolText.DOFade(0, textDuration);
-        Destroy(coolTextObject, textDuration);
+        coolText.transform.DOLocalMoveY(4, m_textDuration);
+        coolText.DOFade(0, m_textDuration);
+        Destroy(coolTextObject, m_textDuration);
+    }
+    public void ShowCoolTextInSpace(string text)
+    {
+        m_coolTextInSpace.text = text;
+        m_coolTextInSpace.DOFade(1,0);
+        m_coolTextInSpace.transform.DOShakeScale(m_textDuration,0.1f, 5, 50, true).OnComplete(HideCoolTextInSpace);
     }
 
+    void HideCoolTextInSpace()
+    {
+        m_coolTextInSpace.DOFade(0, m_textDuration);
+    }
 }

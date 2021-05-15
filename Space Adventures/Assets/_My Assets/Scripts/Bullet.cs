@@ -5,31 +5,32 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] int bulletSpeed;
-    [SerializeField] bool isEnemyBullet;
-    public Vector3 directionVector;
-    
+    [SerializeField] bool m_isEnemyBullet;
+    [HideInInspector] public Vector3 directionVector;
+
+    Rigidbody m_rb;
+    float m_bulletSpeed = 500;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        m_rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(directionVector * bulletSpeed * Time.deltaTime, ForceMode.Force);
+        m_rb.AddForce(directionVector * m_bulletSpeed * PlayerStats.multiplierbulletSpeed * Time.deltaTime, ForceMode.Force);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isEnemyBullet && other.CompareTag("enemyBody"))
+        if (!m_isEnemyBullet && other.CompareTag("enemyBody"))
         {
             other.GetComponentInParent<Enemy>().TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage);
             gameObject.SetActive(false);
         }
-        else if (isEnemyBullet && other.CompareTag("playerBody"))
+        else if (m_isEnemyBullet && other.CompareTag("playerBody"))
         {
             GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage * PlayerStats.baseDamage);
             gameObject.SetActive(false);

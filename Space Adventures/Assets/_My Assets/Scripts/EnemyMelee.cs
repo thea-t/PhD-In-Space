@@ -24,7 +24,7 @@ public class EnemyMelee : Enemy
 
     void StartAttacking()
     {
-        if (!GameManager.Instance.playerCharacter.isDead && navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        if (!GameManager.Instance.playerCharacter.isDead && m_navMeshAgent.remainingDistance < m_navMeshAgent.stoppingDistance)
         {
             m_animator.SetBool("attack", true);
         }
@@ -37,6 +37,6 @@ public class EnemyMelee : Enemy
     //anim event
     void OnAttack()
     {
-        GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage * 1.5f);
+            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage * 1.5f);
     }
 }

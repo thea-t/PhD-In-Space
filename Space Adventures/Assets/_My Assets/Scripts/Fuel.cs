@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Fuel : MonoBehaviour
 {
-    [SerializeField] GameObject[] crystals;
-    int crystalStackHealth;
+    [SerializeField] GameObject[] m_crystals;
+    int m_crystalStackHealth;
 
     private void Start()
     {
-        crystalStackHealth = crystals.Length;
+        m_crystalStackHealth = m_crystals.Length;
         GameManager.Instance.uiManager.UpdateFuelUi();
     }
 
@@ -17,12 +17,12 @@ public class Fuel : MonoBehaviour
     {
         Debug.Log("gathering");
 
-        crystalStackHealth--;
+        m_crystalStackHealth--;
 
-            Destroy(crystals[crystalStackHealth]);
+            Destroy(m_crystals[m_crystalStackHealth]);
             GainFuel();
 
-        if (crystalStackHealth <= 0)
+        if (m_crystalStackHealth <= 0)
         {
             Destroy(gameObject);
         }

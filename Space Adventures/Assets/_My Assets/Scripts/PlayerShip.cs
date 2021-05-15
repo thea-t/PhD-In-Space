@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 {
-    [SerializeField] int shipSpeed = 20;
-    [SerializeField] float rotSpeed = 40f;
-    [SerializeField] GameObject followCamera;
-    [SerializeField] ParticleSystem leftSmokeParticle;
-    [SerializeField] ParticleSystem rightSmokeParticle;
-    [SerializeField] ParticleSystem topSmokeParticle;
-    [SerializeField] ParticleSystem botSmokeParticle;
+    [SerializeField] int m_shipSpeed = 250;
+    [SerializeField] int m_sunDamage = 1;
+    [SerializeField] float m_rotSpeed = 40f;
+    [SerializeField] GameObject m_followCamera;
+    [SerializeField] ParticleSystem m_leftSmokeParticle;
+    [SerializeField] ParticleSystem m_rightSmokeParticle;
+    [SerializeField] ParticleSystem m_topSmokeParticle;
+    [SerializeField] ParticleSystem m_botSmokeParticle;
     public Rigidbody rb;
-    bool isMinimapOpen;
+    bool m_isMinimapOpen;
     public bool isAllowedToMove;
 
     private void Start()
@@ -32,23 +33,23 @@ public class PlayerShip : MonoBehaviour
         GameManager.Instance.uiManager.UpdateFuelUi();
         if (PlayerStats.playerFuel < 1)
         {
-            shipSpeed = 0;
+            m_shipSpeed = 0;
         }
     }
 
     void MinimapController()
     {
-        if (!isMinimapOpen && Input.GetKeyDown(KeyCode.M))
+        if (!m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
         {
-            followCamera.SetActive(false);
-            isMinimapOpen = true;
+            m_followCamera.SetActive(false);
+            m_isMinimapOpen = true;
             isAllowedToMove = false;
             rb.isKinematic = true;
         }
-        else if (isMinimapOpen && Input.GetKeyDown(KeyCode.M))
+        else if (m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
         {
-            followCamera.SetActive(true);
-            isMinimapOpen = false;
+            m_followCamera.SetActive(true);
+            m_isMinimapOpen = false;
             isAllowedToMove = true;
             rb.isKinematic = false;
         }
@@ -58,62 +59,62 @@ public class PlayerShip : MonoBehaviour
         // UP
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.W))
         {
-            botSmokeParticle.Play();
+            m_botSmokeParticle.Play();
         }
-        else if (isAllowedToMove&&Input.GetKey(KeyCode.W))
+        else if (isAllowedToMove && Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(Vector3.forward * shipSpeed);
+            rb.AddForce(Vector3.forward * m_shipSpeed);
             UseFuel();
-            
+
         }
         else if (Input.GetKeyUp(KeyCode.W))
         {
-            botSmokeParticle.Stop();
+            m_botSmokeParticle.Stop();
         }
 
         //DOWN
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.S))
         {
-            topSmokeParticle.Play();
+            m_topSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(Vector3.back * shipSpeed);
+            rb.AddForce(Vector3.back * m_shipSpeed);
             UseFuel();
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
-            topSmokeParticle.Stop();
+            m_topSmokeParticle.Stop();
         }
 
         //LEFT
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.A))
         {
-            rightSmokeParticle.Play();
+            m_rightSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector3.left * shipSpeed);
+            rb.AddForce(Vector3.left * m_shipSpeed);
             UseFuel();
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
-            rightSmokeParticle.Stop();
+            m_rightSmokeParticle.Stop();
         }
 
         //RIGHT
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.D))
         {
-            leftSmokeParticle.Play();
+            m_leftSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(Vector3.right * shipSpeed);
+            rb.AddForce(Vector3.right * m_shipSpeed);
             UseFuel();
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
-            leftSmokeParticle.Stop();
+            m_leftSmokeParticle.Stop();
         }
 
     }
@@ -129,11 +130,32 @@ public class PlayerShip : MonoBehaviour
         {
             rb.isKinematic = true;
             GetComponent<Collider>().enabled = false;
-            transform.DOScale(new Vector3(1.5f,1.5f,1.5f), 3);
+            transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 3);
             transform.SetParent(other.transform);
 
             //how to do something with a delay:
             StartCoroutine(ChangeScene(other.transform.parent.name));
+        }
+        else if (other.CompareTag("sun"))
+        {
+            GameManager.Instance.uiManager.ShowCoolTextInSpace("YOU ARE TOO CLOSE TO THE SUN!");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("sun"))
+        {
+            if (PlayerStats.playerHealth > 0)
+            {
+                PlayerStats.playerHealth -= m_sunDamage * Time.deltaTime;
+                GameManager.Instance.uiManager.UpdateHealthUi();
+            }
+            else
+            {
+                GameManager.Instance.uiManager.EnableOnDeadPanel();
+            }
+            Debug.Log(PlayerStats.playerHealth);
         }
     }
 
@@ -156,8 +178,3 @@ public class PlayerShip : MonoBehaviour
 
 
 }
-
-
-
-
-

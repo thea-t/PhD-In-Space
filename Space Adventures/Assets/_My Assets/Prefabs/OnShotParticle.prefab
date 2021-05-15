@@ -4752,7 +4752,7 @@ GameObject:
   - component: {fileID: 3926139299450287888}
   - component: {fileID: 3926139299450349250}
   m_Layer: 0
-  m_Name: BloodExplosionRoundAnimated
+  m_Name: OnShotParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

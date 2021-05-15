@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1586930189482067600}
   - component: {fileID: 1586930189482541982}
   m_Layer: 0
-  m_Name: BloodPoolGrowing
+  m_Name: OnDeadParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

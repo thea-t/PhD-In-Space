@@ -7,28 +7,28 @@ public class Enemy : CharacterController
 {
 
     protected Animator m_animator;
-    protected NavMeshAgent navMeshAgent;
+    protected NavMeshAgent m_navMeshAgent;
+    [HideInInspector] string m_startChasingText;
+    [HideInInspector] string m_onDeadText;
     [HideInInspector] public bool dropsSample;
     [HideInInspector] public bool dropsPowerUp;
-    [HideInInspector] string startChasingText;
-    [HideInInspector] string onDeadText;
 
     #region Start,  Update and Triggers
     void Start()
     {
         m_animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        m_navMeshAgent = GetComponent<NavMeshAgent>();
         //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
         //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
-        navMeshAgent.isStopped = true;
+        m_navMeshAgent.isStopped = true;
         m_health = 100f;
     }
 
     protected virtual void Update()
     { // start chasing
-        if (!navMeshAgent.isStopped && !isDead)
+        if (!m_navMeshAgent.isStopped && !isDead)
         {
-            navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
+            m_navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
         }
     }
 
@@ -36,7 +36,8 @@ public class Enemy : CharacterController
     {
         if (other.CompareTag("playerBody"))
         {
-                StartChasing();
+            GameManager.Instance.uiManager.ShowCoolText(GameManager.Instance.enemyTracker.GetRandomCoolText(), transform.position);
+            StartChasing();
         }
     }
 
@@ -52,13 +53,13 @@ public class Enemy : CharacterController
     #region Functions that will be overriden by the different types of enemies
     protected virtual void StartChasing()
     {
-        navMeshAgent.isStopped = false;
-        GameManager.Instance.uiManager.ShowCoolText(startChasingText, transform.position);
+        m_navMeshAgent.isStopped = false;
+        GameManager.Instance.uiManager.ShowCoolText(m_startChasingText, transform.position);
     }
 
     protected virtual void StopChasing()
     {
-        navMeshAgent.isStopped = true;
+        m_navMeshAgent.isStopped = true;
     }
 
 
@@ -78,9 +79,9 @@ public class Enemy : CharacterController
     protected override void Die()
     {
         base.Die();
-        navMeshAgent.isStopped = true;
+        m_navMeshAgent.isStopped = true;
         m_animator.SetTrigger("Die");
-        GameManager.Instance.uiManager.ShowCoolText(onDeadText, transform.position);
+        GameManager.Instance.uiManager.ShowCoolText(m_onDeadText, transform.position);
         GameManager.Instance.enemyTracker.aliveEnemyCount--;
         GameManager.Instance.uiManager.SetEnemyCountText();
         Destroy(gameObject, 6);

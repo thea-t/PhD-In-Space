@@ -541,7 +541,7 @@ Animator:
   m_GameObject: {fileID: 5177648519359105500}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 231d45dba8bff13478d80904318e7bc4, type: 3}
-  m_Controller: {fileID: 9100000, guid: b28a5814760ae474880bf98404639623, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -613,17 +613,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2016134c16f33f49adb9c4ab3d9e352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+  m_onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
     type: 3}
-  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+  m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 3525974269785265372}
   isDead: 0
   dropsSample: 0
   dropsPowerUp: 0
-  bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
+  m_bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
     type: 3}
-  bulletShootPoint: {fileID: 3279773481955404916}
+  m_bulletShootPoint: {fileID: 3279773481955404916}
 --- !u!1 &5177648519359105780
 GameObject:
   m_ObjectHideFlags: 0

@@ -1162,9 +1162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fde7951891f5b64fbbaa0fb46794030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+  m_onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
     type: 3}
-  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+  m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 8557767928465937172}
   isDead: 0

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] ParticleSystem onShotParticle;
-    [SerializeField] ParticleSystem onDeadParticle;
+    [SerializeField] ParticleSystem m_onShotParticle;
+    [SerializeField] ParticleSystem m_onDeadParticle;
     [SerializeField] Collider m_bodyCollider;
     [HideInInspector] public bool isDead;
     protected float m_damage;
@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         m_health -= damage;
-        ParticleSystem particle = Instantiate(onShotParticle, transform.position, Quaternion.identity);
+        ParticleSystem particle = Instantiate(m_onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);
 
         if (m_health <= 0)
@@ -29,7 +29,7 @@ public class CharacterController : MonoBehaviour
         GameManager.Instance.playerCharacter.canMove = false;
         m_bodyCollider.enabled = false;
         //particle was flying so it had to rotate in order to fix https://docs.unity3d.com/ScriptReference/Quaternion.Euler.html
-        ParticleSystem particle = Instantiate(onDeadParticle, new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z), Quaternion.Euler(90, 0, 0));
+        ParticleSystem particle = Instantiate(m_onDeadParticle, new Vector3(transform.position.x, transform.position.y + 0.03f, transform.position.z), Quaternion.Euler(90, 0, 0));
         Destroy(particle.gameObject, 5);
     }
 

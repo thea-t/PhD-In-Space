@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class EnemyRanged : Enemy
 {
-    [SerializeField] Bullet bulletPrefab;
-    [SerializeField] GameObject bulletShootPoint;
-
+    [SerializeField] Bullet m_bulletPrefab;
+    [SerializeField] GameObject m_bulletShootPoint;
 
 
     protected override void StartChasing()
@@ -28,8 +27,8 @@ public class EnemyRanged : Enemy
     {
         if (!GameManager.Instance.playerCharacter.isDead && !isDead)
         {
-            Bullet bullet = Instantiate(bulletPrefab, bulletShootPoint.transform.position, transform.rotation);
-            Vector3 shootPointPos = new Vector3(bulletShootPoint.transform.position.x, 0, bulletShootPoint.transform.position.z);
+            Bullet bullet = Instantiate(m_bulletPrefab, m_bulletShootPoint.transform.position, transform.rotation);
+            Vector3 shootPointPos = new Vector3(m_bulletShootPoint.transform.position.x, 0, m_bulletShootPoint.transform.position.z);
             bullet.directionVector = (GameManager.Instance.playerCharacter.transform.position - shootPointPos).normalized;
             Destroy(bullet.gameObject, 2);
         }

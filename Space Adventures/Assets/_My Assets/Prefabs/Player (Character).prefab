@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104839111777165846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.225, y: -0.109, z: -0}
+  m_LocalPosition: {x: 0.2, y: -0.109, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1902583130500923104}
@@ -163,11 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da326dfc08e9a24f8731d27820aca7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 265093609813875531, guid: 88f2342dc527a414fbcd9b11ca6aa734,
+  m_bulletPrefab: {fileID: 265093609813875531, guid: 88f2342dc527a414fbcd9b11ca6aa734,
     type: 3}
-  bulletShootPoint: {fileID: 104839111777165846}
-  weapon: {fileID: 1904066798741892874}
-  playerAnimator: {fileID: 5675027487904103665}
+  m_bulletShootPoint: {fileID: 104839111777165846}
+  m_weapon: {fileID: 1904066798741892874}
+  m_playerAnimator: {fileID: 5675027487904103665}
 --- !u!114 &7835181948705165929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_axePrefab: {fileID: 2200011457748860875}
-  playerAnimator: {fileID: 5675027487904103665}
+  m_playerAnimator: {fileID: 5675027487904103665}
 --- !u!1 &5734617722186864398
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,19 +244,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6396651ae1cee4c9f9a153b1a37bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+  m_onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
     type: 3}
-  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+  m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 6085276870394500902}
   isDead: 0
-  playerSpeed: 4000
-  rb: {fileID: -4070154692949029012}
-  playerModel: {fileID: 5735958417472470055}
-  playerAnimator: {fileID: 5675027487904103665}
-  onDeadPanel: {fileID: 8189251801938786474, guid: 5e4718390763f204eb92726600bc161b,
-    type: 3}
-  canMove: 1
+  m_playerSpeed: 4000
+  m_rb: {fileID: -4070154692949029012}
+  m_playerModel: {fileID: 5735958417472470055}
+  m_playerAnimator: {fileID: 5675027487904103665}
+  canMove: 0
 --- !u!1 &6979025490156364440
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +279,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6979025490156364440}
-  m_LocalRotation: {x: 0.6139859, y: 0.000000016976609, z: -0.0000000132055895, w: 0.789317}
+  m_LocalRotation: {x: 0.6139859, y: 0.000000016988013, z: -0.00000001321446, w: 0.789317}
   m_LocalPosition: {x: 0, y: 13, z: -3.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -318,7 +316,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7780219, y: 1}
+    m_SensorSize: {x: 1.778065, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

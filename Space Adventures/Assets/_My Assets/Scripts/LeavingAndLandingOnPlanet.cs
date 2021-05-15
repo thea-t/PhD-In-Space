@@ -4,32 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 public class LeavingAndLandingOnPlanet : MonoBehaviour
 {
-    [SerializeField] GameObject ship;
-    [SerializeField] GameObject VirtualCamera;
-    [SerializeField] PlayerCharacter playerPrefab;
-    [SerializeField] ParticleSystem smokeExplosionParticle;
-    private Animator playerAnimator;
+    [SerializeField] GameObject m_ship;
+    [SerializeField] GameObject m_virtualCamera;
+    [SerializeField] PlayerCharacter m_playerPrefab;
+    [SerializeField] ParticleSystem m_smokeExplosionParticle;
+    private Animator m_playerAnimator;
 
     private void Start()
     {
-        ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(LandingAnimationStart);
+        m_ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(LandingAnimationStart);
     }
 
     void LandingAnimationStart()
     {
-        smokeExplosionParticle.Play();
-        GameManager.Instance.playerCharacter = Instantiate(playerPrefab);
+        m_smokeExplosionParticle.Play();
+        GameManager.Instance.playerCharacter = Instantiate(m_playerPrefab);
 
-        playerAnimator = GameManager.Instance.playerCharacter.GetComponentInChildren<Animator>();
-        playerAnimator.SetBool("Walk", true);
+        m_playerAnimator = GameManager.Instance.playerCharacter.GetComponentInChildren<Animator>();
+        m_playerAnimator.SetBool("Walk", true);
         GameManager.Instance.playerCharacter.transform.DOMoveZ(3, 2).OnComplete(LandingAnimationEnd);
     }
 
     void LandingAnimationEnd()
     {
-        playerAnimator.SetBool("Walk", false);
-        playerAnimator.SetTrigger("Look Around");
-        VirtualCamera.SetActive(false);
+        m_playerAnimator.SetBool("Walk", false);
+        m_playerAnimator.SetTrigger("Look Around");
+        m_virtualCamera.SetActive(false);
         StartCoroutine(AllowPlayerToMove());
     }
 
@@ -42,7 +42,7 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     public void LeavingAnimation()
     {
-        smokeExplosionParticle.Play();
+        m_smokeExplosionParticle.Play();
         Destroy(GameManager.Instance.playerCharacter.gameObject);
         StartCoroutine(ShipStartsFlyingToSpace());
     }
@@ -50,9 +50,9 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
     IEnumerator ShipStartsFlyingToSpace()
     {
         yield return new WaitForSeconds(1);
-        VirtualCamera.SetActive(true);
+        m_virtualCamera.SetActive(true);
         yield return new WaitForSeconds(2);
-        ship.transform.DOMove(new Vector3(0, 10, 0), 3).OnComplete(ArriveInGalaxy);
+        m_ship.transform.DOMove(new Vector3(0, 10, 0), 3).OnComplete(ArriveInGalaxy);
     }
 
     void ArriveInGalaxy()

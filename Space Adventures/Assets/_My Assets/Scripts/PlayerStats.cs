@@ -16,6 +16,7 @@ public static class PlayerStats
     public static float multiplierToDealDamage = 1;
     public static float multiplierToReceiveDamage = 1;
     public static float multiplierFuel = 1;
+    public static float multiplierbulletSpeed = 1;
     public static float fuelShipConsumption = 0.01f;
     public static int dnaSampleCount = 0;
     public static string currentGalaxy = "Milky Way";

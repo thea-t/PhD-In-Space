@@ -4,7 +4,7 @@ using UnityEngine;
 
     public class GravityController : MonoBehaviour
     {
-        [SerializeField] private float rotateSpeed;
+        [SerializeField] private int m_rotateSpeed;
 
         public float pullRadius = 2;
         public float pullForce = 1;
@@ -26,7 +26,7 @@ using UnityEngine;
 
         if (GameManager.Instance.playerShip.isAllowedToMove == true)
         {
-            this.transform.RotateAround(this.transform.parent.position, this.transform.parent.up, rotateSpeed * Time.deltaTime);
+            this.transform.RotateAround(this.transform.parent.position, this.transform.parent.up, m_rotateSpeed * Time.deltaTime);
         }
 
     }

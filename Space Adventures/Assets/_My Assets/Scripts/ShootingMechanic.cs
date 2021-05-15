@@ -8,15 +8,15 @@ public class ShootingMechanic : MonoBehaviour
 {
     //https://docs.unity3d.com/Manual/script-AnimationWindowEvent.html
 
-    [SerializeField] Bullet bulletPrefab;
-    [SerializeField] GameObject bulletShootPoint;
-    [SerializeField] GameObject weapon;
-    [SerializeField] Animator playerAnimator;
+    [SerializeField] Bullet m_bulletPrefab;
+    [SerializeField] GameObject m_bulletShootPoint;
+    [SerializeField] GameObject m_weapon;
+    [SerializeField] Animator m_playerAnimator;
     Camera mainCam;
 
     private void Start()
     {
-        playerAnimator = GetComponent<Animator>();
+        m_playerAnimator = GetComponent<Animator>();
         mainCam = Camera.main;
     }
 
@@ -28,7 +28,7 @@ public class ShootingMechanic : MonoBehaviour
     //animator event
     void OnShoot()
     {
-        Bullet bullet = Instantiate(bulletPrefab, bulletShootPoint.transform.position, transform.rotation);
+        Bullet bullet = Instantiate(m_bulletPrefab, m_bulletShootPoint.transform.position, transform.rotation);
         bullet.directionVector = transform.forward;
         Destroy(bullet.gameObject, 1.5f);
 
@@ -42,8 +42,8 @@ public class ShootingMechanic : MonoBehaviour
             //https://answers.unity.com/questions/1410936/how-to-prevent-a-ui-element-from-clicking-the-game.html
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                weapon.SetActive(true);
-                playerAnimator.SetBool("Crossbow Shoot Attack", true);
+                m_weapon.SetActive(true);
+                m_playerAnimator.SetBool("Crossbow Shoot Attack", true);
                 GameManager.Instance.playerCharacter.canMove = false;
             }
         }
@@ -64,8 +64,8 @@ public class ShootingMechanic : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            weapon.SetActive(false);
-            playerAnimator.SetBool("Crossbow Shoot Attack", false);
+            m_weapon.SetActive(false);
+            m_playerAnimator.SetBool("Crossbow Shoot Attack", false);
             GameManager.Instance.playerCharacter.canMove = true;
         }
     }

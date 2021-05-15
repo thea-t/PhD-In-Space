@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: -7783134444505811504}
   - component: {fileID: 597494424}
   m_Layer: 0
-  m_Name: Guardian Female 01
+  m_Name: Planet Aeriaeria - Female
   m_TagString: enemyRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +676,7 @@ Animator:
   m_GameObject: {fileID: 139232}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 231d45dba8bff13478d80904318e7bc4, type: 3}
-  m_Controller: {fileID: 9100000, guid: b28a5814760ae474880bf98404639623, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -726,18 +726,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2016134c16f33f49adb9c4ab3d9e352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
+  m_onShotParticle: {fileID: 3926139299450287888, guid: c01b12cbe07f50d43b92979efd08cbd5,
     type: 3}
-  onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
+  m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 8791443604297013034}
-  m_damage: 0
   isDead: 0
   dropsSample: 0
   dropsPowerUp: 0
-  bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
+  m_bulletPrefab: {fileID: 5969231394277059776, guid: 49ef4cf97d7ab9249a89cc831cd51fdd,
     type: 3}
-  bulletShootPoint: {fileID: 3465195071841935000}
+  m_bulletShootPoint: {fileID: 3465195071841935000}
 --- !u!195 &597494424
 NavMeshAgent:
   m_ObjectHideFlags: 0

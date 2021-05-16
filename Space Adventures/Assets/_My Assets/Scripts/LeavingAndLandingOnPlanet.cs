@@ -52,12 +52,13 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
         yield return new WaitForSeconds(1);
         m_virtualCamera.SetActive(true);
         yield return new WaitForSeconds(2);
+
         m_ship.transform.DOMove(new Vector3(0, 10, 0), 3).OnComplete(ArriveInGalaxy);
     }
 
     void ArriveInGalaxy()
     {
-        bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel-1).ToString());
+        bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel).ToString());
         Debug.Log(PlayerStats.currentLevel.ToString());
     }
 }

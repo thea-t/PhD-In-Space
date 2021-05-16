@@ -37,6 +37,6 @@ public class EnemyMelee : Enemy
     //anim event
     void OnAttack()
     {
-            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToDealDamage * PlayerStats.baseDamage * 1.5f);
+            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage + PlayerStats.baseDamage);
     }
 }

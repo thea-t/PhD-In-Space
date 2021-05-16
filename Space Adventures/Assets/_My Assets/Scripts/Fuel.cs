@@ -15,7 +15,8 @@ public class Fuel : MonoBehaviour
 
     public void StartGathering()
     {
-        Debug.Log("gathering");
+
+        Debug.Log("gather fuel: " + PlayerStats.multiplierToGatherFuel);
 
         m_crystalStackHealth--;
 

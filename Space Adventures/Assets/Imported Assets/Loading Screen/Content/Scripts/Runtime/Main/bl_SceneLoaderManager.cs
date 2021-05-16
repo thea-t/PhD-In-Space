@@ -26,8 +26,7 @@ namespace Lovatto.SceneLoader
                     return info;
                 }
             }
-            
-            Debug.Log("Not found any scene with this name: " + scene);
+           
             return null;           
         }
 

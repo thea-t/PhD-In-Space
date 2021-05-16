@@ -13,18 +13,17 @@ public class UIManager : MonoBehaviour
     //sets the stats bars values
     //displays enemies left
 
+    [SerializeField] Image[] CollectedSamplesImage;
     [SerializeField] Image m_healthBarFiller;
     [SerializeField] Image m_fuelBarFiller;
     [SerializeField] Image m_SamplesDNABarFiller;
-    [SerializeField] Image m_CollectedSamplesImage1;
-    [SerializeField] Image m_CollectedSamplesImage2;
-    [SerializeField] Image m_CollectedSamplesImage3;
+    [SerializeField] Image m_galaxyUnlockedImage;
+    [SerializeField] TextMeshProUGUI m_galaxyUnlockedText;
     [SerializeField] TextMeshProUGUI m_enemyCountText;
     [SerializeField] TextMeshProUGUI m_coolTextInSpace;
     [SerializeField] GameObject m_coolTextPrefab;
     [SerializeField] GameObject m_onDeadPanel;
     int m_textDuration = 4;
-
 
     private void Start()
     {
@@ -44,19 +43,10 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateDnaSamplesBarUi()
     {
-        switch (PlayerStats.dnaSampleCount)
+        for (int i = 0; i < PlayerStats.dnaSampleCount; i++)
         {
-            case 1:
-                m_CollectedSamplesImage1.gameObject.SetActive(true);
-                break;
-            case 2:
-                m_CollectedSamplesImage2.gameObject.SetActive(true);
-                m_SamplesDNABarFiller.DOFillAmount(0.5f, 1);
-                break;
-            case 3:
-                m_CollectedSamplesImage3.gameObject.SetActive(true);
-                m_SamplesDNABarFiller.DOFillAmount(1, 1);
-                break;
+            CollectedSamplesImage[i].gameObject.SetActive(true);
+            m_SamplesDNABarFiller.DOFillAmount(i * 0.5f, 1);
         }
     }
 
@@ -98,5 +88,15 @@ public class UIManager : MonoBehaviour
         m_coolTextInSpace.DOFade(0, m_textDuration);
     }
 
-    
-}
+    public void ShowNextLevelUnlockedNotification()
+    {
+        m_galaxyUnlockedText.text = ("Galaxy " + PlayerStats.currentLevel.ToString() + " is unlocked!");
+        m_galaxyUnlockedImage.DOFillAmount(1, 2);
+        m_galaxyUnlockedText.DOFade(1, 3).OnComplete(HideNextLevelUnlockNotification); 
+    }
+    void HideNextLevelUnlockNotification()
+    {
+        m_galaxyUnlockedImage.DOFade(0,4);
+        m_galaxyUnlockedText.DOFade(0, 3.5f);
+    }
+    }

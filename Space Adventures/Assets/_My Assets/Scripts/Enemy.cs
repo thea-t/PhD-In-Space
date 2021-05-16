@@ -12,6 +12,7 @@ public class Enemy : CharacterController
     [HideInInspector] string m_onDeadText;
     [HideInInspector] public bool dropsSample;
     [HideInInspector] public bool dropsPowerUp;
+    [SerializeField] int m_maxHealth;
 
     #region Start,  Update and Triggers
     void Start()
@@ -21,7 +22,7 @@ public class Enemy : CharacterController
         //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
         //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
         m_navMeshAgent.isStopped = true;
-        m_health = 100f;
+        m_health = m_maxHealth;
     }
 
     protected virtual void Update()
@@ -30,6 +31,10 @@ public class Enemy : CharacterController
         {
             m_navMeshAgent.SetDestination(GameManager.Instance.playerCharacter.transform.position);
         }
+        //else if(GameManager.Instance.playerCharacter.gameObject == null)
+        //{
+        //    m_navMeshAgent.isStopped = true;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)

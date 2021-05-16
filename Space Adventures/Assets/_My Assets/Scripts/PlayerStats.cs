@@ -13,11 +13,12 @@ public static class PlayerStats
     public static float maxHealth = 100;
     public static float maxFuel = 100;
     public static float baseDamage = 5;
-    public static float multiplierToDealDamage = 1;
-    public static float multiplierToReceiveDamage = 1.5f;
-    public static float multiplierToGatherFuel = 5;
+    public static float multiplierToDealDamage = 0;
+    public static int multiplierToReceiveDamage;
+    public static float multiplierToGatherFuel = 1;
     public static float bulletSpeed = 5;
-    public static float fuelShipConsumption = 0.01f;
+    public static float fuelShipConsumption = 5;
     public static int dnaSampleCount = 0;
     public static Levels currentLevel = Levels.MilkyWay;
+
 }

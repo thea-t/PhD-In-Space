@@ -2043,7 +2043,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778607, y: 1}
+    m_SensorSize: {x: 1.7783308, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2620,9 +2620,10 @@ MonoBehaviour:
   m_healthBarFiller: {fileID: 213092345}
   m_fuelBarFiller: {fileID: 138040565}
   m_SamplesDNABarFiller: {fileID: 1899766089}
-  m_CollectedSamplesImage1: {fileID: 2016004025}
-  m_CollectedSamplesImage2: {fileID: 114558692}
-  m_CollectedSamplesImage3: {fileID: 1890926806}
+  m_CollectedSamplesImage:
+  - {fileID: 2016004025}
+  - {fileID: 114558692}
+  - {fileID: 1890926806}
   m_enemyCountText: {fileID: 0}
   m_coolTextInSpace: {fileID: 2045608969}
   m_coolTextPrefab: {fileID: 4209333648428961289, guid: 3f3c3bb97ab632c419db6a9b8b3c1147,
@@ -12753,7 +12754,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778607, y: 1}
+    m_SensorSize: {x: 1.7783308, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

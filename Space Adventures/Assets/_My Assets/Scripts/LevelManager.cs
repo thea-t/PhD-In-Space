@@ -36,11 +36,10 @@ public class LevelManager : MonoBehaviour
                 m_unlockedLevelsButton[i].interactable = true;
                 m_unlockedLevelsPanel[i].SetActive(true);
                 m_lockedLevelsIcon[i].SetActive(false);
-                //PlayerStats.dnaSampleCount = 0;
-                //GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
 
-                Debug.Log("dna" + PlayerStats.dnaSampleCount);
-                Debug.Log("i" + i);
+                PlayerStats.multiplierToReceiveDamage = i;
+                PlayerStats.multiplierToGatherFuel = i + 1;
+
             }
 
         }

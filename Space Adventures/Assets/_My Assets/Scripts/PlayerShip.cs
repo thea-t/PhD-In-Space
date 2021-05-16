@@ -29,7 +29,7 @@ public class PlayerShip : MonoBehaviour
 
     void UseFuel()
     {
-        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
+        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption/100;
         GameManager.Instance.uiManager.UpdateFuelUi();
         if (PlayerStats.playerFuel < 1)
         {

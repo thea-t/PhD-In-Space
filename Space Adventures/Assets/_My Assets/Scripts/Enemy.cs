@@ -91,11 +91,13 @@ public class Enemy : CharacterController
         GameManager.Instance.uiManager.SetEnemyCountText();
         Destroy(gameObject, 6);
 
+        float chance = Random.value;
+        Debug.Log("Chance: " + chance);
         if (dropsSample)
         {
             GameObject alienSample = Instantiate(GameManager.Instance.enemyTracker.sampleDNAPrefab, transform.position, Quaternion.identity);
         }
-        if (dropsPowerUp)
+        if (chance <= 0.5f)
         {
             GameObject randomPowerUp = Instantiate(GameManager.Instance.enemyTracker.powerUpPrefab, transform.position, Quaternion.identity);
         }

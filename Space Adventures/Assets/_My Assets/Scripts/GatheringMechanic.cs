@@ -9,6 +9,21 @@ public class GatheringMechanic : MonoBehaviour
     [SerializeField] GameObject m_axePrefab;
     [SerializeField] Animator m_playerAnimator;
     Camera m_mainCam;
+    int PowerUpHealth = 5;
+    int PowerUpMaxHealth = 5;
+    int PowerUpStrength = 5;
+    int PowerUpBulletSpeed = 5;
+
+
+    enum PowerUp
+    {
+        GainHealth,
+        GainMaxHealth,
+        GainStrength,
+        FasterBulletSpeed,
+        ReduceFuelConsumption
+    }
+
 
     private void Start()
     {
@@ -47,9 +62,55 @@ public class GatheringMechanic : MonoBehaviour
                     Destroy(touchCollider.gameObject);
                     OnSampleCollected();
                 }
+                else if (touchCollider.CompareTag("powerUp"))
+                {
+                    Destroy(touchCollider.gameObject);
+                    Debug.Log("power up collected") ;
+                    OnPowerUpCollected();
+                }
             }
         }
         
+    }
+    void OnPowerUpCollected()
+    {
+        //https://stackoverflow.com/questions/856154/total-number-of-items-defined-in-an-enum
+        int random = Random.Range(0, PowerUp.GetNames(typeof(PowerUp)).Length);
+        Debug.Log("enum: " +random);
+
+        switch (random)
+        {
+            case (int)PowerUp.GainHealth:
+                PlayerStats.playerHealth += PowerUpHealth;
+                GameManager.Instance.uiManager.ShowNotificationText("Health gained!");
+                Debug.Log("+health: " + PlayerStats.playerHealth);
+                break;
+
+            case (int)PowerUp.GainMaxHealth:
+                PlayerStats.maxHealth += PowerUpMaxHealth;
+                GameManager.Instance.uiManager.ShowNotificationText("Max health gained!");
+                Debug.Log("+ max health: " + PlayerStats.maxHealth);
+                break;
+
+            case (int)PowerUp.GainStrength:
+                PlayerStats.damageToDeal += PowerUpStrength;
+                GameManager.Instance.uiManager.ShowNotificationText("Strength gained!");
+                Debug.Log("+ strenght:" + PlayerStats.damageToDeal);
+                break;
+
+            case (int)PowerUp.FasterBulletSpeed:
+                PlayerStats.bulletSpeed += PowerUpBulletSpeed;
+                GameManager.Instance.uiManager.ShowNotificationText("Weapon is upgraded");
+                Debug.Log("+ fster bulltet:" + PlayerStats.bulletSpeed);
+                break;
+
+            case (int)PowerUp.ReduceFuelConsumption:
+                PlayerStats.fuelShipConsumption--;
+                GameManager.Instance.uiManager.ShowNotificationText("Ship is consuming less fuel!");
+                Debug.Log("+ consume less fuel:" + PlayerStats.fuelShipConsumption);
+                break;
+        }
+
     }
 
     void OnSampleCollected()
@@ -63,7 +124,7 @@ public class GatheringMechanic : MonoBehaviour
         {
             PlayerStats.currentLevel = PlayerStats.currentLevel+1;
             PlayerPrefs.SetInt("currentLevel", (int)PlayerStats.currentLevel);
-            GameManager.Instance.uiManager.ShowNextLevelUnlockedNotification();
+            GameManager.Instance.uiManager.ShowNotificationText(("Galaxy " + PlayerStats.currentLevel.ToString() + " is unlocked!"));
             PlayerStats.dnaSampleCount = 0;
         }
         

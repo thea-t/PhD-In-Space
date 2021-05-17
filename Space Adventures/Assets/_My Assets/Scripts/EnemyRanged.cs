@@ -6,7 +6,7 @@ public class EnemyRanged : Enemy
 {
     [SerializeField] Bullet m_bulletPrefab;
     [SerializeField] GameObject m_bulletShootPoint;
-    [SerializeField] float m_bulletSpeed;
+    [SerializeField] int m_bulletSpeed;
 
     protected override void StartChasing()
     {

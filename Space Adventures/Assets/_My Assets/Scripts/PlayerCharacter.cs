@@ -20,6 +20,8 @@ public class PlayerCharacter : CharacterController
         GameManager.Instance.curvedWorldController.bendPivotPoint = transform;
         m_health = PlayerStats.playerHealth;
         GameManager.Instance.uiManager.UpdateHealthUi();
+
+        
     }
 
     void Update()
@@ -31,7 +33,6 @@ public class PlayerCharacter : CharacterController
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        PlayerStats.playerHealth = m_health;
         GameManager.Instance.uiManager.UpdateHealthUi();
     }
 

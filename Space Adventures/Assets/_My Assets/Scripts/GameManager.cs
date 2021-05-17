@@ -19,8 +19,17 @@ public class GameManager : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
     }
-
-
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("health"))
+        {
+            PlayerStats.playerHealth = PlayerPrefs.GetFloat("health");
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("health", PlayerStats.playerHealth);
+    }
 
 }
 

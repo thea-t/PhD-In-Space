@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] bool m_isEnemyBullet;
     [HideInInspector] public Vector3 directionVector;
-    public float bulletSpeed;
+    public int bulletSpeed;
     Rigidbody m_rb;
 
 
@@ -31,12 +31,12 @@ public class Bullet : MonoBehaviour
     {
         if (!m_isEnemyBullet && other.CompareTag("enemyBody"))
         {
-            other.GetComponentInParent<Enemy>().TakeDamage(PlayerStats.multiplierToDealDamage + PlayerStats.baseDamage);
+            other.GetComponentInParent<Enemy>().TakeDamage(PlayerStats.damageToDeal);
             gameObject.SetActive(false);
         }
         else if (m_isEnemyBullet && other.CompareTag("playerBody"))
         {
-            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage + PlayerStats.baseDamage);
+            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage + PlayerStats.damageToDeal);
             gameObject.SetActive(false);
         }
     }

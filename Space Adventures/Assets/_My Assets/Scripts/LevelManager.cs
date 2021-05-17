@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
                 m_unlockedLevelsPanel[i].SetActive(true);
                 m_lockedLevelsIcon[i].SetActive(false);
 
+                //remplace i with unlockedLevel and move it out of the for loop
                 PlayerStats.multiplierToReceiveDamage = i;
                 PlayerStats.multiplierToGatherFuel = i + 1;
 

@@ -88,13 +88,13 @@ public class UIManager : MonoBehaviour
         m_coolTextInSpace.DOFade(0, m_textDuration);
     }
 
-    public void ShowNextLevelUnlockedNotification()
+    public void ShowNotificationText(string text)
     {
-        m_galaxyUnlockedText.text = ("Galaxy " + PlayerStats.currentLevel.ToString() + " is unlocked!");
+        m_galaxyUnlockedText.text = text;
         m_galaxyUnlockedImage.DOFillAmount(1, 2);
-        m_galaxyUnlockedText.DOFade(1, 3).OnComplete(HideNextLevelUnlockNotification); 
+        m_galaxyUnlockedText.DOFade(1, 3).OnComplete(HideNotificationText); 
     }
-    void HideNextLevelUnlockNotification()
+    void HideNotificationText()
     {
         m_galaxyUnlockedImage.DOFade(0,4);
         m_galaxyUnlockedText.DOFade(0, 3.5f);

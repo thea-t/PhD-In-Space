@@ -18,6 +18,7 @@ TagManager:
   - meleeEnemyBody
   - ship
   - sun
+  - powerUp
   layers:
   - Default
   - TransparentFX

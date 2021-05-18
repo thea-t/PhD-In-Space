@@ -19,6 +19,8 @@ TagManager:
   - ship
   - sun
   - powerUp
+  - Enemy
+  - asteroid
   layers:
   - Default
   - TransparentFX

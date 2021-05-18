@@ -16,7 +16,7 @@ public static class PlayerStats
     public static int multiplierToReceiveDamage;
     public static float multiplierToGatherFuel = 1;
     public static int bulletSpeed = 5;
-    public static int fuelShipConsumption = 50;
+    public static float fuelShipConsumption = 0.05f;
     public static int dnaSampleCount = 0;
     public static Levels currentLevel = Levels.MilkyWay;
 

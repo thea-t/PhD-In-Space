@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShip : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerShip : MonoBehaviour
     public Rigidbody rb;
     bool m_isMinimapOpen;
     public bool isAllowedToMove;
+    [SerializeField] GameObject [] m_asteroids;
+    [SerializeField] GameObject m_shipModel;
+    [SerializeField] Image m_asteroidWarning;
+    [SerializeField] ParticleSystem m_explosion;
 
     private void Start()
     {
@@ -27,13 +32,28 @@ public class PlayerShip : MonoBehaviour
         MinimapController();
     }
 
+    IEnumerator AsteroidRainDelayed()
+    {
+        yield return new WaitForSeconds(5);
+        m_asteroidWarning.DOFade(1, 1);
+
+        for (int i = 0; i < m_asteroids.Length; i++)
+        {
+            yield return new WaitForSeconds(Random.Range(1, 3));
+            m_asteroids[i].SetActive(true);
+            m_asteroids[i].GetComponent<Rigidbody>().isKinematic = false;
+        }
+    }
+
     void UseFuel()
     {
-        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption/1000;
+        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
         GameManager.Instance.uiManager.UpdateFuelUi();
-        if (PlayerStats.playerFuel < 1)
+        if (PlayerStats.playerFuel <= 0)
         {
+            PlayerStats.playerFuel = 0;
             m_shipSpeed = 0;
+            StartCoroutine(AsteroidRainDelayed());
         }
     }
 
@@ -139,6 +159,16 @@ public class PlayerShip : MonoBehaviour
         else if (other.CompareTag("sun"))
         {
             GameManager.Instance.uiManager.ShowCoolTextInSpace("YOU ARE TOO CLOSE TO THE SUN!");
+            GameManager.Instance.uiManager.UpdateHealthUi();
+        }
+        else if (other.CompareTag("asteroid"))
+        {
+            PlayerStats.playerHealth = 0;
+            GameManager.Instance.uiManager.UpdateHealthUi();
+            GameManager.Instance.uiManager.EnableOnDeadPanel();
+            m_explosion.Play();
+            m_asteroids[m_asteroids.Length-1].SetActive(false);
+            m_shipModel.SetActive(false);
         }
     }
 

@@ -99,4 +99,5 @@ public class UIManager : MonoBehaviour
         m_galaxyUnlockedImage.DOFade(0,4);
         m_galaxyUnlockedText.DOFade(0, 3.5f);
     }
-    }
+
+}

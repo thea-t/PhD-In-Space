@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerShip : MonoBehaviour
 {
     [SerializeField] int m_shipSpeed = 250;
-    [SerializeField] int m_sunDamage = 1;
+    [SerializeField] int m_sunDamage = 10;
     [SerializeField] float m_rotSpeed = 40f;
     [SerializeField] GameObject m_followCamera;
     [SerializeField] ParticleSystem m_leftSmokeParticle;
@@ -34,12 +34,12 @@ public class PlayerShip : MonoBehaviour
 
     IEnumerator AsteroidRainDelayed()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         m_asteroidWarning.DOFade(1, 1);
 
         for (int i = 0; i < m_asteroids.Length; i++)
         {
-            yield return new WaitForSeconds(Random.Range(1, 3));
+            yield return new WaitForSeconds(Random.Range(0.5f, 3));
             m_asteroids[i].SetActive(true);
             m_asteroids[i].GetComponent<Rigidbody>().isKinematic = false;
         }

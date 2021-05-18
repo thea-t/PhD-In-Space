@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("health"))
         {
             PlayerStats.playerHealth = PlayerPrefs.GetFloat("health");
+            GameManager.Instance.uiManager.UpdateHealthUi();
         }
     }
     private void OnApplicationQuit()

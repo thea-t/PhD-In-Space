@@ -4,11 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialUiAndResetAndQuit : MonoBehaviour
+public class TutorialAndHelpUi : MonoBehaviour
 {
     [SerializeField] string[] m_tutorial;
     [SerializeField] GameObject m_tutorialPanel;
     [SerializeField] TextMeshProUGUI m_tutorialText;
+    [SerializeField] Button m_buttonStart;
+    [SerializeField] Button m_buttonSettings;
+    [SerializeField] Image m_uiGuideImg;
     int m_tutorialIndex;
 
     private void Start()
@@ -16,12 +19,18 @@ public class TutorialUiAndResetAndQuit : MonoBehaviour
         //https://docs.unity3d.com/ScriptReference/PlayerPrefs.html
         if (!PlayerPrefs.HasKey("isShown"))
         {
+            m_buttonStart.interactable = false;
+            m_buttonSettings.interactable = false;
             m_tutorialPanel.SetActive(true);
             NextTutorial();
+        } 
+        else if (PlayerPrefs.HasKey("isShown"))
+        {
+            m_buttonStart.interactable = true;
+            m_buttonSettings.interactable = true;
         }
     }
 
-    //use player prefs
     public void NextTutorial()
     {
         if (m_tutorialIndex < m_tutorial.Length)
@@ -31,19 +40,26 @@ public class TutorialUiAndResetAndQuit : MonoBehaviour
         }
         else
         {
+            m_tutorialIndex = 0;
             m_tutorialPanel.SetActive(false);
             PlayerPrefs.SetString("isShown", "Tutorial Ui is already shown");
+            m_buttonStart.interactable = true;
+            m_buttonSettings.interactable = true;
+        }
+    }
+    public void NextHelpLine()
+    {
+        if (m_tutorialIndex < m_tutorial.Length)
+        {
+            m_tutorialText.text = m_tutorial[m_tutorialIndex];
+            m_tutorialIndex++;
+        }
+        else 
+        {
+            m_tutorialIndex = 0;
+            m_tutorialPanel.SetActive(false);
+            m_uiGuideImg.gameObject.SetActive(true);
         }
     }
 
-    public void ResetPlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-    }
-
-    public void QuitTheGame()
-    {
-        Application.Quit();
-        Debug.Log("app is quit");
-    }
 }

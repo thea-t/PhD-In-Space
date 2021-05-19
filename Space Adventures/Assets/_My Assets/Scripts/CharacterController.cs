@@ -7,7 +7,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] ParticleSystem m_onShotParticle;
     [SerializeField] ParticleSystem m_onDeadParticle;
     [SerializeField] Collider m_bodyCollider;
-    [HideInInspector] public bool isDead;
+     public bool isDead;
     protected float m_damage;
     protected float m_health;
 
@@ -15,7 +15,8 @@ public class CharacterController : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         m_health -= damage;
-        Debug.Log("receiveDamage" + PlayerStats.playerHealth);
+        Debug.Log("receiveDamage:" + damage);
+        Debug.Log("players health:" + PlayerStats.playerHealth);
 
         ParticleSystem particle = Instantiate(m_onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);
@@ -28,6 +29,7 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void Die()
     {
+
         isDead = true;
         GameManager.Instance.playerCharacter.canMove = false;
         m_bodyCollider.enabled = false;

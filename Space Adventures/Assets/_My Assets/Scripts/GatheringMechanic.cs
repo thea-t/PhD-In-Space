@@ -9,17 +9,20 @@ public class GatheringMechanic : MonoBehaviour
     [SerializeField] GameObject m_axePrefab;
     [SerializeField] Animator m_playerAnimator;
     [SerializeField] AudioSource m_collectionSFX;
+    [SerializeField] AudioSource m_gatheringSFX;
     Camera m_mainCam;
-    int PowerUpHealth = 5;
+    int PowerUpHealth = 20;
     int PowerUpMaxHealth = 5;
-    int PowerUpStrength = 5;
-    int PowerUpBulletSpeed = 5;
+    int PowerUpMaxFuel = 5;
+    int PowerUpStrength = 1;
+    int PowerUpBulletSpeed = 1;
 
 
     enum PowerUp
     {
         GainHealth,
         GainMaxHealth,
+        GainMaxFuel,
         GainStrength,
         FasterBulletSpeed,
         ReduceFuelConsumption
@@ -47,6 +50,7 @@ public class GatheringMechanic : MonoBehaviour
         {
             if (hitCollider.CompareTag("fuel"))
             {
+                m_gatheringSFX.Play();
                 hitCollider.GetComponent<Fuel>().StartGathering();
             }
         }
@@ -80,20 +84,27 @@ public class GatheringMechanic : MonoBehaviour
     {
         //https://stackoverflow.com/questions/856154/total-number-of-items-defined-in-an-enum
         int random = Random.Range(0, PowerUp.GetNames(typeof(PowerUp)).Length);
-        Debug.Log("enum: " +random);
 
         switch (random)
         {
             case (int)PowerUp.GainHealth:
                 PlayerStats.playerHealth += PowerUpHealth;
                 GameManager.Instance.uiManager.ShowNotificationText("Health gained!");
+                GameManager.Instance.uiManager.UpdateHealthUi();
                 Debug.Log("+health: " + PlayerStats.playerHealth);
                 break;
 
             case (int)PowerUp.GainMaxHealth:
-                PlayerStats.maxHealth += PowerUpMaxHealth;
+                PlayerStats.maxHealth += PowerUpMaxHealth; 
                 GameManager.Instance.uiManager.ShowNotificationText("Max health gained!");
+                GameManager.Instance.uiManager.UpdateHealthUi();
                 Debug.Log("+ max health: " + PlayerStats.maxHealth);
+                break;
+            case (int)PowerUp.GainMaxFuel:
+                PlayerStats.maxFuel += PowerUpMaxFuel;
+                GameManager.Instance.uiManager.ShowNotificationText("Max fuel gained!");
+                GameManager.Instance.uiManager.UpdateFuelUi();
+                Debug.Log("+ max fuel: " + PlayerStats.maxFuel);
                 break;
 
             case (int)PowerUp.GainStrength:
@@ -159,6 +170,7 @@ public class GatheringMechanic : MonoBehaviour
         {
             m_axePrefab.SetActive(false);
             m_playerAnimator.SetBool("Digging", false);
+            m_gatheringSFX.Stop();
             GameManager.Instance.playerCharacter.canMove = true;
         }
     }

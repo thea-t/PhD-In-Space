@@ -21,7 +21,7 @@ public class EnemyRanged : Enemy
             base.StopChasing();
         m_animator.SetBool("Run", false);
         m_animator.SetBool("Projectile Right Attack 01", false);
-        m_onStopChasingSFX.PlayDelayed(5);
+        m_onStopChasingSFX.PlayDelayed(3);
     }
 
     //animator event

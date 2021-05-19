@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Button[] m_unlockedLevelsButton;
     [SerializeField] GameObject[] m_unlockedLevelsPanel;
     [SerializeField] GameObject[] m_lockedLevelsIcon;
-
+    int m_unlockedLevel;
     void Start()
     {
         SetLevels();
@@ -26,24 +26,27 @@ public class LevelManager : MonoBehaviour
 
     public void SetLevels()
     {
-        int unlockedLevel = PlayerPrefs.GetInt("currentLevel");
-        PlayerStats.currentLevel = (Levels)unlockedLevel;
-
+        m_unlockedLevel = PlayerPrefs.GetInt("currentLevel");
+        PlayerStats.currentLevel = (Levels)m_unlockedLevel;
+        IncreaseDifficultyCurve();
         for (int i = 0; i < m_unlockedLevelsButton.Length; i++)
         {
-            if (i <= unlockedLevel)
+            if (i <= m_unlockedLevel)
             {
                 m_unlockedLevelsButton[i].interactable = true;
                 m_unlockedLevelsPanel[i].SetActive(true);
-                m_lockedLevelsIcon[i].SetActive(false);
-
-                //remplace i with unlockedLevel and move it out of the for loop
-                PlayerStats.multiplierToReceiveDamage = i;
-                PlayerStats.multiplierToGatherFuel = i + 1;
-
+                m_lockedLevelsIcon[i].SetActive(false);               
             }
 
         }
+    }
+
+    void IncreaseDifficultyCurve()
+    {
+        PlayerStats.multiplierToReceiveDamage = m_unlockedLevel;
+        PlayerStats.multiplierToGatherFuel = m_unlockedLevel + 1;
+        Debug.Log("receive damage:" + PlayerStats.multiplierToReceiveDamage);
+        Debug.Log("gather fuel:" + PlayerStats.multiplierToGatherFuel);
     }
 
     public void LoadLevel(string levelName)

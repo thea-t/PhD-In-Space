@@ -18,10 +18,8 @@ public class PlayerCharacter : CharacterController
     {
         // setting the world curve around the players transform
         GameManager.Instance.curvedWorldController.bendPivotPoint = transform;
-        m_health = PlayerStats.playerHealth;
         GameManager.Instance.uiManager.UpdateHealthUi();
-
-        
+        m_health = PlayerStats.playerHealth;
     }
 
     void Update()
@@ -32,13 +30,14 @@ public class PlayerCharacter : CharacterController
     #region Functions that override CharacterController
     public override void TakeDamage(float damage)
     {
+        PlayerStats.playerHealth = m_health;
         base.TakeDamage(damage);
         GameManager.Instance.uiManager.UpdateHealthUi();
     }
 
     protected override void Die()
     {
-        base.Die(); 
+        base.Die();
         m_playerAnimator.SetTrigger("Die");
         GameManager.Instance.uiManager.EnableOnDeadPanel();
     }

@@ -17,9 +17,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image m_healthBarFiller;
     [SerializeField] Image m_fuelBarFiller;
     [SerializeField] Image m_SamplesDNABarFiller;
-    [SerializeField] Image m_galaxyUnlockedImage;
-    [SerializeField] TextMeshProUGUI m_galaxyUnlockedText;
+    [SerializeField] Image m_notificationImage;
+    [SerializeField] TextMeshProUGUI m_notificationText;
     [SerializeField] TextMeshProUGUI m_enemyCountText;
+    [SerializeField] TextMeshProUGUI m_healthText;
+    [SerializeField] TextMeshProUGUI m_fuelText;
     [SerializeField] TextMeshProUGUI m_coolTextInSpace;
     [SerializeField] GameObject m_coolTextPrefab;
     [SerializeField] GameObject m_onDeadPanel;
@@ -37,11 +39,13 @@ public class UIManager : MonoBehaviour
     public void UpdateHealthUi()
     {
         m_healthBarFiller.fillAmount = PlayerStats.playerHealth / PlayerStats.maxHealth;
+        m_healthText.text = (int)PlayerStats.playerHealth + "/" + (int)PlayerStats.maxHealth;
     }
 
     public void UpdateFuelUi()
     {
         m_fuelBarFiller.fillAmount = PlayerStats.playerFuel / PlayerStats.maxFuel;
+        m_fuelText.text = (int)PlayerStats.playerFuel + "/" + (int)PlayerStats.maxFuel;
     }
     public void UpdateDnaSamplesBarUi()
     {
@@ -93,14 +97,14 @@ public class UIManager : MonoBehaviour
     public void ShowNotificationText(string text)
     {
         m_notificationSFX.Play();
-        m_galaxyUnlockedText.text = text;
-        m_galaxyUnlockedImage.DOFillAmount(1, 2);
-        m_galaxyUnlockedText.DOFade(1, 3).OnComplete(HideNotificationText); 
+        m_notificationText.text = text;
+        m_notificationImage.DOFillAmount(1, 1);
+        m_notificationText.DOFade(1, 2).OnComplete(HideNotificationText); 
     }
     void HideNotificationText()
     {
-        m_galaxyUnlockedImage.DOFade(0,4);
-        m_galaxyUnlockedText.DOFade(0, 3.5f);
+        m_notificationImage.DOFillAmount(0,2);
+        m_notificationText.DOFade(0,1);
     }
 
 }

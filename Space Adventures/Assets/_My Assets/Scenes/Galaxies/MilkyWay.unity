@@ -1334,7 +1334,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776173, y: 1}
+    m_SensorSize: {x: 1.7774647, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1372,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472972, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2070,13 +2070,16 @@ MonoBehaviour:
   m_healthBarFiller: {fileID: 213092345}
   m_fuelBarFiller: {fileID: 138040565}
   m_SamplesDNABarFiller: {fileID: 1899766089}
-  m_galaxyUnlockedImage: {fileID: 0}
-  m_galaxyUnlockedText: {fileID: 0}
+  m_notificationImage: {fileID: 0}
+  m_notificationText: {fileID: 0}
   m_enemyCountText: {fileID: 0}
+  m_healthText: {fileID: 1579018970}
+  m_fuelText: {fileID: 432210535}
   m_coolTextInSpace: {fileID: 2045608969}
   m_coolTextPrefab: {fileID: 4209333648428961289, guid: 3f3c3bb97ab632c419db6a9b8b3c1147,
     type: 3}
   m_onDeadPanel: {fileID: 817943080}
+  m_notificationSFX: {fileID: 0}
 --- !u!224 &362217738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2359,6 +2362,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 402cfc0892ef54047b74d53d5a560238, type: 3}
+--- !u!114 &432210535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6653370969525714338, guid: b77e9b3a43f5cdb438ee417b97c6d8b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 518818550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439070461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,7 +2861,7 @@ PrefabInstance:
     - target: {fileID: 8469787177820278481, guid: b77e9b3a43f5cdb438ee417b97c6d8b5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.000061
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8469787177820278481, guid: b77e9b3a43f5cdb438ee417b97c6d8b5,
         type: 3}
@@ -3458,7 +3473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &588865519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,7 +4177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5255,7 +5270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &732414369
 GameObject:
   m_ObjectHideFlags: 0
@@ -6366,7 +6381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7123,6 +7138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid 2
       objectReference: {fileID: 0}
+    - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -7552,7 +7571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8755,7 +8774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1438587836
 GameObject:
   m_ObjectHideFlags: 0
@@ -9421,6 +9440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid 1
       objectReference: {fileID: 0}
+    - target: {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 494976, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.9
@@ -9484,7 +9507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9736,6 +9759,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 402cfc0892ef54047b74d53d5a560238, type: 3}
+--- !u!114 &1579018970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5291470779552253879, guid: b77e9b3a43f5cdb438ee417b97c6d8b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 518818550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1597837391
 GameObject:
   m_ObjectHideFlags: 0
@@ -10537,7 +10572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1719933068 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75,
@@ -10577,7 +10612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11182,7 +11217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11767,7 +11802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141316, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 446090, guid: 84cc3cd234dfc9d4d9d2e92c0eb0af75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11893,7 +11928,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7776173, y: 1}
+    m_SensorSize: {x: 1.7774647, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

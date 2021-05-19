@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fuel : MonoBehaviour
 {
-    [SerializeField] AudioSource m_gatheringSFX;
+   
     [SerializeField] GameObject[] m_crystals;
     int m_crystalStackHealth;
 
@@ -16,7 +16,7 @@ public class Fuel : MonoBehaviour
 
     public void StartGathering()
     {
-        m_gatheringSFX.Play();
+       
         Debug.Log("gather fuel: " + PlayerStats.multiplierToGatherFuel);
 
         m_crystalStackHealth--;
@@ -27,7 +27,6 @@ public class Fuel : MonoBehaviour
         if (m_crystalStackHealth <= 0)
         {
             Destroy(gameObject);
-            m_gatheringSFX.Stop();
         }
     }
 

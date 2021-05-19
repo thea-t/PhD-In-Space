@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : CharacterController
 {
@@ -12,10 +14,10 @@ public class Enemy : CharacterController
     [HideInInspector] string m_onDeadText;
     [HideInInspector] public bool dropsSample;
     [HideInInspector] public bool dropsPowerUp;
-    [SerializeField] int m_maxHealth;
+    [SerializeField] int m_maxEnemyHealth;
     [SerializeField] AudioSource m_onDeadSFX;
     [SerializeField] AudioSource m_onTriggerEnterSFX;
-
+    [SerializeField] Collider m_rangeCollider;
     #region Start,  Update and Triggers
     void Start()
     {
@@ -24,7 +26,7 @@ public class Enemy : CharacterController
         //https://answers.unity.com/questions/1355590/navmeshagentisstopped-true-but-is-still-moving.html
         //https://answers.unity.com/questions/1252904/how-to-stop-navmeshagent-immediately.html
         m_navMeshAgent.isStopped = true;
-        m_health = m_maxHealth;
+        m_health = m_maxEnemyHealth;
     }
 
     protected virtual void Update()
@@ -81,7 +83,6 @@ public class Enemy : CharacterController
 
         //start chasing the player the moment they are hit
         StartChasing();
-        Debug.Log("enemyHealth" + m_health);
 
     }
     protected override void Die()
@@ -90,6 +91,7 @@ public class Enemy : CharacterController
         m_navMeshAgent.isStopped = true;
         m_animator.SetTrigger("Die");
         m_onDeadSFX.Play();
+        m_rangeCollider.enabled = false;
         GameManager.Instance.uiManager.ShowCoolText(m_onDeadText, transform.position);
         GameManager.Instance.enemyTracker.aliveEnemyCount--;
         GameManager.Instance.uiManager.SetEnemyCountText();
@@ -107,5 +109,6 @@ public class Enemy : CharacterController
         }
     }
     #endregion
+
 }
 

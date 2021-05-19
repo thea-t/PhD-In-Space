@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isEnemyBullet: 1
   directionVector: {x: 0, y: 0, z: 0}
+  bulletSpeed: 0
 --- !u!54 &4254444663532724825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -299,7 +300,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aee7f230a05bc8644854344e7c55f328, type: 2}
+      objectReference: {fileID: 2100000, guid: 208daccea4514184683deff2de51f47d, type: 2}
     - target: {fileID: 6106519405980802178, guid: 316073a06e3c1c749ac3f1a28a3f0259,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

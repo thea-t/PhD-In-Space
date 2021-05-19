@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMelee : Enemy
 {
+    [SerializeField] AudioSource m_onHitSFX;
     protected override void Update()
     {
         base.Update();
@@ -37,6 +38,7 @@ public class EnemyMelee : Enemy
     //anim event
     void OnAttack()
     {
-            GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage + PlayerStats.damageToDeal);
+        m_onHitSFX.Play();
+        GameManager.Instance.playerCharacter.TakeDamage(PlayerStats.multiplierToReceiveDamage + PlayerStats.damageToDeal);
     }
 }

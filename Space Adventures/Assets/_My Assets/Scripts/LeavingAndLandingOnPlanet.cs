@@ -9,15 +9,21 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
     [SerializeField] PlayerCharacter m_playerPrefab;
     [SerializeField] ParticleSystem m_smokeExplosionParticle;
     private Animator m_playerAnimator;
+    [SerializeField] AudioSource m_shipIsLandingVFX;
+    [SerializeField] AudioSource m_playerLeavingTheShipVFX;
+    [SerializeField] AudioSource m_playerEnteringTheShipVFX;
+    [SerializeField] AudioSource m_shipIsLeavingVFX;
 
     private void Start()
     {
         m_ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(LandingAnimationStart);
+        m_shipIsLandingVFX.Play();
     }
 
     void LandingAnimationStart()
     {
         m_smokeExplosionParticle.Play();
+        m_playerLeavingTheShipVFX.Play();
         GameManager.Instance.playerCharacter = Instantiate(m_playerPrefab);
 
         m_playerAnimator = GameManager.Instance.playerCharacter.GetComponentInChildren<Animator>();
@@ -42,6 +48,7 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     public void LeavingAnimation()
     {
+        m_playerEnteringTheShipVFX.Play();
         m_smokeExplosionParticle.Play();
         Destroy(GameManager.Instance.playerCharacter.gameObject);
         StartCoroutine(ShipStartsFlyingToSpace());
@@ -49,6 +56,7 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     IEnumerator ShipStartsFlyingToSpace()
     {
+        m_shipIsLeavingVFX.Play();
         yield return new WaitForSeconds(1);
         m_virtualCamera.SetActive(true);
         yield return new WaitForSeconds(2);

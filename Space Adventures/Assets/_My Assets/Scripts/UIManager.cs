@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject m_onDeadPanel;
     int m_textDuration = 4;
 
+    [SerializeField] AudioSource m_notificationSFX;
+
     private void Start()
     {
         UpdateHealthUi();
@@ -90,6 +92,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowNotificationText(string text)
     {
+        m_notificationSFX.Play();
         m_galaxyUnlockedText.text = text;
         m_galaxyUnlockedImage.DOFillAmount(1, 2);
         m_galaxyUnlockedText.DOFade(1, 3).OnComplete(HideNotificationText); 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6529896362607550245}
   - component: {fileID: 6554985240374860093}
   - component: {fileID: 6547654090026605047}
+  - component: {fileID: 8772321143856292839}
   m_Layer: 0
   m_Name: TB_Prop_Meat
   m_TagString: powerUp
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &8772321143856292839
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524749338631579877}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.44437623
+  m_Height: 0.88875246
+  m_Direction: 1
+  m_Center: {x: 0.10585171, y: 5.1324267e-17, z: -0.029297948}

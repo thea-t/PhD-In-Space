@@ -13,6 +13,8 @@ public class Enemy : CharacterController
     [HideInInspector] public bool dropsSample;
     [HideInInspector] public bool dropsPowerUp;
     [SerializeField] int m_maxHealth;
+    [SerializeField] AudioSource m_onDeadSFX;
+    [SerializeField] AudioSource m_onTriggerEnterSFX;
 
     #region Start,  Update and Triggers
     void Start()
@@ -41,6 +43,7 @@ public class Enemy : CharacterController
     {
         if (other.CompareTag("playerBody"))
         {
+            m_onTriggerEnterSFX.Play();
             GameManager.Instance.uiManager.ShowCoolText(GameManager.Instance.enemyTracker.GetRandomCoolText(), transform.position);
             StartChasing();
         }
@@ -86,6 +89,7 @@ public class Enemy : CharacterController
         base.Die();
         m_navMeshAgent.isStopped = true;
         m_animator.SetTrigger("Die");
+        m_onDeadSFX.Play();
         GameManager.Instance.uiManager.ShowCoolText(m_onDeadText, transform.position);
         GameManager.Instance.enemyTracker.aliveEnemyCount--;
         GameManager.Instance.uiManager.SetEnemyCountText();

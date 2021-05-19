@@ -17,13 +17,24 @@ public class PlayerShip : MonoBehaviour
     public Rigidbody rb;
     bool m_isMinimapOpen;
     public bool isAllowedToMove;
+    bool m_asteroidWarningSFX;
+    bool m_explosionPlayed;
     [SerializeField] GameObject [] m_asteroids;
     [SerializeField] GameObject m_shipModel;
     [SerializeField] Image m_asteroidWarning;
     [SerializeField] ParticleSystem m_explosion;
+    [SerializeField] AudioSource m_shipMovementSFX;
+    [SerializeField] AudioSource m_asteroidStormNotificationSFX;
+    [SerializeField] AudioSource m_shipExplosionSFX;
+    [SerializeField] AudioSource m_asteroidStormSFX;
+    [SerializeField] AudioSource m_fireSFX;
+    [SerializeField] AudioSource m_fireWarningSFX;
 
     private void Start()
     {
+        GameManager.Instance.uiManager.UpdateHealthUi();
+        GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
+        GameManager.Instance.uiManager.UpdateFuelUi();
         isAllowedToMove = true;
     }
     void Update()
@@ -34,8 +45,15 @@ public class PlayerShip : MonoBehaviour
 
     IEnumerator AsteroidRainDelayed()
     {
-        yield return new WaitForSeconds(3);
-        m_asteroidWarning.DOFade(1, 1);
+        yield return new WaitForSeconds(2);
+
+        if (!m_asteroidWarningSFX)
+        {
+            m_asteroidStormNotificationSFX.Play();
+            m_asteroidStormSFX.PlayDelayed(2);
+            m_asteroidWarningSFX = true;
+            m_asteroidWarning.DOFade(1, 1);
+        }
 
         for (int i = 0; i < m_asteroids.Length; i++)
         {
@@ -79,6 +97,7 @@ public class PlayerShip : MonoBehaviour
         // UP
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.W))
         {
+            m_shipMovementSFX.Play();
             m_botSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.W))
@@ -90,11 +109,13 @@ public class PlayerShip : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.W))
         {
             m_botSmokeParticle.Stop();
+            m_shipMovementSFX.Stop();
         }
 
         //DOWN
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.S))
         {
+            m_shipMovementSFX.Play();
             m_topSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.S))
@@ -105,11 +126,13 @@ public class PlayerShip : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.S))
         {
             m_topSmokeParticle.Stop();
+            m_shipMovementSFX.Stop();
         }
 
         //LEFT
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.A))
         {
+            m_shipMovementSFX.Play();
             m_rightSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.A))
@@ -120,11 +143,13 @@ public class PlayerShip : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.A))
         {
             m_rightSmokeParticle.Stop();
+            m_shipMovementSFX.Stop();
         }
 
         //RIGHT
         if (isAllowedToMove && Input.GetKeyDown(KeyCode.D))
         {
+            m_shipMovementSFX.Play();
             m_leftSmokeParticle.Play();
         }
         else if (isAllowedToMove && Input.GetKey(KeyCode.D))
@@ -135,6 +160,7 @@ public class PlayerShip : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.D))
         {
             m_leftSmokeParticle.Stop();
+            m_shipMovementSFX.Stop();
         }
 
     }
@@ -160,15 +186,26 @@ public class PlayerShip : MonoBehaviour
         {
             GameManager.Instance.uiManager.ShowCoolTextInSpace("YOU ARE TOO CLOSE TO THE SUN!");
             GameManager.Instance.uiManager.UpdateHealthUi();
+            m_fireWarningSFX.Play();
+            m_fireSFX.Play();
         }
         else if (other.CompareTag("asteroid"))
         {
             PlayerStats.playerHealth = 0;
             GameManager.Instance.uiManager.UpdateHealthUi();
             GameManager.Instance.uiManager.EnableOnDeadPanel();
-            m_explosion.Play();
-            m_asteroids[m_asteroids.Length-1].SetActive(false);
+            m_asteroids[m_asteroids.Length - 1].SetActive(false);
             m_shipModel.SetActive(false);
+            isAllowedToMove = false;
+
+            if (!m_explosionPlayed)
+            {
+                m_asteroidStormSFX.Stop();
+                m_explosion.Play();
+                m_shipExplosionSFX.Play();
+                m_explosionPlayed = true;
+            }
+           
         }
     }
 
@@ -183,6 +220,7 @@ public class PlayerShip : MonoBehaviour
             }
             else
             {
+                rb.isKinematic = true;
                 GameManager.Instance.uiManager.EnableOnDeadPanel();
             }
             Debug.Log(PlayerStats.playerHealth);
@@ -195,7 +233,11 @@ public class PlayerShip : MonoBehaviour
         {
             other.transform.parent.GetComponent<GravityController>().playerIsInRange = false;
         }
-
+        else if(other.CompareTag("sun"))
+        {
+            m_fireWarningSFX.Stop();
+            m_fireSFX.Stop();
+        }
     }
 
     IEnumerator ChangeScene(string _planetName)

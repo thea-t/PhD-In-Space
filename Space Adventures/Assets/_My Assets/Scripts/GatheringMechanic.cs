@@ -8,6 +8,7 @@ public class GatheringMechanic : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject m_axePrefab;
     [SerializeField] Animator m_playerAnimator;
+    [SerializeField] AudioSource m_collectionSFX;
     Camera m_mainCam;
     int PowerUpHealth = 5;
     int PowerUpMaxHealth = 5;
@@ -39,6 +40,7 @@ public class GatheringMechanic : MonoBehaviour
     //anim evet
     void OnFuelGathered()
     {
+        
         //https://forum.unity.com/threads/physics-overlapsphere.476277/
         Collider[] hitColliders = Physics.OverlapSphere(transform.parent.position, 1);
         foreach (var hitCollider in hitColliders)
@@ -54,9 +56,11 @@ public class GatheringMechanic : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+           
             Collider[] touchColliders = Physics.OverlapSphere(transform.parent.position, 1);
             foreach (var touchCollider in touchColliders)
             {
+                m_collectionSFX.Play();
                 if (touchCollider.CompareTag("alienSample"))
                 {
                     Destroy(touchCollider.gameObject);

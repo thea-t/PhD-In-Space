@@ -7,6 +7,7 @@ public class EnemyRanged : Enemy
     [SerializeField] Bullet m_bulletPrefab;
     [SerializeField] GameObject m_bulletShootPoint;
     [SerializeField] int m_bulletSpeed;
+    [SerializeField] AudioSource m_onStopChasingSFX;
 
     protected override void StartChasing()
     {
@@ -20,6 +21,7 @@ public class EnemyRanged : Enemy
             base.StopChasing();
         m_animator.SetBool("Run", false);
         m_animator.SetBool("Projectile Right Attack 01", false);
+        m_onStopChasingSFX.PlayDelayed(5);
     }
 
     //animator event

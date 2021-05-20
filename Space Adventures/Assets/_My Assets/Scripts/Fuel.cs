@@ -35,8 +35,9 @@ public class Fuel : MonoBehaviour
         if (PlayerStats.playerFuel < PlayerStats.maxFuel)
         {
             PlayerStats.playerFuel += PlayerStats.multiplierToGatherFuel;
-            Debug.Log("fuel: " + PlayerStats.playerFuel);
             GameManager.Instance.uiManager.UpdateFuelUi();
+
+            Debug.Log("fuel: " + PlayerStats.playerFuel);
         }
     }
 }

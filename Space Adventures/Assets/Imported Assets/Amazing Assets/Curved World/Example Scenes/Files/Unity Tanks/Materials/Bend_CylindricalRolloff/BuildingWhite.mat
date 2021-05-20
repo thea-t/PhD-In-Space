@@ -9,13 +9,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: BuildingWhite
   m_Shader: {fileID: 4800000, guid: 08ed0d9dfc7b9d54480990896ab62fe8, type: 3}
-  m_ShaderKeywords: CURVEDWORLD_BEND_ID_1 CURVEDWORLD_BEND_TYPE_CYLINDRICALROLLOFF_Z
-    CURVEDWORLD_NORMAL_TRANSFORMATION_ON
+  m_ShaderKeywords: CURVEDWORLD_BEND_ID_1 CURVEDWORLD_BEND_TYPE_LITTLEPLANET_Y CURVEDWORLD_NORMAL_TRANSFORMATION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: CurvedWorld_Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -78,5 +78,5 @@ Material:
     m_Colors:
     - CurvedWorld_Bend_Settings: {r: 4, g: 1, b: 1, a: 0}
     - _Color: {r: 0.85294116, g: 0.85294116, b: 0.85294116, a: 1}
-    - _CurvedWorldBendSettings: {r: 10, g: 1, b: 1, a: 0}
+    - _CurvedWorldBendSettings: {r: 5, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

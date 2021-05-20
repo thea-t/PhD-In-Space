@@ -35,7 +35,8 @@ public class LevelManager : MonoBehaviour
             {
                 m_unlockedLevelsButton[i].interactable = true;
                 m_unlockedLevelsPanel[i].SetActive(true);
-                m_lockedLevelsIcon[i].SetActive(false);               
+                m_lockedLevelsIcon[i].SetActive(false);        
+                
             }
 
         }
@@ -45,7 +46,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerStats.multiplierToReceiveDamage = m_unlockedLevel;
         PlayerStats.multiplierToGatherFuel = m_unlockedLevel + 1;
-        Debug.Log("receive damage:" + PlayerStats.multiplierToReceiveDamage);
+        Debug.Log("mult. to receive damage:" + PlayerStats.multiplierToReceiveDamage);
         Debug.Log("gather fuel:" + PlayerStats.multiplierToGatherFuel);
     }
 

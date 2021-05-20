@@ -15,7 +15,6 @@ TagManager:
   - enemy
   - fuel
   - alienSample
-  - meleeEnemyBody
   - ship
   - sun
   - powerUp

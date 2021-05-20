@@ -90,12 +90,17 @@ public class Enemy : CharacterController
         base.Die();
         m_navMeshAgent.isStopped = true;
         m_animator.SetTrigger("Die");
+        m_animator.SetBool("Run", false);
         m_onDeadSFX.Play();
         m_rangeCollider.enabled = false;
         GameManager.Instance.uiManager.ShowCoolText(m_onDeadText, transform.position);
         GameManager.Instance.enemyTracker.aliveEnemyCount--;
         GameManager.Instance.uiManager.SetEnemyCountText();
         Destroy(gameObject, 6);
+        if (PlayerStats.playerHealth<=PlayerStats.maxHealth-PlayerStats.gainHealthOnEnemyDeath)
+        {
+            PlayerStats.playerHealth += PlayerStats.gainHealthOnEnemyDeath;
+        }
 
         float chance = Random.value;
         Debug.Log("Chance: " + chance);

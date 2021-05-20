@@ -65,7 +65,7 @@ public class PlayerShip : MonoBehaviour
 
     void UseFuel()
     {
-        PlayerStats.playerFuel -= (float)PlayerStats.fuelShipConsumption/10;
+        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
         GameManager.Instance.uiManager.UpdateFuelUi();
         if (PlayerStats.playerFuel <= 0)
         {
@@ -223,7 +223,6 @@ public class PlayerShip : MonoBehaviour
                 rb.isKinematic = true;
                 GameManager.Instance.uiManager.EnableOnDeadPanel();
             }
-            Debug.Log(PlayerStats.playerHealth);
         }
     }
 

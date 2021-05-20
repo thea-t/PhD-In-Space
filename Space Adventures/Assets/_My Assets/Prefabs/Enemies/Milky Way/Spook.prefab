@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 1857390053}
   m_Layer: 0
   m_Name: Spook
-  m_TagString: Untagged
+  m_TagString: enemyRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1170,13 +1170,13 @@ MonoBehaviour:
   m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 8557767928465937172}
-  m_rangeCollider: {fileID: 2301960181403330923}
   isDead: 0
   dropsSample: 0
   dropsPowerUp: 0
-  m_maxHealth: 0
+  m_maxEnemyHealth: 60
   m_onDeadSFX: {fileID: 1857390046}
   m_onTriggerEnterSFX: {fileID: 1857390052}
+  m_rangeCollider: {fileID: 2301960181403330923}
   m_onHitSFX: {fileID: 1857390053}
 --- !u!195 &821753293
 NavMeshAgent:

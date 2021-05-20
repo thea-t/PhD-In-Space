@@ -78,4 +78,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CurvedWorldBendSettings: {r: 5, g: 1, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0.77254903, b: 1, a: 1}
+    - _EmissionColor: {r: 0.52212435, g: 0.33397114, b: 0.745283, a: 1}

@@ -33,6 +33,7 @@ public class PlayerCharacter : CharacterController
         PlayerStats.playerHealth = m_health;
         base.TakeDamage(damage);
         GameManager.Instance.uiManager.UpdateHealthUi();
+        Debug.Log("health" + PlayerStats.playerHealth);
     }
 
     protected override void Die()
@@ -40,6 +41,7 @@ public class PlayerCharacter : CharacterController
         base.Die();
         m_playerAnimator.SetTrigger("Die");
         GameManager.Instance.uiManager.EnableOnDeadPanel();
+        GameManager.Instance.resetAndQuit.ResetPlayerPrefs();
     }
     #endregion
 

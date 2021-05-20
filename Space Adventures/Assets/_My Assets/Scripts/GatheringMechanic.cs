@@ -11,11 +11,12 @@ public class GatheringMechanic : MonoBehaviour
     [SerializeField] AudioSource m_collectionSFX;
     [SerializeField] AudioSource m_gatheringSFX;
     Camera m_mainCam;
-    int PowerUpHealth = 20;
-    int PowerUpMaxHealth = 5;
-    int PowerUpMaxFuel = 5;
-    int PowerUpStrength = 1;
-    int PowerUpBulletSpeed = 1;
+    int m_PowerUpHealth = 20;
+    int m_PowerUpMaxHealth = 5;
+    int m_PowerUpMaxFuel = 5;
+    int m_PowerUpStrength = 1;
+    int m_PowerUpBulletSpeed = 1;
+    float m_PowerUpfuelShipConsumption = 0.01f;
 
 
     enum PowerUp
@@ -32,6 +33,7 @@ public class GatheringMechanic : MonoBehaviour
     private void Start()
     {
         m_mainCam = Camera.main;
+        GameManager.Instance.uiManager.UpdateFuelUi();
     }
 
     private void Update()
@@ -88,39 +90,39 @@ public class GatheringMechanic : MonoBehaviour
         switch (random)
         {
             case (int)PowerUp.GainHealth:
-                PlayerStats.playerHealth += PowerUpHealth;
+                PlayerStats.playerHealth += m_PowerUpHealth;
                 GameManager.Instance.uiManager.ShowNotificationText("Health gained!");
                 GameManager.Instance.uiManager.UpdateHealthUi();
                 Debug.Log("+health: " + PlayerStats.playerHealth);
                 break;
 
             case (int)PowerUp.GainMaxHealth:
-                PlayerStats.maxHealth += PowerUpMaxHealth; 
+                PlayerStats.maxHealth += m_PowerUpMaxHealth; 
                 GameManager.Instance.uiManager.ShowNotificationText("Max health gained!");
                 GameManager.Instance.uiManager.UpdateHealthUi();
                 Debug.Log("+ max health: " + PlayerStats.maxHealth);
                 break;
             case (int)PowerUp.GainMaxFuel:
-                PlayerStats.maxFuel += PowerUpMaxFuel;
+                PlayerStats.maxFuel += m_PowerUpMaxFuel;
                 GameManager.Instance.uiManager.ShowNotificationText("Max fuel gained!");
                 GameManager.Instance.uiManager.UpdateFuelUi();
                 Debug.Log("+ max fuel: " + PlayerStats.maxFuel);
                 break;
 
             case (int)PowerUp.GainStrength:
-                PlayerStats.damageToDeal += PowerUpStrength;
+                PlayerStats.damageToDeal += m_PowerUpStrength;
                 GameManager.Instance.uiManager.ShowNotificationText("Strength gained!");
                 Debug.Log("+ strenght:" + PlayerStats.damageToDeal);
                 break;
 
             case (int)PowerUp.FasterBulletSpeed:
-                PlayerStats.bulletSpeed += PowerUpBulletSpeed;
+                PlayerStats.bulletSpeed += m_PowerUpBulletSpeed;
                 GameManager.Instance.uiManager.ShowNotificationText("Weapon is upgraded");
                 Debug.Log("+ fster bulltet:" + PlayerStats.bulletSpeed);
                 break;
 
             case (int)PowerUp.ReduceFuelConsumption:
-                PlayerStats.fuelShipConsumption--;
+                PlayerStats.fuelShipConsumption-=m_PowerUpfuelShipConsumption;
                 GameManager.Instance.uiManager.ShowNotificationText("Ship is consuming less fuel!");
                 Debug.Log("+ consume less fuel:" + PlayerStats.fuelShipConsumption);
                 break;
@@ -138,6 +140,7 @@ public class GatheringMechanic : MonoBehaviour
         if (PlayerStats.dnaSampleCount == 3)
         {
             PlayerStats.currentLevel = PlayerStats.currentLevel+1;
+
             PlayerPrefs.SetInt("currentLevel", (int)PlayerStats.currentLevel);
             GameManager.Instance.uiManager.ShowNotificationText(("Galaxy " + PlayerStats.currentLevel.ToString() + " is unlocked!"));
             PlayerStats.dnaSampleCount = 0;

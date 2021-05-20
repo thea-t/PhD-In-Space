@@ -337,13 +337,13 @@ MonoBehaviour:
   m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
   m_bodyCollider: {fileID: 2504820766171483314}
-  m_rangeCollider: {fileID: 78387323}
   isDead: 0
   dropsSample: 0
   dropsPowerUp: 0
-  m_maxHealth: 0
+  m_maxEnemyHealth: 60
   m_onDeadSFX: {fileID: 2320838897429765731}
   m_onTriggerEnterSFX: {fileID: 957031633013542128}
+  m_rangeCollider: {fileID: 78387323}
   m_onHitSFX: {fileID: 4066923746517006905}
 --- !u!195 &78387326
 NavMeshAgent:

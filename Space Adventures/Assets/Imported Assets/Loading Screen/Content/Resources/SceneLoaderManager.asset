@@ -39,7 +39,7 @@ MonoBehaviour:
       FakeLoadingTime: 3
       Backgrounds: []
     - SceneName: Planet Furon
-      SceneAsset: {fileID: 102900000, guid: 88ba2f2416b2c3e4b8f2c250ec6e3b60, type: 3}
+      SceneAsset: {fileID: 102900000, guid: f20fbcd8e24edab4e803c18955bf0460, type: 3}
       DisplayName: Planet
       Description: This is a cool planet.
       SkipType: 3

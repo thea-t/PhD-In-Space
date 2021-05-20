@@ -15,8 +15,6 @@ public class CharacterController : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         m_health -= damage;
-        Debug.Log("receiveDamage:" + damage);
-        Debug.Log("players health:" + PlayerStats.playerHealth);
 
         ParticleSystem particle = Instantiate(m_onShotParticle, transform.position, Quaternion.identity);
         Destroy(particle.gameObject, 2);

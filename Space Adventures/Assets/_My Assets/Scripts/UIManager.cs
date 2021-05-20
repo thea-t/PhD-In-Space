@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_coolTextInSpace;
     [SerializeField] GameObject m_coolTextPrefab;
     [SerializeField] GameObject m_onDeadPanel;
+    [SerializeField] AudioSource m_deadSFX;
     int m_textDuration = 4;
 
     [SerializeField] AudioSource m_notificationSFX;
@@ -63,7 +64,8 @@ public class UIManager : MonoBehaviour
 
     IEnumerator EnableOnDeadPanelDelayed()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        m_deadSFX.Play();
         m_onDeadPanel.SetActive(true);
     }
 

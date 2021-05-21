@@ -12,10 +12,13 @@ public class TutorialAndHelpUi : MonoBehaviour
     [SerializeField] Button m_buttonStart;
     [SerializeField] Button m_buttonSettings;
     [SerializeField] Image m_uiGuideImg;
+    [SerializeField] AudioSource m_startAudio;
     int m_tutorialIndex;
 
     private void Start()
-    { //https://forum.unity.com/threads/show-instrution-image-only-once.490395/
+    {
+        
+        //https://forum.unity.com/threads/show-instrution-image-only-once.490395/
         //https://docs.unity3d.com/ScriptReference/PlayerPrefs.html
         //If the tutorial hasn't been shown already, I'm not allowing to the player to click any buttons(by making them uninteractable) untill the player
         //finishes the tutorial. I'm saving this information of isShown in the player prefs so that the tutorial won't play every single time whe the game 
@@ -24,6 +27,7 @@ public class TutorialAndHelpUi : MonoBehaviour
         {
             m_buttonStart.interactable = false;
             m_buttonSettings.interactable = false;
+            m_startAudio.Play();
             m_tutorialPanel.SetActive(true);
             NextTutorial();
         } 

@@ -17,10 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_My Assets/Scenes/Planets/Milky Way Planets/Planet Furon.unity
     guid: f20fbcd8e24edab4e803c18955bf0460
-  - enabled: 0
-    path: Assets/_My Assets/Scenes/Planets/Milky Way Planets/Planet Loneeus.unity
-    guid: a93c19c9f1c1bd747986e25581652308
   - enabled: 1
-    path: Assets/_My Assets/Scenes/Galaxies/Tadpole.unity
-    guid: d7348d4d91f0e304a9646f9b5170372b
+    path: Assets/_My Assets/Scenes/Planets/Milky Way Planets/Planet Loneeus.unity
+    guid: a4de662df91d9ba49af462e8adfbc357
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

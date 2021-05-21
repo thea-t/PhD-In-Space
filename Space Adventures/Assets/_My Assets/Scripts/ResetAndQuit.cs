@@ -26,6 +26,7 @@ public class ResetAndQuit : MonoBehaviour
         PlayerPrefs.DeleteAll();
         bl_SceneLoaderUtils.GetLoader.LoadLevel("Menu");
         SetText();
+
     }
     //Quitting the game
     public void QuitTheGame()

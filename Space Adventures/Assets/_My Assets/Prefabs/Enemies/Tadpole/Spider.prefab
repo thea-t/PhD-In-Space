@@ -1524,15 +1524,15 @@ MonoBehaviour:
     type: 3}
   m_onDeadParticle: {fileID: 1586930189482067600, guid: 8396ac0132ed544449429516f33f79fc,
     type: 3}
-  m_bodyCollider: {fileID: 0}
+  m_bodyCollider: {fileID: 7263947646768601362}
   isDead: 0
   dropsSample: 0
   dropsPowerUp: 0
   m_maxEnemyHealth: 80
-  m_onDeadSFX: {fileID: 0}
-  m_onTriggerEnterSFX: {fileID: 0}
-  m_rangeCollider: {fileID: 0}
-  m_onHitSFX: {fileID: 0}
+  m_rangeCollider: {fileID: 5490487279484966459}
+  m_onDeadSFX: {fileID: 6291041188540271510}
+  m_onTriggerEnterSFX: {fileID: 1314510939989887291}
+  m_onHitSFX: {fileID: 6989914477796868519}
 --- !u!82 &6989914477796868519
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1639,7 +1639,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e1ea9a58664628e4eaa7a2bd7d4bdd2a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87f09e01529bedf44b7626446dbdad58, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1735,7 +1735,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4140663a6d5633542bcd16fe156bd5b6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87f09e01529bedf44b7626446dbdad58, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

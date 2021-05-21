@@ -70,7 +70,7 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     void ArriveInGalaxy()
     {
-        bl_SceneLoaderUtils.GetLoader.LoadLevel("Menu");
+        bl_SceneLoaderUtils.GetLoader.LoadLevel("MilkyWay");
        // bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel).ToString());
         Debug.Log(PlayerStats.currentLevel.ToString());
     }

@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
     int m_unlockedLevel;
     void Start()
     {
+
+        TemporaryDueToLackOfTime();
         //SetLevels();
     }
     //Gets the information of the current level frm playerPrefs and assigns it to m_unlockedLevel. If I had more levels it would make the buttons
@@ -55,5 +57,15 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(string levelName)
     {
         bl_SceneLoaderUtils.GetLoader.LoadLevel(levelName);
+    }
+    //Creating a temporary function that will be removed after submission when I start working again on the game and have more levels
+    void TemporaryDueToLackOfTime()
+    {
+        if (PlayerStats.currentLevel==Levels.Tadpole)
+        {
+            m_unlockedLevelsButton[0].interactable = true;
+            m_unlockedLevelsPanel[0].SetActive(true);
+            m_lockedLevelsIcon[0].SetActive(false);
+        }
     }
 }

@@ -33,7 +33,7 @@ MonoBehaviour:
     - SceneName: Planet Aeriaeria
       SceneAsset: {fileID: 102900000, guid: e74beb79eef426e48b4795d01a33e374, type: 3}
       DisplayName: Planet
-      Description: This is a cool planet.
+      Description: 
       SkipType: 3
       LoadingType: 1
       FakeLoadingTime: 3
@@ -41,33 +41,18 @@ MonoBehaviour:
     - SceneName: Planet Furon
       SceneAsset: {fileID: 102900000, guid: f20fbcd8e24edab4e803c18955bf0460, type: 3}
       DisplayName: Planet
-      Description: This is a cool planet.
+      Description: 
       SkipType: 3
       LoadingType: 1
       FakeLoadingTime: 3
       Backgrounds: []
     - SceneName: Planet Loneeus
-      SceneAsset: {fileID: 102900000, guid: a93c19c9f1c1bd747986e25581652308, type: 3}
+      SceneAsset: {fileID: 102900000, guid: a4de662df91d9ba49af462e8adfbc357, type: 3}
       DisplayName: Planet
-      Description: This is a cool planet.
-      SkipType: 3
-      LoadingType: 1
-      FakeLoadingTime: 3
-      Backgrounds: []
-    - SceneName: Tadpole
-      SceneAsset: {fileID: 102900000, guid: d7348d4d91f0e304a9646f9b5170372b, type: 3}
-      DisplayName: Planet
-      Description: This is a cool planet.
+      Description: 
       SkipType: 3
       LoadingType: 1
       FakeLoadingTime: 3
       Backgrounds: []
   TipList:
-    array:
-    - Create beutifull loading screens for improved your game
-    - Easy to use and implement
-    - remember that have 3 diferent styles for select.
-    - Create how much Tips as you want
-    - Improved the look of your game with awasome backgrounds.
-    - A good background sound increase the motivation of players.
-    - remember that have 3 diferent styles for select.
+    array: []

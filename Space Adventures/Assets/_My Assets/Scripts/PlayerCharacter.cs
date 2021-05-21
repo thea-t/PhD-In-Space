@@ -20,6 +20,7 @@ public class PlayerCharacter : CharacterController
         GameManager.Instance.curvedWorldController.bendPivotPoint = transform;
         GameManager.Instance.uiManager.UpdateHealthUi();
         GameManager.Instance.uiManager.UpdateFuelUi();
+        GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
         m_health = PlayerStats.playerHealth;
     }
 
@@ -44,7 +45,6 @@ public class PlayerCharacter : CharacterController
         base.Die();
         m_playerAnimator.SetTrigger("Die");
         GameManager.Instance.uiManager.EnableOnDeadPanel();
-        GameManager.Instance.resetAndQuit.ResetPlayerPrefs();
     }
     #endregion
 

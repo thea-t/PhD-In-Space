@@ -5,7 +5,8 @@ using UnityEngine;
 public class ResetAndQuit : MonoBehaviour
 {
     //https://docs.unity3d.com/ScriptReference/PlayerPrefs.DeleteAll.html
-
+    //Setting player stats to the deafaut ones, because every time when i'm quitting the game they are being saved and when I want to reset the game
+    //and start over, I want my stats to start as the deafout ones
     void SetText()
     {
         PlayerPrefs.SetFloat("playerHealth", 100);
@@ -19,14 +20,14 @@ public class ResetAndQuit : MonoBehaviour
         PlayerPrefs.SetInt("dnaSampleCount", 0);
         PlayerPrefs.SetInt("currentLevel", 0);
     }
-
+    //Reseting player prefs by deleting all the keys and loading the Menu
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
         bl_SceneLoaderUtils.GetLoader.LoadLevel("Menu");
         SetText();
     }
-
+    //Quitting the game
     public void QuitTheGame()
     {
         Application.Quit();
@@ -34,6 +35,7 @@ public class ResetAndQuit : MonoBehaviour
         Debug.Log("app is quit");
     }
 
+   //Pausing the game
     //https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
     public void PauseTheGame()
     {
@@ -45,7 +47,7 @@ public class ResetAndQuit : MonoBehaviour
     }
 
 
-
+    //When application quits, I'm saving the player stats to certain keys in player prefs so that the players progress will be saved 
     private void OnApplicationQuit()
     {
         PlayerPrefs.SetFloat("playerHealth", PlayerStats.playerHealth);

@@ -16,10 +16,11 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     private void Start()
     {
+        //When the scene loads, players ship moves to 0,0,0 within 3 seconds. The moment this is completed I'm playing sound effect and calling a function
         m_ship.transform.DOMove(new Vector3(0, 0, 0), 3).OnComplete(LandingAnimationStart);
         m_shipIsLandingVFX.Play();
     }
-
+    //Instantiating the playerCharacter and setting its Animator to play the Walk animation while moving to a certain position. Particles and vfx are played as well
     void LandingAnimationStart()
     {
         m_smokeExplosionParticle.Play();
@@ -30,7 +31,9 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
         m_playerAnimator.SetBool("Walk", true);
         GameManager.Instance.playerCharacter.transform.DOMoveZ(3, 2).OnComplete(LandingAnimationEnd);
     }
-
+    //When the player reaches to the point he was supposed to reach to, he is playing an animation and in some more seconds he is allowed to move
+    //and his rb is not kinematic anymore. The virtual camera also is set inactive so that the other camera will take control and the scene will have
+    //top-down view
     void LandingAnimationEnd()
     {
         m_playerAnimator.SetBool("Walk", false);
@@ -45,7 +48,8 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
         GameManager.Instance.playerCharacter.GetComponent<Rigidbody>().isKinematic = false;
         GameManager.Instance.playerCharacter.canMove = true;
     }
-
+    //Sound and Vfx are played, after that the player's character is destroyed and the virtual camera is set active so that the view will change
+    //and look like the player is actually leaving for real, not just changing scenes. Also the ship moves to a certain position and the scene changes 
     public void LeavingAnimation()
     {
         m_playerEnteringTheShipVFX.Play();
@@ -66,7 +70,8 @@ public class LeavingAndLandingOnPlanet : MonoBehaviour
 
     void ArriveInGalaxy()
     {
-        bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel).ToString());
+        bl_SceneLoaderUtils.GetLoader.LoadLevel("Menu");
+       // bl_SceneLoaderUtils.GetLoader.LoadLevel((PlayerStats.currentLevel).ToString());
         Debug.Log(PlayerStats.currentLevel.ToString());
     }
 }

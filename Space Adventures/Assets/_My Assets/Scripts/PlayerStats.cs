@@ -7,6 +7,7 @@ using UnityEngine;
 //https://www.sitepoint.com/saving-data-between-scenes-in-unity/
 public static class PlayerStats
 {
+    // Creating public static variables to carry information between scenes
     public static List<string> completedPlanets = new List<string>();
     public static float playerHealth = 100;
     public static float playerFuel = 100;

@@ -1334,7 +1334,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774647, y: 1}
+    m_SensorSize: {x: 1.7795316, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2066,7 +2066,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9926bbb1dc1f5c844813feab34ec5a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectedSamplesImage: []
+  CollectedSamplesImage:
+  - {fileID: 2016004025}
+  - {fileID: 114558692}
+  - {fileID: 1890926806}
   m_healthBarFiller: {fileID: 213092345}
   m_fuelBarFiller: {fileID: 138040565}
   m_SamplesDNABarFiller: {fileID: 1899766089}
@@ -2079,6 +2082,7 @@ MonoBehaviour:
   m_coolTextPrefab: {fileID: 4209333648428961289, guid: 3f3c3bb97ab632c419db6a9b8b3c1147,
     type: 3}
   m_onDeadPanel: {fileID: 817943080}
+  m_deadSFX: {fileID: 0}
   m_notificationSFX: {fileID: 0}
 --- !u!224 &362217738
 RectTransform:
@@ -6471,6 +6475,7 @@ MonoBehaviour:
   shipLanding: {fileID: 0}
   uiManager: {fileID: 362217737}
   enemyTracker: {fileID: 0}
+  resetAndQuit: {fileID: 0}
 --- !u!4 &931175926
 Transform:
   m_ObjectHideFlags: 0
@@ -11928,7 +11933,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7774647, y: 1}
+    m_SensorSize: {x: 1.7795316, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

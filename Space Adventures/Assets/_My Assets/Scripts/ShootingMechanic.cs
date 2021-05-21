@@ -25,7 +25,9 @@ public class ShootingMechanic : MonoBehaviour
         CheckMouseClick();
     }
 
-    //animator event
+    //When the animation reaches to the second where the event is set, its calling this function. A bullet is instantiated on the position of the 
+    //shoot point which is hidden in the gun, and the bullet is moving in a forward direction. In a couple of seconds this bullet is being destroyed.
+    //anim event
     void OnShoot()
     {
         Bullet bullet = Instantiate(m_bulletPrefab, m_bulletShootPoint.transform.position, transform.rotation);
@@ -37,6 +39,9 @@ public class ShootingMechanic : MonoBehaviour
 
     void CheckMouseClick()
     {
+        //If the mouse button is clicked and is not clicked on top a Ui, the weapon of the player is set active and an attack animation which is 
+        //looping is set to true. This attack animation has animation event where when the animatin reaches to a certain second, its calling the OnShoot function
+        //Also player's movement is stopped because I don't want player to shoot while running
         if (Input.GetMouseButtonDown(0))
         {
             //https://answers.unity.com/questions/1410936/how-to-prevent-a-ui-element-from-clicking-the-game.html
@@ -47,6 +52,8 @@ public class ShootingMechanic : MonoBehaviour
                 GameManager.Instance.playerCharacter.canMove = false;
             }
         }
+        //If the mouse button is held continuesly, player's character is rotating and looking at the position of the mouse. This is made so that 
+        //the player can mouse over enemies and shoot at them
         else if (Input.GetMouseButton(0))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -62,6 +69,7 @@ public class ShootingMechanic : MonoBehaviour
                 transform.LookAt(lookAtPosition);
             }
         }
+        //When the mouse button is not clicked anymore, the weapon is becoming inactive and the animation stops playing. Also, player is allowed to move.
         else if (Input.GetMouseButtonUp(0))
         {
             m_weapon.SetActive(false);
@@ -69,8 +77,4 @@ public class ShootingMechanic : MonoBehaviour
             GameManager.Instance.playerCharacter.canMove = true;
         }
     }
-
-    //switching between left and right mouse click https://riptutorial.com/unity3d/example/12813/read-mouse-button---left--middle--right--clicks
-
-
 }

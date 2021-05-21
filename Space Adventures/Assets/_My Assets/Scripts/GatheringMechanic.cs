@@ -32,6 +32,7 @@ public class GatheringMechanic : MonoBehaviour
 
     private void Start()
     {
+        //Setting the m_main cam to the main camera because I will use that later on to make my player rotate on the position of the screen of my mouse when I click
         m_mainCam = Camera.main;
         GameManager.Instance.uiManager.UpdateFuelUi();
     }
@@ -42,6 +43,8 @@ public class GatheringMechanic : MonoBehaviour
         CollectSample();
     }
     
+    //This is an animation event called when the gathering animation reaches to a certain second. It checks all the colliders near me in a certain 
+    //radius and if these colliders have a tag "fuel", sound effect is played and I'm calling the startGathering function located in the Fuel class
     //anim evet
     void OnFuelGathered()
     {
@@ -58,6 +61,10 @@ public class GatheringMechanic : MonoBehaviour
         }
 
     }
+
+    //If the space button is pressed it checks all the colliders near me in a certain 
+    //radius and if these colliders have a tag "alienSample", it destroys the sample and collects it by calling the OnSampleCollected function
+    //if the tag is different, it calls different function(powerUp for example)
     void CollectSample()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -84,13 +91,18 @@ public class GatheringMechanic : MonoBehaviour
     }
     void OnPowerUpCollected()
     {
+        //Picking a random int between 0 and the lenght of the Enum
+        //Depending on the number that has been picked, I'm increasing certain stats , updating Ui and showing notifications
         //https://stackoverflow.com/questions/856154/total-number-of-items-defined-in-an-enum
         int random = Random.Range(0, PowerUp.GetNames(typeof(PowerUp)).Length);
 
         switch (random)
         {
             case (int)PowerUp.GainHealth:
-                PlayerStats.playerHealth += m_PowerUpHealth;
+                if (PlayerStats.playerHealth <= PlayerStats.maxHealth - m_PowerUpHealth)
+                {
+                    PlayerStats.playerHealth += m_PowerUpHealth;
+                }
                 GameManager.Instance.uiManager.ShowNotificationText("Health gained!");
                 GameManager.Instance.uiManager.UpdateHealthUi();
                 Debug.Log("+health: " + PlayerStats.playerHealth);
@@ -129,7 +141,9 @@ public class GatheringMechanic : MonoBehaviour
         }
 
     }
-
+    //When a sample is collected i'm increasing the dnaSampleCount by one and adding the name of the current planet to the list of completedPlanets
+    //When there are 3 samples collected I'm unlocking the next level and saving it in playerPrefs. I'm also showing a notification that the 
+    //next level is unlocked and I'm setting the dnaSampleCount to 0
     void OnSampleCollected()
     {
         PlayerStats.dnaSampleCount++;
@@ -148,7 +162,9 @@ public class GatheringMechanic : MonoBehaviour
         
         Debug.Log("dna COUNT: " + PlayerStats.dnaSampleCount);
     }
-
+    //If the mouse button is clicked the axe of the player is set active and an digging animation which is 
+    //looping is set to true. This digging animation has animation event where when the animatin reaches to a certain second, its calling the OnGather function
+    //Also player's movement is stopped because I don't want player to shoot while running
     void CheckMouseClick()
     {
         if (Input.GetMouseButtonDown(1))
@@ -157,6 +173,7 @@ public class GatheringMechanic : MonoBehaviour
             m_playerAnimator.SetBool("Digging", true);
             GameManager.Instance.playerCharacter.canMove = false;
         }
+        //If the mouse button is held continuesly, player's character is rotating and looking at the position of the mouse. 
         else if (Input.GetMouseButton(1))
         {
             //https://answers.unity.com/questions/1569674/how-can-i-shoot-a-projectile-on-mouse-position.html
@@ -169,6 +186,7 @@ public class GatheringMechanic : MonoBehaviour
 
             transform.LookAt(lookAtPosition);
         }
+        //When the mouse button is released, the axe is becoming inactive and the animation stops playing. Also, player is allowed to move.
         else if (Input.GetMouseButtonUp(1))
         {
             m_axePrefab.SetActive(false);

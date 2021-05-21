@@ -7,11 +7,12 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //setting the panels active
-    //holds references of ui objects
-    //unlocks levels
-    //sets the stats bars values
-    //displays enemies left
+    //Its mainly visuals and playing with values. What this class does is:
+    //Setting the panels active
+    //Holds references of ui objects
+    //Sets the stats bars values
+    //Displays enemies left
+    //Shows and hides cool text
 
     [SerializeField] Image[] CollectedSamplesImage;
     [SerializeField] Image m_healthBarFiller;

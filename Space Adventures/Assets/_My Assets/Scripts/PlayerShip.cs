@@ -14,6 +14,7 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] ParticleSystem m_rightSmokeParticle;
     [SerializeField] ParticleSystem m_topSmokeParticle;
     [SerializeField] ParticleSystem m_botSmokeParticle;
+    [SerializeField] ParticleSystem m_explosion;
     public Rigidbody rb;
     bool m_isMinimapOpen;
     public bool isAllowedToMove;
@@ -22,7 +23,6 @@ public class PlayerShip : MonoBehaviour
     [SerializeField] GameObject [] m_asteroids;
     [SerializeField] GameObject m_shipModel;
     [SerializeField] Image m_asteroidWarning;
-    [SerializeField] ParticleSystem m_explosion;
     [SerializeField] AudioSource m_shipMovementSFX;
     [SerializeField] AudioSource m_asteroidStormNotificationSFX;
     [SerializeField] AudioSource m_shipExplosionSFX;
@@ -32,6 +32,7 @@ public class PlayerShip : MonoBehaviour
 
     private void Start()
     {
+        //Update all the Ui panels on start and allow player's ship to move
         GameManager.Instance.uiManager.UpdateHealthUi();
         GameManager.Instance.uiManager.UpdateDnaSamplesBarUi();
         GameManager.Instance.uiManager.UpdateFuelUi();
@@ -42,56 +43,10 @@ public class PlayerShip : MonoBehaviour
         CheckKeyForShipMovement();
         MinimapController();
     }
-
-    IEnumerator AsteroidRainDelayed()
-    {
-        yield return new WaitForSeconds(2);
-
-        if (!m_asteroidWarningSFX)
-        {
-            m_asteroidStormNotificationSFX.Play();
-            m_asteroidStormSFX.PlayDelayed(2);
-            m_asteroidWarningSFX = true;
-            m_asteroidWarning.DOFade(1, 1);
-        }
-
-        for (int i = 0; i < m_asteroids.Length; i++)
-        {
-            yield return new WaitForSeconds(Random.Range(0.5f, 3));
-            m_asteroids[i].SetActive(true);
-            m_asteroids[i].GetComponent<Rigidbody>().isKinematic = false;
-        }
-    }
-
-    void UseFuel()
-    {
-        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
-        GameManager.Instance.uiManager.UpdateFuelUi();
-        if (PlayerStats.playerFuel <= 0)
-        {
-            PlayerStats.playerFuel = 0;
-            m_shipSpeed = 0;
-            StartCoroutine(AsteroidRainDelayed());
-        }
-    }
-
-    void MinimapController()
-    {
-        if (!m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
-        {
-            m_followCamera.SetActive(false);
-            m_isMinimapOpen = true;
-            isAllowedToMove = false;
-            rb.isKinematic = true;
-        }
-        else if (m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
-        {
-            m_followCamera.SetActive(true);
-            m_isMinimapOpen = false;
-            isAllowedToMove = true;
-            rb.isKinematic = false;
-        }
-    }
+    //Move the ship if it is allowed to move by pressing a key on the keyboard. Each key moves the ship in a specific direction by adding force 
+    //on its rigidbody and plays and sound effect. It also uses fuel.
+    //When the key is released, the particles and sfx stops playing but ship keeps moving due to the previously added force. This is intentional
+    //because these are the challenges in space. Its not an easyy task to control a spacecraft
     void CheckKeyForShipMovement()
     {
         // UP
@@ -165,13 +120,76 @@ public class PlayerShip : MonoBehaviour
 
     }
 
+    //Using fuel by redusing fuel (fuelShipConsumption) from the fuel of the player. Also updating the Ui the moment fuel is used. 
+    //If the fuel is over, asteroid rain starts in a couple of seconds in order to look more realistic
+    void UseFuel()
+    {
+        PlayerStats.playerFuel -= PlayerStats.fuelShipConsumption;
+        GameManager.Instance.uiManager.UpdateFuelUi();
+        if (PlayerStats.playerFuel <= 0)
+        {
+            PlayerStats.playerFuel = 0;
+            m_shipSpeed = 0;
+            StartCoroutine(AsteroidRainDelayed());
+        }
+    }
+    
+    //When a storm starts, the first thing that happens is notifying the player by playing SFX and changing the alpha color of the asteroidWarning image
+    //After that, the asteroids which are previously put in the scene and set inactive and with true kinematic, start slowly being setActive and 
+    //their rigidbodies are not kinematic anymore so that they can fall. Each asteroid is doing this within some random seconds of difference in order to 
+    //achieve more natural look of the storm
+    IEnumerator AsteroidRainDelayed()
+    {
+        yield return new WaitForSeconds(2);
+
+        if (!m_asteroidWarningSFX)
+        {
+            m_asteroidStormNotificationSFX.Play();
+            m_asteroidStormSFX.PlayDelayed(2);
+            m_asteroidWarningSFX = true;
+            m_asteroidWarning.DOFade(1, 1);
+        }
+
+        for (int i = 0; i < m_asteroids.Length; i++)
+        {
+            yield return new WaitForSeconds(Random.Range(0.5f, 3));
+            m_asteroids[i].SetActive(true);
+            m_asteroids[i].GetComponent<Rigidbody>().isKinematic = false;
+        }
+    }
+
+    //Opening the minimap if it not already open when the M button is pressed. When the map opens, evertything on the screen freezes and the 
+    //virtual camera switches to an another one
+    void MinimapController()
+    {
+        if (!m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
+        {
+            m_followCamera.SetActive(false);
+            m_isMinimapOpen = true;
+            isAllowedToMove = false;
+            rb.isKinematic = true;
+        }
+        else if (m_isMinimapOpen && Input.GetKeyDown(KeyCode.M))
+        {
+            m_followCamera.SetActive(true);
+            m_isMinimapOpen = false;
+            isAllowedToMove = true;
+            rb.isKinematic = false;
+        }
+    }
+   
+
 
     void OnTriggerEnter(Collider other)
     {
+        //When the player triggers the gravity collider, playerIsInRange is set to true and the planet pulls the player towards it. This logic is 
+        //implemented in the GravityController script
         if (other.CompareTag("gravity"))
         {
             other.transform.parent.GetComponent<GravityController>().playerIsInRange = true;
         }
+        //When the player collides with  planet, his rigidbody becomes kinematic so that he won't move and the transform is parented to the planet and start scalling
+        //The scene changes shortly after that 
         else if (other.CompareTag("planet"))
         {
             rb.isKinematic = true;
@@ -182,13 +200,16 @@ public class PlayerShip : MonoBehaviour
             //how to do something with a delay:
             StartCoroutine(ChangeScene(other.transform.parent.name));
         }
+
+        //When the player triggers the sun collider, which is bigger than the sun itself, sounds are played and cool text is shown
         else if (other.CompareTag("sun"))
         {
             GameManager.Instance.uiManager.ShowCoolTextInSpace("YOU ARE TOO CLOSE TO THE SUN!");
-            GameManager.Instance.uiManager.UpdateHealthUi();
             m_fireWarningSFX.Play();
             m_fireSFX.Play();
         }
+        //If the player is being hit by asteroid, its health is set to 0, updated, almost everything is set active and the dead panel is enabled 
+       //An explosion is played if it hasnt already where sound effects and particles are being played
         else if (other.CompareTag("asteroid"))
         {
             PlayerStats.playerHealth = 0;

@@ -21,9 +21,10 @@ public class LevelManager : MonoBehaviour
     int m_unlockedLevel;
     void Start()
     {
-        SetLevels();
+        //SetLevels();
     }
-
+    //Gets the information of the current level frm playerPrefs and assigns it to m_unlockedLevel. If I had more levels it would make the buttons
+    //when the player is selecting leves interactible and increase the difficulty curve of each level
     public void SetLevels()
     {
         m_unlockedLevel = PlayerPrefs.GetInt("currentLevel");
@@ -35,13 +36,14 @@ public class LevelManager : MonoBehaviour
             {
                 m_unlockedLevelsButton[i].interactable = true;
                 m_unlockedLevelsPanel[i].SetActive(true);
-                m_lockedLevelsIcon[i].SetActive(false);        
-                
+                m_lockedLevelsIcon[i].SetActive(false);
+
             }
 
         }
     }
 
+    //Increasing the difficlty curve by increasing the multipliers to gather fuel and receive damage,depending on the currently unlocked level
     void IncreaseDifficultyCurve()
     {
         PlayerStats.multiplierToReceiveDamage = m_unlockedLevel;
@@ -49,7 +51,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("mult. to receive damage:" + PlayerStats.multiplierToReceiveDamage);
         Debug.Log("gather fuel:" + PlayerStats.multiplierToGatherFuel);
     }
-
+     //loads levels
     public void LoadLevel(string levelName)
     {
         bl_SceneLoaderUtils.GetLoader.LoadLevel(levelName);
